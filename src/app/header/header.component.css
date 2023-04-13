@@ -1,23 +1,49 @@
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-
-body { 
-  font-family: Roboto, Arial, sans-serif;
-  margin: 0;
+header {
+  background-color: #0EA5C6;
+  border-bottom: solid 3px #6767d4;
 }
 
-.basic-container {
-  padding: 30px;
+.logotype {
+  padding-top: 0.3rem;
+  padding-left: 4rem;
 }
 
-.version-info {
-  font-size: 8pt;
-  float: right;
+nav {
+  height: 4.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
-button[mat-fab] {
-    background-color: white;
+button {
+  margin-top: 1.2rem;
+  color: white;
+  border-radius: 0.8rem;
+  border: 1px solid #6767d4;
+  margin-right: 4rem;
 }
 
-nav{
-display: flex;
+@media screen and (max-width: 500px) {
+  .logotype {
+    padding-left: 1.5rem;
+  }
+
+  button {
+    margin-right: 1.5rem;
+  }
+
 }
+
+@media screen and (max-width: 330px) {
+  .logotype {
+    padding-left: 0.2rem;
+  }
+
+  button {
+    margin-right: 0.2rem;
+  }
+
+}
+
+
+

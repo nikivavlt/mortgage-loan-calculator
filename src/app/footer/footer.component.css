@@ -1,0 +1,23 @@
+footer {
+  border-top: solid 1px #6767d4;
+  padding-top: 1rem;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-color: #0ea5c6;
+  text-align: center;
+}
+
+p {
+  font-size: 0.9rem;
+  color: white;
+}
+
+@media screen and (max-width: 350px) {
+  p {
+    font-size: 0.65rem;
+  }
+
+}

@@ -11,15 +11,18 @@ export class AppComponent {
 
 
   constructor(private userService: UserService){
-    this.userService.getBackendData().subscribe({
+  }
+
+  ngOnInit() {
+    this.userService.getBackendMockData().subscribe({
       next: (response) => {
         console.log('Response from server: ', response);
       },
       error: (error) => {
         console.error('Error occured:', error);
       }
-      })
-    }
+    })
+  }
 
 
   }
