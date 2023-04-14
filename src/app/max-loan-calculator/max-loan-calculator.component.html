@@ -1,0 +1,59 @@
+<form [formGroup]="loanForm" class="form-container">
+  <div class="radio-group-container">
+    <mat-label class="loan-label">This Loan is for</mat-label>
+    <mat-radio-group aria-label="Select loan type" name="loanType">
+      <mat-radio-button [checked]="true" value="personal"
+        >Just me</mat-radio-button
+      >
+      <mat-radio-button value="home">Me and co-borrower</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div class="form-field-container">
+    <mat-label>Net Income (Monthly income after taxes)</mat-label>
+    <mat-form-field appearance="outline">
+      <input matInput type="text" formControlName="netIncome" min="0" />
+      <span matSuffix>Eur</span>
+    </mat-form-field>
+    <div *ngIf="netIncome?.dirty && (netIncome?.errors || netIncome?.touched)">
+      <div *ngIf="netIncome && netIncome.errors">
+        <div *ngIf="netIncome.errors['required']" class="error-message">
+          This field is required
+        </div>
+        <div *ngIf="netIncome.errors['pattern']" class="error-message">
+          Please enter a valid number
+        </div>
+      </div>
+    </div>
+    <mat-label>Number of dependent family members</mat-label>
+    <mat-form-field appearance="outline">
+      <input matInput type="number" formControlName="dependent" min="0" />
+    </mat-form-field>
+    <div *ngIf="dependent?.dirty && (dependent?.errors || dependent?.touched)">
+      <div *ngIf="dependent && dependent.errors">
+        <div *ngIf="dependent.errors['required']" class="error-message">
+          This field is required
+        </div>
+      </div>
+    </div>
+    <mat-label>Current monthly obligations</mat-label>
+    <mat-form-field appearance="outline">
+      <span matSuffix style="align-self: flex-end">Eur</span>
+      <input matInput type="text" formControlName="obligations" />
+    </mat-form-field>
+    <div
+      *ngIf="
+        obligations?.dirty && (obligations?.errors || obligations?.touched)
+      "
+    >
+      <div *ngIf="obligations && obligations.errors">
+        <div *ngIf="obligations.errors['required']" class="error-message">
+          This field is required
+        </div>
+        <div *ngIf="obligations.errors['pattern']" class="error-message">
+          Please enter a valid number
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <button (click)="submitForm()">Submit</button> -->
+</form>

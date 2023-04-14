@@ -1,0 +1,85 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+  /* border: solid; */
+  padding: 20px;
+
+}
+
+.radio-group-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-field-container mat-label {
+  display: flex;
+  margin-bottom: 5px;
+  margin-top: 15px;
+
+}
+
+.form-field-container matSuffix {
+  display: felx;
+  align-self: flex-start
+}
+
+.radio-group-container mat-label {
+  display: flex;
+  margin-bottom: 5px;
+  margin-top: 15px;
+  align-items: center;
+}
+
+.form-field-container mat-form-field {
+  width: 100%;
+}
+
+.form-field-container {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.form-field-container>* {
+  width: 100%;
+}
+
+.form-field-container form>* {
+  margin: 3px 99;
+}
+
+.radio-group-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field-container form {
+  margin-bottom: 20px;
+}
+
+.form-field-container .mat-radio-button {
+  margin: 0 12px;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loan-label {
+  align-self: flex-start;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  align-self: flex-start;
+
+}

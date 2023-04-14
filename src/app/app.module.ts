@@ -6,14 +6,24 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatButtonModule} from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
+
 
 import { HttpClientModule } from '@angular/common/http';
 import { FirstTabComponent } from './first-tab/first-tab.component';
 import { SecondTabComponent } from './second-tab/second-tab.component';
 import { ThirdTabComponent } from './third-tab/third-tab.component';
+import { MaxLoanCalculatorComponent } from './max-loan-calculator/max-loan-calculator.component';
+
 
 @NgModule({
   imports: [
@@ -22,7 +32,13 @@ import { ThirdTabComponent } from './third-tab/third-tab.component';
     BrowserAnimationsModule,
     MatTabsModule,
     MatButtonModule,
-    HttpClientModule
+    MatInputModule,
+    MatFormFieldModule,
+    MatRadioModule,
+    MatGridListModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+
   ],
   declarations: [
     AppComponent,
@@ -32,6 +48,7 @@ import { ThirdTabComponent } from './third-tab/third-tab.component';
     FirstTabComponent,
     SecondTabComponent,
     ThirdTabComponent,
+    MaxLoanCalculatorComponent,
 
   ],
 
