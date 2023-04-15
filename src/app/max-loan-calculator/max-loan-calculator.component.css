@@ -4,9 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 500px;
-  /* border: solid; */
-  padding: 20px;
-
+  padding: 1.25em;
 }
 
 .radio-group-container {
@@ -18,20 +16,19 @@
 
 .form-field-container mat-label {
   display: flex;
-  margin-bottom: 5px;
-  margin-top: 15px;
-
+  margin-bottom: 0.3em;
+  margin-top: 0.3em;
 }
 
 .form-field-container matSuffix {
-  display: felx;
-  align-self: flex-start
+  display: flex;
+  align-self: flex-start;
 }
 
 .radio-group-container mat-label {
   display: flex;
-  margin-bottom: 5px;
-  margin-top: 15px;
+  margin-bottom: 0.3em;
+  margin-top: 0.9em;
   align-items: center;
 }
 
@@ -42,16 +39,9 @@
 .form-field-container {
   display: flex;
   flex-direction: column;
-
 }
 
-.form-field-container>* {
-  width: 100%;
-}
 
-.form-field-container form>* {
-  margin: 3px 99;
-}
 
 .radio-group-container {
   display: flex;
@@ -59,11 +49,11 @@
 }
 
 .form-field-container form {
-  margin-bottom: 20px;
+  margin-bottom: 2em;
 }
 
 .form-field-container .mat-radio-button {
-  margin: 0 12px;
+  margin: 0 0.75em;
 }
 
 :host {
@@ -78,8 +68,11 @@
 
 .error-message {
   color: red;
-  font-size: 12px;
-  margin-top: 5px;
+  font-size: 0.75em;
+  margin-top: 0.3em;
   align-self: flex-start;
+}
 
+.suffix {
+  margin-left: 4px;
 }

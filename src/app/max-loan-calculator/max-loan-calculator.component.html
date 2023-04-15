@@ -12,7 +12,7 @@
     <mat-label>Net Income (Monthly income after taxes)</mat-label>
     <mat-form-field appearance="outline">
       <input matInput type="text" formControlName="netIncome" min="0" />
-      <span matSuffix>Eur</span>
+      <span matTextSuffix> Eur </span>
     </mat-form-field>
     <div *ngIf="netIncome?.dirty && (netIncome?.errors || netIncome?.touched)">
       <div *ngIf="netIncome && netIncome.errors">
@@ -37,7 +37,7 @@
     </div>
     <mat-label>Current monthly obligations</mat-label>
     <mat-form-field appearance="outline">
-      <span matSuffix style="align-self: flex-end">Eur</span>
+      <span matTextSuffix class="suffix"> Eur </span>
       <input matInput type="text" formControlName="obligations" />
     </mat-form-field>
     <div

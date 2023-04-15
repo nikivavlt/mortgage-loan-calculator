@@ -24,13 +24,6 @@ export class MaxLoanCalculatorComponent {
       dependent: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/), negativeValidator])
     });
   }
-  submitForm() {
-    if (this.loanForm?.valid) {
-    }
-    const netIncome = this.loanForm?.value.netIncome;
-    console.log(`Number entered: ${netIncome}`);
-  }
-
   get netIncome() {
     return this.loanForm.get('netIncome');
   }
