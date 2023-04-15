@@ -1,1 +1,202 @@
-<p>Pepperoni!</p>
+<mat-horizontal-stepper [orientation]="getOrientation()" [linear]="true">
+  <mat-step  label="Personal information" [stepControl]="stepOneForm">
+    <form [formGroup]="stepOneForm">
+      <div class="centerForm">
+        <mat-form-field appearance="fill">
+          <mat-label>Name and Surname</mat-label>
+          <input matInput formControlName="fullname" type="text" placeholder="John Doe">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>Personal number</mat-label>
+          <input matInput formControlName="pNum"  type="number" placeholder="12345678901">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>Phone number</mat-label>
+          <input matInput formControlName="phoneNumber" type="tel"  placeholder="+37061234567" pattern="^\+370\d{8}$">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email" placeholder="mail@coolmail.com" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+        </mat-form-field>
+        <br>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </div>
+
+    </form>
+
+  </mat-step>
+  <mat-step label="Income and Financial liabilities" [stepControl]="stepTwoForm">
+    <form [formGroup]="stepTwoForm">
+      <div class="form-row">
+        <div class="centerForm">
+          <mat-form-field appearance="fill" class="formInput">
+            <mat-label>Education</mat-label>
+            <mat-select formControlName="education">
+              <mat-option *ngFor="let education of educationValues" [value]="education.value">
+                {{education.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Time Employed</mat-label>
+            <mat-select formControlName="timeEmployed">
+              <mat-option *ngFor="let values of timeEmployedValues" [value]="values.value">
+                {{values.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Contract type</mat-label>
+            <mat-select formControlName="contractType">
+              <mat-option *ngFor="let values of contractTypeValues" [value]="values.value">
+                {{values.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="centerForm">
+          <mat-form-field appearance="fill">
+            <mat-label>Current employer</mat-label>
+            <input matInput formControlName="employer" type="text" placeholder="UAB Firma">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Position held</mat-label>
+            <input matInput formControlName="position" type="text" placeholder="Senior manager of things">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Eur</mat-label>
+            <span matTooltip="Enter the amount of your monthly financial obligations">
+              <input matInput formControlName="monthlyObligations" type="number" placeholder="1000">
+            </span>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="centerForm">
+          <mat-form-field appearance="fill" class="formInput">
+            <mat-label>Net income</mat-label>
+            <input matInput formControlName="netIncome" type="number" placeholder="1000">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="centerForm">
+        <mat-label>Number of children</mat-label>
+        <mat-radio-group aria-label="Select an option" formControlName="childnum">
+          <div>
+            <mat-radio-button value="1">1 children</mat-radio-button>
+            <mat-radio-button value="2">2 children</mat-radio-button>
+            <mat-radio-button value="3">More</mat-radio-button>
+          </div>
+        </mat-radio-group>
+        <br>
+        <mat-label>Current other financial obligations</mat-label>
+        <mat-radio-group aria-label="Select an option" formControlName="financialObl">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step label="Loan information" [stepControl]="stepThreeForm">
+    <form [formGroup]="stepThreeForm">
+      <div class="form-row">
+        <div class="centerForm">
+            <mat-form-field appearance="fill">
+              <mat-label>Loan ammount</mat-label>
+              <input matInput formControlName="loanAmmount" type="number" placeholder="1000">
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill">
+              <mat-label>Loan purpose</mat-label>
+              <input matInput formControlName="loanPurpose" type="text" placeholder="I want a house">
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill">
+              <mat-label>Term of loan</mat-label>
+              <mat-select formControlName="termOfLoan">
+                <mat-option *ngFor="let term of loanTermValues" [value]="term.value">
+                  {{term.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="centerForm">
+          <mat-form-field appearance="fill">
+            <mat-label>Type of property</mat-label>
+            <input matInput formControlName="propertyType" type="text" placeholder="House with 5 doors">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Price of property</mat-label>
+            <input matInput formControlName="propertyPrice" type="number" placeholder="3000">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Evaluation price of property</mat-label>
+            <input matInput formControlName="evaluatedPropertyPrice" type="number" placeholder="4000">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step label="Additional information" [stepControl]="stepFourForm">
+    <form [formGroup]="stepFourForm">
+      <div class="form-row">
+        <div class="centerForm">
+
+          <mat-radio-group formControlName="coBorrower">
+            <mat-label>Will the loan be taken with a co-borrower?</mat-label>
+            <br>
+            <mat-radio-button value="no">No</mat-radio-button>
+            <mat-radio-button value="yes">Yes</mat-radio-button>
+          </mat-radio-group>
+          <br>
+          <ng-container *ngIf="stepFourForm.controls['coBorrower'].value === 'yes'">
+            <mat-form-field>
+              <input matInput placeholder="Name and Surname" formControlName="coBorrowerName" type="text" placeholder="John Doe">
+              <mat-error *ngIf="stepFourForm.hasError('coBorrowerNameRequired') && stepFourForm.get('coBorrowerName')?.touched">
+                Error: Applicant net income check failed
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput placeholder="Personal number" formControlName="coBorrowerPersonalNumber" type="number" placeholder="12345678901">
+              <mat-error *ngIf="(stepFourForm.hasError('coBorrowerPersonalNumberRequired')&& stepFourForm.get('coBorrowerPersonalNumber')?.touched)">
+                Error: Applicant net income check failed
+              </mat-error>
+            </mat-form-field>
+          </ng-container>
+          <br>
+          <mat-checkbox formControlName="certification">I certify the information I provided on and in connection with this form is true and correct.</mat-checkbox>
+        </div>
+      </div>
+
+
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button type="submit">Send form</button>
+    </div>
+
+    </form>
+  </mat-step>
+</mat-horizontal-stepper>
