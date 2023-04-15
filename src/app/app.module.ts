@@ -21,7 +21,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HttpClientModule } from '@angular/common/http';
 import { FirstTabComponent } from './first-tab/first-tab.component';
 import { SecondTabComponent } from './second-tab/second-tab.component';
-import { ThirdTabComponent } from './third-tab/third-tab.component';
+import { MortgageSubmitComponent } from './mortgage-submit/mortgage-submit.component';
 
 @NgModule({
   imports: [
@@ -49,7 +49,7 @@ import { ThirdTabComponent } from './third-tab/third-tab.component';
     HeaderComponent,
     FirstTabComponent,
     SecondTabComponent,
-    ThirdTabComponent,
+    MortgageSubmitComponent,
   ],
 
   providers: [],

@@ -34,11 +34,11 @@ function coBorrowerValidator(): ValidatorFn {
 }
 
 @Component({
-  selector: 'app-third-tab',
-  templateUrl: './third-tab.component.html',
-  styleUrls: ['./third-tab.component.css']
+  selector: 'app-mortgage-submit',
+  templateUrl: './mortgage-submit.component.html',
+  styleUrls: ['./mortgage-submit.component.css']
 })
-export class ThirdTabComponent {
+export class MortgageSubmitComponent {
   stepOneForm: FormGroup;
   stepTwoForm: FormGroup;
   stepThreeForm: FormGroup;
