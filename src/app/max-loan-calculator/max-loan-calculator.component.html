@@ -1,21 +1,19 @@
 <form [formGroup]="loanForm" class="form-container">
   <div class="radio-group-container">
     <mat-label class="loan-label">This Loan is for</mat-label>
-    <mat-radio-group aria-label="Select loan type" name="loanType">
-      <mat-radio-button [checked]="true" value="personal"
-        >Just me</mat-radio-button
-      >
-      <mat-radio-button value="co-borrower"
-        >Me and co-borrower</mat-radio-button
-      >
+    <mat-radio-group aria-label="Select loan type" name="loanType" >
+      <mat-radio-button [checked]="true" value="personal">Just me</mat-radio-button>
+      <mat-radio-button value="co-borrower">Me and co-borrower</mat-radio-button>
     </mat-radio-group>
   </div>
+
   <div class="form-field-container">
     <mat-label>Net Income (Monthly income after taxes)</mat-label>
     <mat-form-field appearance="outline">
       <input matInput type="text" formControlName="netIncome" min="0" />
       <span matTextSuffix> Eur </span>
     </mat-form-field>
+
     <div *ngIf="netIncome?.dirty && (netIncome?.errors || netIncome?.touched)">
       <div *ngIf="netIncome && netIncome.errors">
         <div *ngIf="netIncome.errors['required']" class="error-message">
@@ -24,8 +22,13 @@
         <div *ngIf="netIncome.errors['pattern']" class="error-message">
           Please enter a valid number
         </div>
+        <div *ngIf="netIncome.errors['applicantNetIncomeCheck']" class="error-message">
+          Minimum monthly income should be over 600 EUR
+        </div>
+      
       </div>
     </div>
+
     <mat-label>Number of dependent family members</mat-label>
     <mat-form-field appearance="outline">
       <input matInput type="number" formControlName="dependent" min="0" />
@@ -35,18 +38,23 @@
         <div *ngIf="dependent.errors['required']" class="error-message">
           This field is required
         </div>
+        <div *ngIf="dependent.errors['applicantWithOneDependentError']">
+          Applicant with one dependent should earn at least 650 EUR
+        </div>
+        <div *ngIf="dependent.errors['applicantWithMoreThanOneDependentError']">
+          Applicant with two or more dependents should earn at least 1000 EUR
+        </div>
       </div>
     </div>
+
     <mat-label>Current monthly obligations</mat-label>
     <mat-form-field appearance="outline">
       <span matTextSuffix class="suffix"> Eur </span>
       <input matInput type="text" formControlName="obligations" />
     </mat-form-field>
-    <div
-      *ngIf="
+    <div *ngIf="
         obligations?.dirty && (obligations?.errors || obligations?.touched)
-      "
-    >
+      ">
       <div *ngIf="obligations && obligations.errors">
         <div *ngIf="obligations.errors['required']" class="error-message">
           This field is required

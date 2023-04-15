@@ -38,7 +38,6 @@ import { MaxLoanCalculatorComponent } from './max-loan-calculator/max-loan-calcu
     MatGridListModule,
     HttpClientModule,
     ReactiveFormsModule,
-
   ],
   declarations: [
     AppComponent,

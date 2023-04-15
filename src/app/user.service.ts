@@ -10,7 +10,7 @@ export class UserService {
   constructor(private htttpClient: HttpClient) {}
 
   getBackendMockData(){
-    return this.htttpClient.get<Observable<String>>("https://backend-spring-app.onrender.com/");
+    return this.htttpClient.get<String>("https://backend-spring-app.onrender.com/");
   }
 
 }
