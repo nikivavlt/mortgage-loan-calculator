@@ -21,7 +21,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HttpClientModule } from '@angular/common/http';
 import { FirstTabComponent } from './first-tab/first-tab.component';
 import { SecondTabComponent } from './second-tab/second-tab.component';
-import { MortgageSubmitComponent } from './mortgage-submit/mortgage-submit.component';
+import { MortgageApplicationComponent } from './components/mortgage-application/mortgage-application.component';
+import { PersonalInformationComponent } from './components/mortgage-application/mortgageAppComponents/personal-information/personal-information.component';
+import { IncomeAndFinancialLiabilitiesComponent } from './components/mortgage-application/mortgageAppComponents/income-and-financial-liabilities/income-and-financial-liabilities.component';
+import { LoanInformationComponent } from './components/mortgage-application/mortgageAppComponents/loan-information/loan-information.component';
+import { AdditionalInformationComponent } from './components/mortgage-application/mortgageAppComponents/additional-information/additional-information.component';
 
 @NgModule({
   imports: [
@@ -49,7 +53,11 @@ import { MortgageSubmitComponent } from './mortgage-submit/mortgage-submit.compo
     HeaderComponent,
     FirstTabComponent,
     SecondTabComponent,
-    MortgageSubmitComponent,
+    MortgageApplicationComponent,
+    PersonalInformationComponent,
+    IncomeAndFinancialLiabilitiesComponent,
+    LoanInformationComponent,
+    AdditionalInformationComponent,
   ],
 
   providers: [],
