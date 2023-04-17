@@ -23,6 +23,7 @@ import { FirstTabComponent } from './first-tab/first-tab.component';
 import { SecondTabComponent } from './second-tab/second-tab.component';
 import { ThirdTabComponent } from './third-tab/third-tab.component';
 import { MaxLoanCalculatorComponent } from './max-loan-calculator/max-loan-calculator.component';
+import { ShowMaxMortgageAmountComponent } from './show-max-mortgage-amount/show-max-mortgage-amount.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { MaxLoanCalculatorComponent } from './max-loan-calculator/max-loan-calcu
     SecondTabComponent,
     ThirdTabComponent,
     MaxLoanCalculatorComponent,
+    ShowMaxMortgageAmountComponent,
 
   ],
 
