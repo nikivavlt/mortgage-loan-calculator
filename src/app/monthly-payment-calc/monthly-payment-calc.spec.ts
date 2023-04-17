@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SecondTabComponent } from './second-tab.component';
+import { MonthlyPaymentCalc } from './monthly-payment-calc.component';
 
 describe('SecondTabComponent', () => {
-  let component: SecondTabComponent;
-  let fixture: ComponentFixture<SecondTabComponent>;
+  let component: MonthlyPaymentCalc;
+  let fixture: ComponentFixture<MonthlyPaymentCalc>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SecondTabComponent ]
+      declarations: [ MonthlyPaymentCalc ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SecondTabComponent);
+    fixture = TestBed.createComponent(MonthlyPaymentCalc);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -12,8 +12,9 @@ import {MatButtonModule} from '@angular/material/button';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FirstTabComponent } from './first-tab/first-tab.component';
-import { SecondTabComponent } from './second-tab/second-tab.component';
 import { ThirdTabComponent } from './third-tab/third-tab.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MonthlyPaymentCalc } from './monthly-payment-calc/monthly-payment-calc.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { ThirdTabComponent } from './third-tab/third-tab.component';
     BrowserAnimationsModule,
     MatTabsModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
@@ -30,7 +32,7 @@ import { ThirdTabComponent } from './third-tab/third-tab.component';
     FooterComponent,
     HeaderComponent,
     FirstTabComponent,
-    SecondTabComponent,
+    MonthlyPaymentCalc,
     ThirdTabComponent,
 
   ],

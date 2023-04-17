@@ -1,16 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
-import { Observable } from "rxjs";
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
+  private backendUrl = 'https://backend-spring-app.onrender.com'
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
   constructor(private htttpClient: HttpClient) {}
 
-  getBackendMockData(){
-    return this.htttpClient.get<Observable<String>>("https://backend-spring-app.onrender.com/");
+  sendCalculatorData(data: any){
+    return this.htttpClient.post<any>(`${this.backendUrl}/calculator/monthlyPayment`, data, this.httpOptions);
   }
 
 }
