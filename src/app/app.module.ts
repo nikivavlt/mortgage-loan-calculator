@@ -13,7 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -38,6 +38,7 @@ import { MaxLoanCalculatorComponent } from './max-loan-calculator/max-loan-calcu
     MatGridListModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule
   ],
   declarations: [
     AppComponent,
