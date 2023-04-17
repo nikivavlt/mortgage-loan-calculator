@@ -44,10 +44,6 @@ export class ShowMaxMortgageAmountComponent implements OnInit {
           const familyMembers = this.loanForm.get('dependent')?.value;
           const monthlyObligation = this.loanForm.get('obligations')?.value;
 
-          console.log('borrower:', this.loanForm.get('borrower')?.value);
-          console.log('isJustMe:', isJustMe);
-
-
           return this.showMaxMortgageService.calculateMaxMortgageAmount(
             isJustMe,
             netIncome,
@@ -58,6 +54,7 @@ export class ShowMaxMortgageAmountComponent implements OnInit {
       )
       .subscribe({
         next: (amount: number) => {
+          this.maxMortgageAmount = amount;
           this.maxMortgageAmountChange.emit(amount);
         },
         error: (error) => {

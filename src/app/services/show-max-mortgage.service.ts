@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ShowMaxMortgageService {
-  private baseUrl = 'https://localhost:8080';
+  private baseUrl = 'https://backend-spring-app.onrender.com';
 
   constructor(private http: HttpClient) { }
 
@@ -20,4 +20,6 @@ export class ShowMaxMortgageService {
     };
     return this.http.post<number>(url, request);
   }
+
+
 }
