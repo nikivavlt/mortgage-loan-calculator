@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, ValidationErrors, AbstractControl, ValidatorFn } from '@angular/forms';
+import { delay, Observable, of } from 'rxjs';
+import { ShowMaxMortgageService } from '../services/show-max-mortgage.service';
 
 
-const negativeValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+const negativeValidator: ValidatorFn = (control: AbstractControl): Observable<ValidationErrors | null> => {
   const netIncome = control.value;
-  return netIncome && netIncome < 0 ? { negativeNetIncome: true } : null;
+  return of(netIncome && netIncome < 0 ? { negativeNetIncome: true } : null).pipe(
+    delay(500)
+  );
 }
 
 @Component({
@@ -16,21 +20,24 @@ const negativeValidator: ValidatorFn = (control: AbstractControl): ValidationErr
 
 export class MaxLoanCalculatorComponent {
   loanForm: FormGroup;
+  @Input() maxMortgageAmount: number | undefined;
 
-  constructor(private fb: FormBuilder) {
-    this.loanForm = this.fb.group({
-      netIncome: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/), negativeValidator]),
-      obligations: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/)]),
-      dependent: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/), negativeValidator])
+
+  constructor(private showMaxMortgageService: ShowMaxMortgageService, private formBuilder: FormBuilder) {
+    this.loanForm = this.formBuilder.group({
+      borrower: ['personal'],
+      netIncome: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)], negativeValidator],
+      dependent: ['', Validators.required],
+      obligations: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)], negativeValidator],
     });
   }
+
   get netIncome() {
     return this.loanForm.get('netIncome');
   }
   get obligations() {
     return this.loanForm.get('obligations');
   }
-
   get dependent() {
     return this.loanForm.get('dependent');
   }

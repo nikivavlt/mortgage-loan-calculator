@@ -28,6 +28,7 @@ import { IncomeAndFinancialLiabilitiesComponent } from './components/mortgage-ap
 import { LoanInformationComponent } from './components/mortgage-application/mortgageAppComponents/loan-information/loan-information.component';
 import { AdditionalInformationComponent } from './components/mortgage-application/mortgageAppComponents/additional-information/additional-information.component';
 import { MaxLoanCalculatorComponent } from './max-loan-calculator/max-loan-calculator.component';
+import { ShowMaxMortgageAmountComponent } from './show-max-mortgage-amount/show-max-mortgage-amount.component';
 
 @NgModule({
   imports: [
@@ -62,6 +63,7 @@ import { MaxLoanCalculatorComponent } from './max-loan-calculator/max-loan-calcu
     LoanInformationComponent,
     AdditionalInformationComponent,
     MaxLoanCalculatorComponent,
+    ShowMaxMortgageAmountComponent,
   ],
 
   providers: [],
