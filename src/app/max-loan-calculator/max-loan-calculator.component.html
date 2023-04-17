@@ -6,7 +6,7 @@
       aria-label="Select borrower"
       name="borrower"
     >
-      <mat-radio-button [checked]="true" value="personal"
+      <mat-radio-button value="personal"
         >Just me</mat-radio-button
       >
       <mat-radio-button value="co-borrower"
@@ -30,12 +30,11 @@
       <div *ngIf="netIncome?.errors?.['pattern']" class="error-message">
         Please enter a valid number
       </div>
-
-      <div *ngIf="loanForm.get('applicant')?.value==='personal' && loanForm.errors?.['applicantNetIncomeCheck']"
+      <div *ngIf="loanForm.get('borrower')?.value==='personal' && loanForm.errors?.['applicantNetIncomeCheck']"
         class="error-message">
         Minimum monthly income should be 600 EUR
       </div>
-      <div *ngIf="loanForm.get('applicant')?.value==='co-borrower' && loanForm.errors?.['applicantWithCoBorrowerError']"
+      <div *ngIf="loanForm.get('borrower')?.value==='co-borrower' && loanForm.errors?.['applicantWithCoBorrowerError']"
         class="error-message">
         Minimum monthly income should be 1000 EUR
       </div>
