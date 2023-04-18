@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms";
 import { minimumHomePrice, downPaymentValidator, minimumMortgageTerm, maximumMortgageTerm } from './manual-validators';
-import { UserService } from '../user.service';
+import { UserService } from '../../services/user.service';
 import { Observable, debounceTime, filter, from, map, of, switchMap } from 'rxjs';
-import { MonthlyPaymentCalcResponse } from '../interfaces/monthly-payment-calc-response';
+import { MonthlyPaymentCalcResponse } from '../../interfaces/monthly-payment-calc-response';
 
 const formBuilder = new FormBuilder().nonNullable;
 

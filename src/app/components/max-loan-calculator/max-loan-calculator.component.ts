@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, ValidationErrors, AbstractControl, ValidatorFn } from '@angular/forms';
 import { delay, Observable, of } from 'rxjs';
-import { ShowMaxMortgageService } from '../services/show-max-mortgage.service';
+import { ShowMaxMortgageService } from '../../services/show-max-mortgage.service';
 
 
 const negativeValidator: ValidatorFn = (control: AbstractControl): Observable<ValidationErrors | null> => {
@@ -19,7 +19,7 @@ const applicantNetIncomeCheck: ValidatorFn = (control) => {
   if (applicants==='personal' && (!dependents || dependents === 0) && netIncome < 600) {
     return { applicantNetIncomeCheck: true }
   } else if(applicants==='co-borrower' && netIncome < 1000){
-    return {applicantWithCoBorrowerError: true} 
+    return {applicantWithCoBorrowerError: true}
   }
   return null
 }
@@ -51,8 +51,8 @@ export class MaxLoanCalculatorComponent {
 
   constructor(private showMaxMortgageService: ShowMaxMortgageService, private formBuilder: FormBuilder) {
     this.loanForm = this.formBuilder.group({
-      
-      netIncome: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)], negativeValidator], 
+
+      netIncome: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)], negativeValidator],
       dependent: ['', Validators.required],
       obligations: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)], negativeValidator],
       borrower: [('personal'), [Validators.required, Validators.pattern(/^\d+$/), negativeValidator]],

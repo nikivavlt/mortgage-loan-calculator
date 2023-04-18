@@ -1,0 +1,16 @@
+section {
+  padding-top: 4rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+p {
+  font-size: 1.1rem;
+}
+
+
