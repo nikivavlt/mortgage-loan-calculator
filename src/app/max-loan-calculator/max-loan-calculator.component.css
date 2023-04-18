@@ -72,6 +72,13 @@
   margin-top: 0.3em;
   align-self: flex-start;
 }
+.message-block .error-message {
+  display: none;
+}
+
+.message-block .error-message:first-child{
+  display: block;
+}
 
 .suffix {
   margin-left: 4px;
