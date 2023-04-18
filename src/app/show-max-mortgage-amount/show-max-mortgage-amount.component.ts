@@ -27,7 +27,6 @@ export class ShowMaxMortgageAmountComponent implements OnInit {
   @Input() loanForm!: FormGroup;
   @Input() maxMortgageAmount: number | undefined;
 
-
   @Output() maxMortgageAmountChange = new EventEmitter<number>();
 
   constructor(private showMaxMortgageService: ShowMaxMortgageService) { }
