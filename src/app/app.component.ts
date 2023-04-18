@@ -12,6 +12,7 @@ import { UserService } from './user.service';
 export class AppComponent {
   title = 'frontend';
 
+
   constructor(private userService: UserService){}
   
 
@@ -25,4 +26,5 @@ export class AppComponent {
       }
     })
   }
+
   }

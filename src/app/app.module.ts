@@ -20,6 +20,9 @@ import { CommonModule } from '@angular/common';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HttpClientModule } from '@angular/common/http';
 import { FirstTabComponent } from './first-tab/first-tab.component';
+import { ThirdTabComponent } from './third-tab/third-tab.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MonthlyPaymentCalc } from './monthly-payment-calc/monthly-payment-calc.component';
 import { SecondTabComponent } from './second-tab/second-tab.component';
 import { MortgageApplicationComponent } from './components/mortgage-application/mortgage-application.component';
 import { PersonalInformationComponent } from './components/mortgage-application/mortgageAppComponents/personal-information/personal-information.component';
@@ -44,13 +47,13 @@ import { MatDialogModule } from '@angular/material/dialog';
     BrowserAnimationsModule,
     MatTabsModule,
     MatButtonModule,
+    HttpClientModule,
+    ReactiveFormsModule
     MatStepperModule,
     MatInputModule,
     MatFormFieldModule,
     MatRadioModule,
     MatGridListModule,
-    HttpClientModule,
-    ReactiveFormsModule,
     MatDialogModule
   ],
   declarations: [
@@ -59,6 +62,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     FooterComponent,
     HeaderComponent,
     FirstTabComponent,
+    MonthlyPaymentCalc,
+    ThirdTabComponent,
     SecondTabComponent,
     MortgageApplicationComponent,
     PersonalInformationComponent,
