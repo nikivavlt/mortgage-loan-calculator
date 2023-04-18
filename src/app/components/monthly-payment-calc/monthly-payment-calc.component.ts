@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms";
+import { Observable, debounceTime, filter, of, switchMap, tap } from 'rxjs';
+
 import { minimumHomePrice, downPaymentValidator, minimumMortgageTerm, maximumMortgageTerm } from './manual-validators';
 import { UserService } from '../../services/user.service';
-import { Observable, debounceTime, filter, from, map, of, switchMap } from 'rxjs';
 import { MonthlyPaymentCalcResponse } from '../../interfaces/monthly-payment-calc-response';
 
 const formBuilder = new FormBuilder().nonNullable;
@@ -14,6 +15,8 @@ const formBuilder = new FormBuilder().nonNullable;
 })
 
 export class MonthlyPaymentCalc implements OnInit {
+
+  loading: boolean = false;
 
   currentHomePrice: number = 0;
 
@@ -57,11 +60,23 @@ export class MonthlyPaymentCalc implements OnInit {
         }
       });
 
+      this.monthlyCalculatorForm.controls?.['downPaymentPercent']
+      .valueChanges
+      .subscribe(downPaymentPercent => {
+
+        const newDownPayment = downPaymentPercent * this.currentHomePrice / 100;
+
+        if (!this.monthlyCalculatorForm.controls?.['downPayment'].pristine) {
+          this.monthlyCalculatorForm.controls?.['downPayment'].patchValue(newDownPayment);
+        }
+      });
+
     this.calculations$ = this.monthlyCalculatorForm.valueChanges.pipe(
       filter((val) => this.monthlyCalculatorForm.valid),
-      map(() => ({ monthlyPayment: "Calculating..", totalPayableAmount: "Calculating..", interestCost: "Calculating.." }) ),
+      tap(() => this.loading = true),
       debounceTime(1000),
       switchMap(() => this.userService.sendCalculatorData(this.monthlyCalculatorForm.value)))
+
 
   }
 
