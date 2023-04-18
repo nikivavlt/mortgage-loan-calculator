@@ -1,14 +1,16 @@
 <section>
   <div class="monthly-calculator">
     <form [formGroup]="monthlyCalculatorForm" action="">
-      <label for="homePrice">Home Price</label>
-      <input id="homePrice" type="text" formControlName="homePrice" placeholder="Eur">
+      <mat-label class="calc-label" for="homePrice">Home Price</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput id="homePrice" type="text" formControlName="homePrice" placeholder="Eur">
+      </mat-form-field>
       <div
       *ngIf="homePrice.errors && ( homePrice.touched || homePrice.dirty )">
-        <div *ngIf="homePrice.errors['required']">
+        <div class="error-message" *ngIf="homePrice.errors['required']">
           This field is required
         </div>
-        <div *ngIf="homePrice.errors['pattern']">
+        <div class="error-message" *ngIf="homePrice.errors['pattern']">
           Only numbers allowed
         </div>
         <div
@@ -19,78 +21,96 @@
         </div>
       </div>
 
-      <label for="mortgage-amount">Mortgage amount</label>
-      <input id="mortgage-amount" type="text" formControlName="mortgageAmount" placeholder="Eur">
+      <mat-label class="calc-label" for="mortgage-amount">Mortgage amount</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput id="mortgage-amount" type="text" formControlName="mortgageAmount" placeholder="Eur">
+      </mat-form-field>
       <div *ngIf="mortgageAmount.errors && ( mortgageAmount.touched || mortgageAmount.dirty )">
-        <div *ngIf="mortgageAmount.errors['required']">
+        <div class="error-message" *ngIf="mortgageAmount.errors['required']">
           This field is required
         </div>
-        <div *ngIf="mortgageAmount.errors['pattern']">
+        <div class="error-message" *ngIf="mortgageAmount.errors['pattern']">
           Only numbers allowed
         </div>
       </div>
 
-      <label for="down-payment">Down payment</label>
-      <input id="down-payment" type="text" formControlName="downPayment" placeholder="Eur">
+      <mat-label class="calc-label" for="down-payment">Down payment</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput id="down-payment" type="text" formControlName="downPayment" placeholder="Eur">
+      </mat-form-field>
       <div class="down-payment-percent">
-        <input id="down-payment-two" type="text" formControlName="downPaymentPercent" placeholder="%">
+      <mat-form-field appearance="outline">
+        <input matInput id="down-payment-two" type="text" formControlName="downPaymentPercent" placeholder="%">
+      </mat-form-field>
       </div>
-      <div *ngIf="downPayment.errors && ( downPayment.touched || downPayment.dirty )">
+      <div class="error-message" *ngIf="downPayment.errors && ( downPayment.touched || downPayment.dirty )">
         <div *ngIf="downPayment.errors['required']">
           This field is required
         </div>
-        <div *ngIf="downPayment.errors['pattern']">
+        <div class="error-message" *ngIf="downPayment.errors['pattern']">
           Only numbers allowed
         </div>
       </div>
-      <div *ngIf="monthlyCalculatorForm.errors?.['downPaymentValidator']
-        && downPayment.dirty">
-        <div>Down payment must be more than</div>
-        <div>or equal {{ monthlyCalculatorForm.get('homePrice')?.value * 0.15 }}€
-          or less than {{ monthlyCalculatorForm.get('homePrice')?.value * 0.99 }}€</div>
+      <div class="error-message" *ngIf="monthlyCalculatorForm.errors?.['downPaymentValidator']">
+        <div>Down payment should be more</div>
+        <div>or equal to 15% or less than 99%</div>
       </div>
 
-      <label for="interest-rate">Interest rate</label>
-      <input id="interest-rate" type="text" formControlName="interestRate" placeholder="%">
+      <mat-label class="calc-label" for="interest-rate">Interest rate</mat-label>
+      <mat-form-field appearance="outline">
+        <input  matInput id="interest-rate" type="text" formControlName="interestRate" placeholder="%">
+      </mat-form-field>
       <div *ngIf="interestRate.errors && ( interestRate.touched || interestRate.dirty )">
-        <div *ngIf="interestRate.errors['required']">
+        <div class="error-message" *ngIf="interestRate.errors['required']">
           This field is required
         </div>
-        <div *ngIf="interestRate.errors['pattern']">
+        <div class="error-message" *ngIf="interestRate.errors['pattern']">
           Only numbers allowed
         </div>
       </div>
 
-      <label for="mortgage-term">Mortgage term</label>
-      <input id="mortgage-term" type="number" formControlName="mortgageTerm" placeholder="00">
+      <mat-label class="calc-label" for="mortgage-term">Mortgage term</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput id="mortgage-term" type="number" formControlName="mortgageTerm" placeholder="00">
+      </mat-form-field>
       <div *ngIf="mortgageTerm.errors && ( mortgageTerm.touched || mortgageTerm.dirty )">
-        <div *ngIf="mortgageTerm.errors['required']">
+        <div class="error-message" *ngIf="mortgageTerm.errors['required']">
           This field is required
         </div>
-        <div *ngIf="mortgageTerm.errors['pattern']">
+        <div class="error-message"*ngIf="mortgageTerm.errors['pattern']">
           Only numbers allowed
         </div>
-        <div *ngIf="mortgageTerm.errors['minimumMortgageTerm']
+        <div class="error-message" *ngIf="mortgageTerm.errors['minimumMortgageTerm']
           && !mortgageTerm.errors['required']">
           Minimum term of mortgage is 1 year
         </div>
-        <div *ngIf="mortgageTerm.errors['maximumMortgageTerm']">
+        <div class="error-message" *ngIf="mortgageTerm.errors['maximumMortgageTerm']">
           Maximum term of mortgage is 30 years
         </div>
       </div>
 
     </form>
-  </div>
-  <div *ngIf=" ( this.calculations$ | async ) as calculations ">
-    <p>Monthly payment: {{ calculations.monthlyPayment }} Eur</p>
-    <p>Total payable amount: {{ calculations.totalPayableAmount }} Eur</p>
-    <p>Interest cost: {{ calculations.interestCost }} Eur</p>
-  </div>
+    </div>
+  <ng-container *ngIf=" ( calculations$ | async ) as calculations">
+    <div class="calculator-result">
+      <p>Monthly payment: {{ calculations.monthlyPayment }} Eur</p>
+      <p>Total payable amount: {{ calculations.totalPayableAmount }} Eur</p>
+      <p>Interest cost: {{ calculations.interestCost }} Eur</p>
+    </div>
+  </ng-container>
 
-  <div *ngIf=" !(this.calculations$ | async) ">
-    <p>Monthly payment: 0 Eur</p>
-    <p>Total payable amount: 0 Eur</p>
-    <p>Interest cost: 0 Eur</p>
-  </div>
+
+  <ng-container *ngIf=" !( calculations$ | async ) as calculations">
+    <div class="calculator-result" *ngIf="loading">
+      <p>Monthly payment: Calculating..</p>
+      <p>Total payable amount: Calculating..</p>
+      <p>Interest cost: Calculating..</p>
+    </div>
+    <div class="calculator-result" *ngIf="!loading">
+      <p>Monthly payment: 0 Eur</p>
+      <p>Total payable amount: 0 Eur</p>
+      <p>Interest cost: 0 Eur</p>
+    </div>
+  </ng-container>
 
 </section>
