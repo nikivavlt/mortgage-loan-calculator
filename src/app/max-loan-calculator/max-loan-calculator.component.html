@@ -1,17 +1,9 @@
 <form [formGroup]="loanForm" class="form-container" #loanFormRef="ngForm">
   <div class="radio-group-container">
     <mat-label class="loan-label">This Loan is for</mat-label>
-    <mat-radio-group
-      formControlName="borrower"
-      aria-label="Select borrower"
-      name="borrower"
-    >
-      <mat-radio-button value="personal"
-        >Just me</mat-radio-button
-      >
-      <mat-radio-button value="co-borrower"
-        >Me and co-borrower</mat-radio-button
-      >
+    <mat-radio-group formControlName="borrower" aria-label="Select borrower" name="borrower">
+      <mat-radio-button value="personal">Just me</mat-radio-button>
+      <mat-radio-button value="co-borrower">Me and co-borrower</mat-radio-button>
     </mat-radio-group>
   </div>
 
@@ -55,25 +47,23 @@
     <div *ngIf="loanForm.errors?.['applicantWithOneDependentError']" class="error-message">
       Mininmum monthly income should be 650 EUR
     </div>
- 
-  <mat-label>Current monthly obligations</mat-label>
-  <mat-form-field appearance="outline">
-    <span matTextSuffix class="suffix"> Eur </span>
-    <input matInput type="text" formControlName="obligations" />
-  </mat-form-field>
-  <div *ngIf="obligations?.dirty && (obligations?.errors || obligations?.touched)">
-    <div *ngIf="obligations && obligations.errors">
-      <div *ngIf="obligations.errors['required']" class="error-message">
-        This field is required
-      </div>
-      <div *ngIf="obligations.errors['pattern']" class="error-message">
-        Please enter a valid number
+
+    <mat-label>Current monthly obligations</mat-label>
+    <mat-form-field appearance="outline">
+      <span matTextSuffix class="suffix"> Eur </span>
+      <input matInput type="text" formControlName="obligations" />
+    </mat-form-field>
+    <div *ngIf="obligations?.dirty && (obligations?.errors || obligations?.touched)">
+      <div *ngIf="obligations && obligations.errors">
+        <div *ngIf="obligations.errors['required']" class="error-message">
+          This field is required
+        </div>
+        <div *ngIf="obligations.errors['pattern']" class="error-message">
+          Please enter a valid number
+        </div>
       </div>
     </div>
   </div>
-</div>
-  <app-show-max-mortgage-amount
-    [loanForm]="loanForm"
-    [maxMortgageAmount]="maxMortgageAmount"
-  ></app-show-max-mortgage-amount>
+  <app-show-max-mortgage-amount [loanForm]="loanForm"
+    [maxMortgageAmount]="maxMortgageAmount"></app-show-max-mortgage-amount>
 </form>

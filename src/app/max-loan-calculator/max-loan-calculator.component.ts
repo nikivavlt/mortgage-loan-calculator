@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, ValidationErrors, AbstractControl, ValidatorFn } from '@angular/forms';
 import { delay, Observable, of } from 'rxjs';
 import { ShowMaxMortgageService } from '../services/show-max-mortgage.service';
-import { MatRadioChange } from '@angular/material/radio';
+
 
 const negativeValidator: ValidatorFn = (control: AbstractControl): Observable<ValidationErrors | null> => {
   const netIncome = control.value;
@@ -12,10 +12,11 @@ const negativeValidator: ValidatorFn = (control: AbstractControl): Observable<Va
 }
 
 const applicantNetIncomeCheck: ValidatorFn = (control) => {
+  const dependents = control.get('dependent')?.value;
   const applicants = control.get('borrower')?.value;
   const netIncome = control.value.netIncome;
-console.log( netIncome)
-  if (applicants==='personal' && netIncome < 600) {
+
+  if (applicants==='personal' && (!dependents || dependents === 0) && netIncome < 600) {
     return { applicantNetIncomeCheck: true }
   } else if(applicants==='co-borrower' && netIncome < 1000){
     return {applicantWithCoBorrowerError: true} 
@@ -26,10 +27,11 @@ console.log( netIncome)
 const applicantWithDependentsCheck: ValidatorFn = (control) => {
   const netIncome = control.get('netIncome')?.value;
   const dependents = control.get('dependent')?.value;
+  const applicants = control.get('borrower')?.value;
 
-  if (dependents >= 2 && netIncome < 1000) {
+  if (applicants==='personal' && dependents >= 2 && netIncome < 1000) {
     return { applicantWithMoreThanTwoDependentsError: true };
-  } else if (dependents === 1 && netIncome < 650) {
+  } else if (applicants==='personal' && dependents === 1 && netIncome < 650) {
     return { applicantWithOneDependentError: true };
   } else {
     return null
@@ -69,13 +71,4 @@ export class MaxLoanCalculatorComponent {
   get dependent() {
     return this.loanForm.get('dependent');
   }
-
 }
-
-
-
-// const applicantWithCoBorrowerCheck: ValidatorFn = (formControl) => {
-//   if (formControl.value < 1000) {
-//     return { applicantWithCoBorrowerCheck: true }
-//   } return null
-// }
