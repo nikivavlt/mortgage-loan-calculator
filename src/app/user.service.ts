@@ -14,8 +14,7 @@ export class UserService {
 
   constructor(private htttpClient: HttpClient) {}
 
+
   sendCalculatorData(data: any){
     return this.htttpClient.post<any>(`${this.backendUrl}/calculator/monthlyPayment`, data, this.httpOptions);
   }
-
-}

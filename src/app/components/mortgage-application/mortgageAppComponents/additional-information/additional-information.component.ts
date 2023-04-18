@@ -21,9 +21,9 @@ export class AdditionalInformationComponent {
   constructor(private fb: FormBuilder) {
     this.additionalInformationForm = this.fb.group({
       coBorrower: new FormControl(false,),
-      coBorrowerName: new FormControl('',ApplicationFormValidators.coBorrowerValidator),
-      coBorrowerPersonalNumber: new FormControl('',ApplicationFormValidators.coBorrowerValidator),
-      certification: new FormControl(false,Validators.required)
+      coBorrowerName: new FormControl('', ApplicationFormValidators.coBorrowerValidator),
+      coBorrowerPersonalNumber: new FormControl('', ApplicationFormValidators.coBorrowerValidator),
+      certification: new FormControl(false, Validators.required)
     })
 
     this.serviceSubscription = this.additionalInformationForm.statusChanges.subscribe(() => {
@@ -59,7 +59,7 @@ export class AdditionalInformationComponent {
     return this.additionalInformationForm.get('coBorrowerPersonalNumber');
   }
   get coBorrowerNameRequiredError() {
-    return this.coBorrowerNameControl!.hasError('required') && this.coBorrowerNameControl!.touched;
+    return this.coBorrowerNameControl?.errors?.['required'] && this.coBorrowerNameControl!.touched;
   }
   get coBorrowerPersonalNumberError() {
     return this.coBorrowerPersonalNumber!.hasError('required') && this.coBorrowerPersonalNumber!.touched;

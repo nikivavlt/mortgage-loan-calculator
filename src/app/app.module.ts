@@ -12,12 +12,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HttpClientModule } from '@angular/common/http';
 import { FirstTabComponent } from './first-tab/first-tab.component';
@@ -32,6 +31,9 @@ import { LoanInformationComponent } from './components/mortgage-application/mort
 import { AdditionalInformationComponent } from './components/mortgage-application/mortgageAppComponents/additional-information/additional-information.component';
 import { MaxLoanCalculatorComponent } from './max-loan-calculator/max-loan-calculator.component';
 import { ShowMaxMortgageAmountComponent } from './show-max-mortgage-amount/show-max-mortgage-amount.component';
+import { ThankYouPopUpComponent } from './thank-you-pop-up/thank-you-pop-up.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 @NgModule({
   imports: [
@@ -52,6 +54,7 @@ import { ShowMaxMortgageAmountComponent } from './show-max-mortgage-amount/show-
     MatFormFieldModule,
     MatRadioModule,
     MatGridListModule,
+    MatDialogModule
   ],
   declarations: [
     AppComponent,
@@ -69,6 +72,7 @@ import { ShowMaxMortgageAmountComponent } from './show-max-mortgage-amount/show-
     AdditionalInformationComponent,
     MaxLoanCalculatorComponent,
     ShowMaxMortgageAmountComponent,
+    ThankYouPopUpComponent
   ],
 
   providers: [],
