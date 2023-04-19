@@ -6,6 +6,8 @@ import { PersonalInformationComponent } from './mortgageAppComponents/personal-i
 import { IncomeAndFinancialLiabilitiesComponent } from './mortgageAppComponents/income-and-financial-liabilities/income-and-financial-liabilities.component';
 import { LoanInformationComponent } from './mortgageAppComponents/loan-information/loan-information.component';
 import { AdditionalInformationComponent } from './mortgageAppComponents/additional-information/additional-information.component';
+import { ThankYouPopUpComponent } from 'src/app/components/thank-you-pop-up/thank-you-pop-up.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-mortgage-application',
@@ -25,7 +27,7 @@ export class MortgageApplicationComponent {
 
   stepperOrientation: StepperOrientation = 'horizontal';
   private readonly destroy$ = new Subject<void>();
-  constructor(private breakpointObserver: BreakpointObserver) {
+  constructor(private breakpointObserver: BreakpointObserver, private dialog: MatDialog) {
 
   }
   ngOnInit() {
@@ -48,6 +50,7 @@ export class MortgageApplicationComponent {
       ...this.additionalInfoComponent.additionalInformationForm.value
     };
 
+    this.openThankYouDialog();
     console.log(data);
 
     //TODO: Make the POST request using the data object
@@ -63,6 +66,9 @@ export class MortgageApplicationComponent {
   }
   onAdditionalInfoChanged(bool: boolean) {
     this.isAdditionalInfoCompleted = bool;
+  }
+  openThankYouDialog() {
+    this.dialog.open(ThankYouPopUpComponent);
   }
   ngOnDestroy(): void {
     this.destroy$.next();

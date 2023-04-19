@@ -1,11 +1,11 @@
 <mat-horizontal-stepper [orientation]="stepperOrientation" linear>
-  <mat-step  label="Personal information" [completed]="isPersonalInfoCompleted">
+  <mat-step  label="Personal information" [completed]="true">
     <app-personal-information (formChanged)="onPersonalInformationFormChanged($event)"></app-personal-information>
   </mat-step>
-  <mat-step label="Income and Financial liabilities" [completed]="isIncomeAndFinancialCompleted">
+  <mat-step label="Income and Financial liabilities" [completed]="true">
     <app-income-and-financial-liabilities (formChanged)="onIncomeAndFinancialChanged($event)"></app-income-and-financial-liabilities>
   </mat-step>
-  <mat-step label="Loan information" [completed]="isLoanInfoCompleted">
+  <mat-step label="Loan information" [completed]="true">
     <app-loan-information (formChanged)="onLoanInfoChanged($event)"></app-loan-information>
   </mat-step>
   <mat-step label="Additional information" [completed]="isAdditionalInfoCompleted">

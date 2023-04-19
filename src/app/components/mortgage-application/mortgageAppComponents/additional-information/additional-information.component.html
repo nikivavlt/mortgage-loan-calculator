@@ -9,16 +9,28 @@
       </mat-radio-group>
       <br>
       <ng-container *ngIf="coBorrowerStateControl!.value">
+        <mat-label>Co-borrower name</mat-label>
+        <br>
         <mat-form-field>
-          <input matInput placeholder="Name and Surname" formControlName="coBorrowerName" type="text" placeholder="John Doe">
+          <input matInput placeholder="Name" formControlName="coBorrowerName" type="text" placeholder="John">
           <mat-error *ngIf="coBorrowerNameRequiredError">
-            Error: Co-borrower name is required
+            Co-borrower name is required
           </mat-error>
         </mat-form-field>
+        <mat-label>Co-borrower last name</mat-label>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="lName" formControlName="coBorrowerlName" type="text" placeholder="Doe">
+          <mat-error *ngIf="coBorrowerlNameRequiredError">
+            Co-borrower lname is required
+          </mat-error>
+        </mat-form-field>
+        <mat-label>Applicant personal number</mat-label>
+        <br>
         <mat-form-field>
           <input matInput placeholder="Personal number" formControlName="coBorrowerPersonalNumber" type="number" placeholder="12345678901">
           <mat-error *ngIf="coBorrowerPersonalNumberError">
-            Error: Applicant net income check failed
+            Applicant personal number is required
           </mat-error>
         </mat-form-field>
       </ng-container>
