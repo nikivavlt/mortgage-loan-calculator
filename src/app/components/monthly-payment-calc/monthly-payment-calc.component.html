@@ -1,0 +1,116 @@
+<section>
+  <div class="monthly-calculator">
+    <form [formGroup]="monthlyCalculatorForm" action="">
+      <mat-label class="calc-label" for="homePrice">Home Price</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput id="homePrice" type="text" formControlName="homePrice" placeholder="Eur">
+      </mat-form-field>
+      <div
+      *ngIf="homePrice.errors && ( homePrice.touched || homePrice.dirty )">
+        <div class="error-message" *ngIf="homePrice.errors['required']">
+          This field is required
+        </div>
+        <div class="error-message" *ngIf="homePrice.errors['pattern']">
+          Only numbers allowed
+        </div>
+        <div
+          *ngIf="homePrice.errors['minimumHomePrice']
+          && homePrice.dirty
+          && !homePrice.errors['required']">
+          Price must be more than or equal to 5000€
+        </div>
+      </div>
+
+      <mat-label class="calc-label" for="mortgage-amount">Mortgage amount</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput id="mortgage-amount" type="text" formControlName="mortgageAmount" placeholder="Eur">
+      </mat-form-field>
+      <div *ngIf="mortgageAmount.errors && ( mortgageAmount.touched || mortgageAmount.dirty )">
+        <div class="error-message" *ngIf="mortgageAmount.errors['required']">
+          This field is required
+        </div>
+        <div class="error-message" *ngIf="mortgageAmount.errors['pattern']">
+          Only numbers allowed
+        </div>
+      </div>
+
+      <mat-label class="calc-label" for="down-payment">Down payment</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput id="down-payment" type="text" formControlName="downPayment" placeholder="Eur">
+      </mat-form-field>
+      <div class="down-payment-percent">
+      <mat-form-field appearance="outline">
+        <input matInput id="down-payment-two" type="text" formControlName="downPaymentPercent" placeholder="%">
+      </mat-form-field>
+      </div>
+      <div class="error-message" *ngIf="downPayment.errors && ( downPayment.touched || downPayment.dirty )">
+        <div *ngIf="downPayment.errors['required']">
+          This field is required
+        </div>
+        <div class="error-message" *ngIf="downPayment.errors['pattern']">
+          Only numbers allowed
+        </div>
+      </div>
+      <div class="error-message" *ngIf="monthlyCalculatorForm.errors?.['downPaymentValidator'] && downPayment.touched">
+        <div>Down payment should be more</div>
+        <div>or equal to 15% or less than 99%</div>
+      </div>
+
+      <mat-label class="calc-label" for="interest-rate">Interest rate</mat-label>
+      <mat-form-field appearance="outline">
+        <input  matInput id="interest-rate" type="text" formControlName="interestRate" placeholder="%">
+      </mat-form-field>
+      <div *ngIf="interestRate.errors && ( interestRate.touched || interestRate.dirty )">
+        <div class="error-message" *ngIf="interestRate.errors['required']">
+          This field is required
+        </div>
+        <div class="error-message" *ngIf="interestRate.errors['pattern']">
+          Only numbers allowed
+        </div>
+      </div>
+
+      <mat-label class="calc-label" for="mortgage-term">Mortgage term</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput id="mortgage-term" type="number" formControlName="mortgageTerm" placeholder="00">
+      </mat-form-field>
+      <div *ngIf="mortgageTerm.errors && ( mortgageTerm.touched || mortgageTerm.dirty )">
+        <div class="error-message" *ngIf="mortgageTerm.errors['required']">
+          This field is required
+        </div>
+        <div class="error-message"*ngIf="mortgageTerm.errors['pattern']">
+          Only numbers allowed
+        </div>
+        <div class="error-message" *ngIf="mortgageTerm.errors['minimumMortgageTerm']
+          && !mortgageTerm.errors['required']">
+          Minimum term of mortgage is 1 year
+        </div>
+        <div class="error-message" *ngIf="mortgageTerm.errors['maximumMortgageTerm']">
+          Maximum term of mortgage is 30 years
+        </div>
+      </div>
+
+    </form>
+    </div>
+  <ng-container *ngIf=" ( calculations$ | async ) as calculations">
+    <div class="calculator-result">
+      <p>Monthly payment: {{ calculations.monthlyPayment }} Eur</p>
+      <p>Total payable amount: {{ calculations.totalPayableAmount }} Eur</p>
+      <p>Interest cost: {{ calculations.interestCost }} Eur</p>
+    </div>
+  </ng-container>
+
+
+  <ng-container *ngIf=" !( calculations$ | async ) as calculations">
+    <div class="calculator-result" *ngIf="loading">
+      <p>Monthly payment: Calculating..</p>
+      <p>Total payable amount: Calculating..</p>
+      <p>Interest cost: Calculating..</p>
+    </div>
+    <div class="calculator-result" *ngIf="!loading">
+      <p>Monthly payment: 0 Eur</p>
+      <p>Total payable amount: 0 Eur</p>
+      <p>Interest cost: 0 Eur</p>
+    </div>
+  </ng-container>
+
+</section>
