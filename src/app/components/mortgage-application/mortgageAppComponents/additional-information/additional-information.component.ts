@@ -22,6 +22,7 @@ export class AdditionalInformationComponent {
     this.additionalInformationForm = this.fb.group({
       coBorrower: new FormControl(false,),
       coBorrowerName: new FormControl('', ApplicationFormValidators.coBorrowerValidator),
+      coBorrowerlName: new FormControl('', ApplicationFormValidators.coBorrowerValidator),
       coBorrowerPersonalNumber: new FormControl('', ApplicationFormValidators.coBorrowerValidator),
       certification: new FormControl(false, Validators.required)
     })
@@ -55,22 +56,25 @@ export class AdditionalInformationComponent {
   get coBorrowerNameControl() {
     return this.additionalInformationForm.get('coBorrowerName');
   }
+  get coBorrowerlNameControl() {
+    return this.additionalInformationForm.get('coBorrowerlName');
+  }
   get coBorrowerPersonalNumber() {
     return this.additionalInformationForm.get('coBorrowerPersonalNumber');
   }
   get coBorrowerNameRequiredError() {
     return this.coBorrowerNameControl?.errors?.['required'] && this.coBorrowerNameControl!.touched;
   }
+  get coBorrowerlNameRequiredError() {
+    return this.coBorrowerlNameControl?.errors?.['required'] && this.coBorrowerlNameControl!.touched;
+  }
   get coBorrowerPersonalNumberError() {
     return this.coBorrowerPersonalNumber!.hasError('required') && this.coBorrowerPersonalNumber!.touched;
   }
 
   submitForm() {
-    console.log("this.formSubmitted.emit()");
-
     this.formSubmitted.emit();
   }
-
   ngOnDestroy() {
     this.serviceSubscription.unsubscribe();
   }

@@ -1,22 +1,32 @@
 <form [formGroup]="personalInformationForm">
   <div class="form form__content">
-    <mat-form-field appearance="fill">
-      <mat-label>Name and Surname</mat-label>
-      <input matInput formControlName="fullName" type="text" placeholder="John Doe">
-    </mat-form-field>
+    <mat-label>Name</mat-label>
     <br>
     <mat-form-field appearance="fill">
-      <mat-label>Personal number</mat-label>
+      <input matInput formControlName="name" type="text" placeholder="John">
+    </mat-form-field>
+    <br>
+    <mat-label>Surname</mat-label>
+    <br>
+    <mat-form-field appearance="fill">
+      <input matInput formControlName="lName" type="text" placeholder="Doe">
+    </mat-form-field>
+    <br>
+    <mat-label>Personal number</mat-label>
+    <br>
+    <mat-form-field appearance="fill">
       <input matInput formControlName="personalNumber"  type="number" placeholder="12345678901">
     </mat-form-field>
     <br>
+    <mat-label>Phone number</mat-label>
+    <br>
     <mat-form-field appearance="fill">
-      <mat-label>Phone number</mat-label>
       <input matInput formControlName="phoneNumber" type="tel"  placeholder="+37061234567">
     </mat-form-field>
     <br>
+    <mat-label>Email</mat-label>
+    <br>
     <mat-form-field appearance="fill">
-      <mat-label>Email</mat-label>
       <input matInput formControlName="email" type="email" placeholder="mail@coolmail.com">
     </mat-form-field>
     <br>
