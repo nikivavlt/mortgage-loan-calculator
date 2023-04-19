@@ -5,7 +5,7 @@ import { FormGroup } from '@angular/forms';
 
 interface MortgageFormData {
   maxMortgageAmount?: number;
-  isJustMe: boolean;
+  isSingleApplicant: boolean;
   netIncome: number;
   familyMembers: number;
   monthlyObligation: number;
@@ -18,7 +18,7 @@ interface MortgageFormData {
 })
 export class ShowMaxMortgageAmountComponent implements OnInit {
   formData: MortgageFormData = {
-    isJustMe: false,
+    isSingleApplicant: false,
     netIncome: 0,
     familyMembers: 0,
     monthlyObligation: 0,
@@ -38,13 +38,13 @@ export class ShowMaxMortgageAmountComponent implements OnInit {
         distinctUntilChanged(),
         filter(() => this.loanForm.valid),
         switchMap(() => {
-          const isJustMe = this.loanForm.get('borrower')?.value === 'personal';
+          const isSingleApplicant = this.loanForm.get('borrower')?.value === 'personal';
           const netIncome = this.loanForm.get('netIncome')?.value;
           const familyMembers = this.loanForm.get('dependent')?.value;
           const monthlyObligation = this.loanForm.get('obligations')?.value;
 
           return this.showMaxMortgageService.calculateMaxMortgageAmount(
-            isJustMe,
+            isSingleApplicant,
             netIncome,
             familyMembers,
             monthlyObligation
