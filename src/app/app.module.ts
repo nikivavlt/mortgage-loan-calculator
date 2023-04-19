@@ -29,6 +29,9 @@ import { MaxLoanCalculatorComponent } from './components/max-loan-calculator/max
 import { ShowMaxMortgageAmountComponent } from './components/show-max-mortgage-amount/show-max-mortgage-amount.component';
 import { ThankYouPopUpComponent } from './components/thank-you-pop-up/thank-you-pop-up.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ListOfApplicationsComponent } from './components/list-of-applications/list-of-applications.component';
+import {MatPaginatorModule } from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
 import { MatSliderModule } from '@angular/material/slider';
 
 
@@ -52,6 +55,8 @@ import { MatSliderModule } from '@angular/material/slider';
     MatRadioModule,
     MatGridListModule,
     MatDialogModule,
+    MatPaginatorModule,
+    MatTableModule
     MatSliderModule
   ],
   declarations: [
@@ -67,7 +72,8 @@ import { MatSliderModule } from '@angular/material/slider';
     AdditionalInformationComponent,
     MaxLoanCalculatorComponent,
     ShowMaxMortgageAmountComponent,
-    ThankYouPopUpComponent
+    ThankYouPopUpComponent,
+    ListOfApplicationsComponent
   ],
 
   providers: [],
