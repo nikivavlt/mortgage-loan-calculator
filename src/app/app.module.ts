@@ -56,7 +56,7 @@ import { MatSliderModule } from '@angular/material/slider';
     MatGridListModule,
     MatDialogModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
     MatSliderModule
   ],
   declarations: [
