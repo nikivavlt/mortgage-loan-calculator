@@ -19,7 +19,6 @@ export class LoanInformationComponent {
       loanAmount: new FormControl('',Validators.required),
       loanPurpose: new FormControl('',Validators.required),
       termOfLoan: new FormControl('1',Validators.required),
-      loanPurposeField: new FormControl('',Validators.required),
       propertyType: new FormControl('',Validators.required),
       propertyPrice: new FormControl('',Validators.required),
       evaluatedPropertyPrice: new FormControl('',Validators.required),
@@ -40,6 +39,6 @@ export class LoanInformationComponent {
   }
 
   ngOnDestroy() {
-    this.serviceSubscription.unsubscribe();
+    this.serviceSubscription.unsubscribe(); //TODO USE
   }
 }

@@ -31,6 +31,6 @@ export class PersonalInformationComponent {
   }
 
   ngOnDestroy() {
-    this.serviceSubscription.unsubscribe();
+    this.serviceSubscription.unsubscribe();//TODO change unsub
   }
 }

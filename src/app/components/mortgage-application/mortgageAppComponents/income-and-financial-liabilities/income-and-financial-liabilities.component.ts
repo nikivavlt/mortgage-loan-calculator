@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ChildCount } from 'src/app/enums/child-count';
-import { DropDownItem } from 'src/app/interfaces/application-form-drop-down-item';
+import { DropDownItem } from 'src/app/interfaces/application-form-interfaces';
 
 @Component({
   selector: 'app-income-and-financial-liabilities',
