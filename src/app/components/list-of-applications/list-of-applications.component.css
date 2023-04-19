@@ -1,0 +1,8 @@
+.applicants-table-label{
+    text-align: center;
+}
+
+.clickable-cell{
+    cursor: pointer;
+    text-decoration: underline;
+}
