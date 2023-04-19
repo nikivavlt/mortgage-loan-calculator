@@ -43,7 +43,10 @@ export class MonthlyPaymentCalc implements OnInit {
       .valueChanges
       .subscribe(price => {
         this.currentHomePrice = price;
-        this.monthlyCalculatorForm.controls?.['downPayment'].updateValueAndValidity();
+        if (this.monthlyCalculatorForm.controls?.['downPayment'].dirty) {
+          this.monthlyCalculatorForm.controls?.['downPayment'].updateValueAndValidity();
+          this.monthlyCalculatorForm.controls?.['downPaymentPercent'].updateValueAndValidity();
+        }
       });
 
     this.monthlyCalculatorForm.controls?.['downPayment']
@@ -53,23 +56,21 @@ export class MonthlyPaymentCalc implements OnInit {
         const newPercent = downPayment * 100 / this.currentHomePrice;
 
         if (newPercent === Infinity || Number.isNaN(newPercent)) {
-          this.monthlyCalculatorForm.controls?.['downPaymentPercent'].patchValue(0);
+          this.monthlyCalculatorForm.controls?.['downPaymentPercent'].patchValue(0, {emitEvent: false});
         }
         else {
-          this.monthlyCalculatorForm.controls?.['downPaymentPercent'].patchValue(newPercent);
+          this.monthlyCalculatorForm.controls?.['downPaymentPercent'].patchValue(newPercent, {emitEvent: false});
         }
       });
 
-      this.monthlyCalculatorForm.controls?.['downPaymentPercent']
+    this.monthlyCalculatorForm.controls?.['downPaymentPercent']
       .valueChanges
       .subscribe(downPaymentPercent => {
 
-        const newDownPayment = downPaymentPercent * this.currentHomePrice / 100;
+      const newDownPayment = downPaymentPercent * this.currentHomePrice / 100;
 
-        if (!this.monthlyCalculatorForm.controls?.['downPayment'].pristine) {
-          this.monthlyCalculatorForm.controls?.['downPayment'].patchValue(newDownPayment);
-        }
-      });
+      this.monthlyCalculatorForm.controls?.['downPayment'].patchValue(newDownPayment, {emitEvent: false});
+    });
 
     this.calculations$ = this.monthlyCalculatorForm.valueChanges.pipe(
       filter((val) => this.monthlyCalculatorForm.valid),
