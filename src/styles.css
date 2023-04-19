@@ -10,3 +10,13 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: #F3F9FB;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
