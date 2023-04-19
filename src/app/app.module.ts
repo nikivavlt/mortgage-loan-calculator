@@ -32,6 +32,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ListOfApplicationsComponent } from './components/list-of-applications/list-of-applications.component';
 import {MatPaginatorModule } from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
+import { MatSliderModule } from '@angular/material/slider';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import {MatTableModule} from '@angular/material/table';
     MatDialogModule,
     MatPaginatorModule,
     MatTableModule
+    MatSliderModule
   ],
   declarations: [
     AppComponent,
