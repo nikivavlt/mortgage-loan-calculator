@@ -1,0 +1,31 @@
+<div>
+    <label class="applicants-table-label"><h2>All applicants</h2></label>
+    <table mat-table [dataSource]="dataSource" >
+
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let element" (click)="onCellClick(element)"> {{element.date}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Applicant ID </th>
+            <td mat-cell *matCellDef="let element" (click)="onCellClick(element)" class="clickable-cell"> {{element.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef> First Name </th>
+            <td mat-cell *matCellDef="let element" (click)="onCellClick(element)" class="clickable-cell"> {{element.firstName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef> Last Name </th>
+            <td mat-cell *matCellDef="let element" (click)="onCellClick(element)" class="clickable-cell"> {{element.lastName}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+</div>
