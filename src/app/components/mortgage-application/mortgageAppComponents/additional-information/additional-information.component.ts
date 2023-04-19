@@ -69,7 +69,7 @@ export class AdditionalInformationComponent {
     return this.coBorrowerlNameControl?.errors?.['required'] && this.coBorrowerlNameControl!.touched;
   }
   get coBorrowerPersonalNumberError() {
-    return this.coBorrowerPersonalNumber!.hasError('required') && this.coBorrowerPersonalNumber!.touched;
+    return this.coBorrowerPersonalNumber?.errors?.['required'] && this.coBorrowerPersonalNumber!.touched;
   }
 
   submitForm() {

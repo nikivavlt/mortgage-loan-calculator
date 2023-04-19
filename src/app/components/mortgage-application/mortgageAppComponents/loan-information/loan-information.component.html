@@ -1,18 +1,24 @@
 <form [formGroup]="loanInformationForm">
   <div class="form form--centered">
     <div class="form__content">
-        <mat-label>Loan ammount</mat-label>
+        <mat-label>Loan amount</mat-label>
         <br>
         <mat-form-field appearance="fill">
           <input matInput formControlName="loanAmount" type="text" placeholder="1000">
           <span matTextSuffix> Eur </span>
         </mat-form-field>
+        <div *ngIf="loanAmountRequiredError">
+          <mat-error>Loan amount is required</mat-error>
+        </div>
         <br>
         <mat-label>Loan purpose</mat-label>
         <br>
         <mat-form-field appearance="fill">
           <input matInput formControlName="loanPurpose" type="text" placeholder="I want a house">
         </mat-form-field>
+        <div *ngIf="loanPurposeRequiredError">
+          <mat-error>Loan purpose is required</mat-error>
+        </div>
 
     </div>
     <div class="form__content">
@@ -21,6 +27,9 @@
       <mat-form-field appearance="fill">
         <input matInput formControlName="propertyType" type="text" placeholder="House with 5 doors">
       </mat-form-field>
+      <div *ngIf="propertyTypeRequiredError">
+        <mat-error>Type of property is required</mat-error>
+      </div>
       <br>
       <mat-label>Price of property</mat-label>
       <br>
@@ -28,7 +37,9 @@
         <input matInput formControlName="propertyPrice" type="text" placeholder="3000">
         <span matTextSuffix> Eur </span>
       </mat-form-field>
-
+      <div *ngIf="propertyPriceRequiredError">
+        <mat-error>Price of property is required</mat-error>
+      </div>
     </div>
   </div>
   <div>
@@ -38,6 +49,9 @@
       <input matInput formControlName="evaluatedPropertyPrice" type="text" placeholder="4000">
       <span matTextSuffix>Eur</span>
     </mat-form-field>
+    <div *ngIf="evaluatedPropertyPriceRequiredError">
+      <mat-error>Evaluation price of property is required</mat-error>
+    </div>
     <br>
     <div>
       <label>Term of loan: {{sliderValue}}</label>
@@ -46,6 +60,9 @@
     <mat-slider min="1" max="30" step="1" value="1" (input)="onSliderInput($event)">
       <input matSliderThumb formControlName="termOfLoan">
     </mat-slider>
+    <div *ngIf="termOfLoanRequiredError">
+      <mat-error>Term of loan is required</mat-error>
+    </div>
   </div>
   <div>
     <button mat-button matStepperPrevious>Back</button>
