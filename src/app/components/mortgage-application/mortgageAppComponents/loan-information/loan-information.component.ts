@@ -38,6 +38,46 @@ export class LoanInformationComponent {
     this.sliderValue = Number(sliderValue);
   }
 
+
+get loanAmountControl() {
+    return this.loanInformationForm.get('loanAmount');
+}
+get loanPurposeControl() {
+    return this.loanInformationForm.get('loanPurpose');
+}
+get propertyTypeControl() {
+    return this.loanInformationForm.get('propertyType');
+}
+get propertyPriceControl() {
+    return this.loanInformationForm.get('propertyPrice');
+}
+get evaluatedPropertyPriceControl() {
+    return this.loanInformationForm.get('evaluatedPropertyPrice');
+}
+get termOfLoanControl() {
+    return this.loanInformationForm.get('termOfLoan');
+}
+
+
+get loanAmountRequiredError() {
+  return this.loanAmountControl?.errors?.['required'] && this.loanAmountControl!.touched;
+}
+get loanPurposeRequiredError() {
+  return this.loanPurposeControl?.errors?.['required'] && this.loanPurposeControl!.touched;
+}
+get propertyTypeRequiredError() {
+  return this.propertyTypeControl?.errors?.['required'] && this.propertyTypeControl!.touched;
+}
+get propertyPriceRequiredError() {
+  return this.propertyPriceControl?.errors?.['required'] && this.propertyPriceControl!.touched;
+}
+get evaluatedPropertyPriceRequiredError() {
+  return this.evaluatedPropertyPriceControl?.errors?.['required'] && this.evaluatedPropertyPriceControl!.touched;
+}
+get termOfLoanRequiredError() {
+  return this.termOfLoanControl?.errors?.['required'] && this.termOfLoanControl!.touched;
+}
+
   ngOnDestroy() {
     this.serviceSubscription.unsubscribe(); //TODO USE
   }

@@ -9,6 +9,7 @@
             {{education.viewValue}}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="educationControlRequiredError">Education is required</mat-error>
       </mat-form-field>
       <br>
       <mat-label>Time Employed</mat-label>
@@ -19,6 +20,7 @@
             {{values.viewValue}}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="timeEmployedControlRequiredError">Time Employed is required</mat-error>
       </mat-form-field>
       <br>
       <mat-label>Contract type</mat-label>
@@ -29,6 +31,7 @@
             {{values.viewValue}}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="contractTypeControlRequiredError">Contract Type is required</mat-error>
       </mat-form-field>
     </div>
     <div class="form__content">
@@ -36,12 +39,14 @@
       <br>
       <mat-form-field appearance="fill">
         <input matInput formControlName="employer" type="text" placeholder="UAB Firma">
+        <mat-error *ngIf="employerControlRequiredError">Employer is required</mat-error>
       </mat-form-field>
       <br>
       <mat-label>Position held</mat-label>
       <br>
       <mat-form-field appearance="fill">
         <input matInput formControlName="position" type="text" placeholder="Senior manager of things">
+        <mat-error *ngIf="positionControlRequiredError">Position is required</mat-error>
       </mat-form-field>
       <br>
       <mat-label>Amount of monthly payments of financial obligations (EUR/month)</mat-label>
@@ -49,6 +54,7 @@
       <mat-form-field appearance="fill">
           <input matInput formControlName="monthlyObligations" type="text" placeholder="1000">
           <span matTextSuffix> Eur </span>
+          <mat-error *ngIf="monthlyObligationsControlRequiredError">Monthly Obligations is required</mat-error>
       </mat-form-field>
     </div>
   </div>
@@ -59,6 +65,7 @@
       <mat-form-field appearance="fill" class="formInput">
         <input matInput formControlName="netIncome" type="text" placeholder="1000">
         <span matTextSuffix> Eur </span>
+        <mat-error *ngIf="netIncomeControlRequiredError">Net Income is required</mat-error>
       </mat-form-field>
     </div>
   </div>
@@ -71,12 +78,14 @@
         <mat-radio-button [value]="childCountEnum.More">More</mat-radio-button>
       </div>
     </mat-radio-group>
+    <mat-error *ngIf="childrenAmountControlRequiredError">Number of Children is required</mat-error>
     <br>
     <mat-label>Current other financial obligations</mat-label>
     <mat-radio-group aria-label="Select an option" formControlName="financialObligations">
       <mat-radio-button [value]="true">Yes</mat-radio-button>
       <mat-radio-button [value]="false">No</mat-radio-button>
     </mat-radio-group>
+    <mat-error *ngIf="financialObligationsControlRequiredError">Financial Obligations is required</mat-error>
   </div>
   <div>
     <button mat-button matStepperPrevious>Back</button>

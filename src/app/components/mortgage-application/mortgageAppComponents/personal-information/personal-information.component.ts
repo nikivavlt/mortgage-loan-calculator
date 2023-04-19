@@ -30,6 +30,38 @@ export class PersonalInformationComponent {
     });
   }
 
+  get nameControl() {
+    return this.personalInformationForm.get('name');
+  }
+  get lnameControl() {
+    return this.personalInformationForm.get('lName');
+  }
+  get personalNumberControl() {
+    return this.personalInformationForm.get('personalNumber');
+  }
+  get phoneNumberControl() {
+    return this.personalInformationForm.get('phoneNumber');
+  }
+  get emailControl() {
+    return this.personalInformationForm.get('email');
+  }
+
+  get nameControlRequiredError() {
+    return this.nameControl?.errors?.['required'] && this.nameControl!.touched;
+  }
+  get lnameControlRequiredError() {
+    return this.lnameControl?.errors?.['required'] && this.lnameControl!.touched;
+  }
+  get personalNumberControlRequiredError() {
+    return this.personalNumberControl?.errors?.['required'] && this.personalNumberControl!.touched;
+  }
+  get phoneNumberControlRequiredError() {
+    return this.phoneNumberControl?.errors?.['required'] && this.phoneNumberControl!.touched;
+  }
+  get emailControlRequiredError() {
+    return this.emailControl?.errors?.['required'] && this.emailControl!.touched;
+  }
+
   ngOnDestroy() {
     this.serviceSubscription.unsubscribe();//TODO change unsub
   }
