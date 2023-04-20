@@ -1,0 +1,55 @@
+<div class="header-container">
+    <button mat-icon-button mat-dialog-close class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h3 mat-dialog-title>Loan Application Information</h3>
+    <div class="actions-container">
+      <button mat-button mat-dialog-close mat-button color="primary" (click)="markInProgress()" >Mark in progress</button>
+      <button mat-button mat-dialog-close mat-button color="primary" (click)="markAsDone()"> Mark as done</button>
+      <button mat-button mat-dialog-close mat-button color="accent" (click)="reject()"> Reject</button>
+    </div>
+  </div>
+<mat-dialog-content>
+  <div class="info-group">
+    <p><strong>Creation date:</strong> {{ data.date | date:'mediumDate' }}</p>
+    <p><strong>Application id:</strong> {{ data.id }}</p>
+    <!-- <p><strong>Status:</strong> {{ data.status }}</p> -->
+  </div>
+
+  <div class="info-group">
+    <h2>Contact Information</h2>
+    <p><strong>Name:</strong> {{ data.firstName }}</p>
+    <p><strong>Surname:</strong> {{ data.lastName }}</p>
+    <p><strong>Personal id:</strong> {{ data.id }}</p>
+    <p><strong>Email:</strong> {{ data.email }}</p>
+    <p><strong>Phone number:</strong> {{ data.phoneNumber }}</p>
+  </div>
+
+  <div class="info-group">
+    <h2>Co-borrower Information</h2>
+    <p><strong>Name and Surname:</strong> {{ data.coBorrowerName }}</p>
+    <p><strong>Personal number:</strong> {{ data.coBorrowerPersonalNumber }}</p>
+  </div>
+
+  <div class="info-group">
+    <h2>Loan Information</h2>
+    <p><strong>Loan amount:</strong> {{ data.loanAmount }} </p>
+    <p><strong>Loan purpose:</strong> {{ data.loanPurpose }}</p>
+    <p><strong>Term of loan:</strong> {{ data.termOfLoan }} YEARS</p>
+    <p><strong>Type of property:</strong> {{ data.propertyType }}</p>
+    <p><strong>Price of property:</strong> {{ data.propertyPrice }}</p>
+    <p><strong>Evaluation price of property:</strong> {{ data.evaluatedPropertyPrice }}</p>
+  </div>
+
+  <div class="info-group">
+    <h2>Income and Financial Liabilities</h2>
+    <p><strong>Net income:</strong> {{ data.netIncome }}</p>
+    <p><strong>Number of dependents:</strong> {{ data.childrenAmount }}</p>
+    <p><strong>Education:</strong> {{ data.education }}</p>
+    <p><strong>Current employer:</strong> {{ data.employer}}</p>
+    <p><strong>Time Employed:</strong> {{ data.timeEmployed}}</p>
+    <p><strong>Contract type:</strong> {{ data.contractType}}</p>
+    <p><strong>Position held:</strong> {{ data.position}}</p>
+    <p><strong>Current other financial obligations:</strong> {{ data.financialObligations}}</p>
+  </div>
+      

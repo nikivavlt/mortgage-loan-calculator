@@ -1,57 +1,60 @@
 <form [formGroup]="incomeAndFinancialLiabilitiesForm">
   <div class="form form--centered">
     <div class="form__content">
+      <mat-label>Education</mat-label>
+      <br>
       <mat-form-field appearance="fill" class="formInput">
-        <mat-label>Education</mat-label>
         <mat-select formControlName="education">
           <mat-option *ngFor="let education of educationValues" [value]="education.value">
             {{education.viewValue}}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="educationControlRequiredError">Education is required</mat-error>
       </mat-form-field>
       <br>
+      <mat-label>Time Employed</mat-label>
+      <br>
       <mat-form-field appearance="fill">
-        <mat-label>Time Employed</mat-label>
         <mat-select formControlName="timeEmployed">
           <mat-option *ngFor="let values of timeEmployedValues" [value]="values.value">
             {{values.viewValue}}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="timeEmployedControlRequiredError">Time Employed is required</mat-error>
       </mat-form-field>
       <br>
+      <mat-label>Contract type</mat-label>
+      <br>
       <mat-form-field appearance="fill">
-        <mat-label>Contract type</mat-label>
         <mat-select formControlName="contractType">
           <mat-option *ngFor="let values of contractTypeValues" [value]="values.value">
             {{values.viewValue}}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="contractTypeControlRequiredError">Contract Type is required</mat-error>
       </mat-form-field>
     </div>
     <div class="form__content">
+      <mat-label>Current employer</mat-label>
+      <br>
       <mat-form-field appearance="fill">
-        <mat-label>Current employer</mat-label>
         <input matInput formControlName="employer" type="text" placeholder="UAB Firma">
+        <mat-error *ngIf="employerControlRequiredError">Employer is required</mat-error>
       </mat-form-field>
       <br>
+      <mat-label>Position held</mat-label>
+      <br>
       <mat-form-field appearance="fill">
-        <mat-label>Position held</mat-label>
         <input matInput formControlName="position" type="text" placeholder="Senior manager of things">
+        <mat-error *ngIf="positionControlRequiredError">Position is required</mat-error>
       </mat-form-field>
       <br>
-      <mat-form-field appearance="fill">
-        <mat-label>Eur</mat-label>
-        <span matTooltip="Enter the amount of your monthly financial obligations">
-          <input matInput formControlName="monthlyObligations" type="number" placeholder="1000">
-        </span>
-      </mat-form-field>
-    </div>
-  </div>
-  <div class="form form--centered">
-    <div class="form__content">
+      <mat-label>Net income</mat-label>
+      <br>
       <mat-form-field appearance="fill" class="formInput">
-        <mat-label>Net income</mat-label>
-        <input matInput formControlName="netIncome" type="number" placeholder="1000">
+        <input matInput formControlName="netIncome" type="text" placeholder="1000">
+        <span matTextSuffix> Eur </span>
+        <mat-error *ngIf="netIncomeControlRequiredError">Net Income is required</mat-error>
       </mat-form-field>
     </div>
   </div>
@@ -59,17 +62,28 @@
     <mat-label>Number of children</mat-label>
     <mat-radio-group aria-label="Select an option" formControlName="childrenAmount">
       <div>
+        <mat-radio-button [value]="childCountEnum.Zero">None</mat-radio-button>
         <mat-radio-button [value]="childCountEnum.One">1 child</mat-radio-button>
         <mat-radio-button [value]="childCountEnum.Two">2 children</mat-radio-button>
         <mat-radio-button [value]="childCountEnum.More">More</mat-radio-button>
       </div>
     </mat-radio-group>
+    <mat-error *ngIf="childrenAmountControlRequiredError">Number of Children is required</mat-error>
     <br>
     <mat-label>Current other financial obligations</mat-label>
     <mat-radio-group aria-label="Select an option" formControlName="financialObligations">
       <mat-radio-button [value]="true">Yes</mat-radio-button>
       <mat-radio-button [value]="false">No</mat-radio-button>
     </mat-radio-group>
+    <mat-error *ngIf="financialObligationsControlRequiredError">Financial Obligations is required</mat-error>
+
+    <div *ngIf="financialObligationsControl?.value">
+      <mat-form-field appearance="fill">
+        <input matInput formControlName="monthlyObligations" type="text" placeholder="1000">
+        <span matTextSuffix> Eur </span>
+        <mat-error *ngIf="monthlyObligationsControlRequiredError">Monthly Obligations is required</mat-error>
+      </mat-form-field>
+    </div>
   </div>
   <div>
     <button mat-button matStepperPrevious>Back</button>

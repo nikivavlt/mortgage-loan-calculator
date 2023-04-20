@@ -10,7 +10,7 @@
   <div class="form-field-container">
     <mat-label>Net Income (Monthly income after taxes)</mat-label>
     <mat-form-field appearance="outline">
-      <input matInput type="text" formControlName="netIncome" min="0" />
+      <input matInput type="number" placeholder="0" formControlName="netIncome" (blur)="removeZeros('netIncome')" />
       <span matTextSuffix> Eur </span>
     </mat-form-field>
 
@@ -32,38 +32,24 @@
       </div>
     </div>
     <mat-label>Number of dependent family members</mat-label>
-    <mat-form-field appearance="outline">
-      <input matInput type="number" formControlName="dependent" min="0" />
-    </mat-form-field>
-    <div class="message-block"
-      *ngIf="dependent?.dirty && (dependent?.errors || dependent?.touched || loanForm?.errors)">
-      <div *ngIf="dependent?.errors?.['required']" class="error-message">
-        This field is required
-      </div>
-    </div>
-    <div *ngIf="loanForm.errors?.['applicantWithMoreThanTwoDependentsError']" class="error-message">
-      Minimum monthly income should be 1000 EUR
-    </div>
-    <div *ngIf="loanForm.errors?.['applicantWithOneDependentError']" class="error-message">
-      Mininmum monthly income should be 650 EUR
-    </div>
-
+<mat-radio-group formControlName="dependent">
+  <mat-radio-button value="0">0</mat-radio-button>
+  <mat-radio-button value="1">1</mat-radio-button>
+  <mat-radio-button value="2">2</mat-radio-button>
+  <mat-radio-button value="3">More</mat-radio-button>
+</mat-radio-group>
+<div *ngIf="loanForm.errors?.['applicantWithMoreThanTwoDependentsError']" class="error-message">
+  Minimum monthly income should be 1000 EUR
+</div>
+<div *ngIf="loanForm.errors?.['applicantWithOneDependentError']" class="error-message">
+  Mininmum monthly income should be 650 EUR
+</div>
     <mat-label>Current monthly obligations</mat-label>
     <mat-form-field appearance="outline">
       <span matTextSuffix class="suffix"> Eur </span>
-      <input matInput type="text" formControlName="obligations" />
+      <input matInput type="number" placeholder="0" formControlName="obligations" formControlName="obligations" (blur)="handleEmptyValue('obligations'); removeZeros('obligations')" (focus)="handleFocus('obligations')" />
     </mat-form-field>
-    <div *ngIf="obligations?.dirty && (obligations?.errors || obligations?.touched)">
-      <div *ngIf="obligations && obligations.errors">
-        <div *ngIf="obligations.errors['required']" class="error-message">
-          This field is required
-        </div>
-        <div *ngIf="obligations.errors['pattern']" class="error-message">
-          Please enter a valid number
-        </div>
-      </div>
-    </div>
   </div>
-  <app-show-max-mortgage-amount [loanForm]="loanForm"
-    [maxMortgageAmount]="maxMortgageAmount"></app-show-max-mortgage-amount>
+  <app-show-max-mortgage-amount [maxMortgageAmount]="maxMortgageAmountValue">
+  </app-show-max-mortgage-amount>
 </form>

@@ -1,0 +1,47 @@
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+button {
+    color: primary;
+}
+
+.back-button {
+    margin-right: 8px;
+
+}
+
+.actions-container {
+    display: flex;
+    align-items: center;
+}
+
+.info-group {
+    text-align: center;
+}
+
+h2 {
+    color: black;
+}
+
+h3 {
+    font-size: 1em;
+    text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+    .header-container {
+        justify-content: center;
+    }
+
+    .actions-container {
+        margin-top: 10px;
+    }
+}
+
+.spacer {
+    flex: 1 1 auto;
+}

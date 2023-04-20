@@ -1,11 +1,15 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { StepperOrientation } from '@angular/material/stepper';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil, tap } from 'rxjs';
 import { PersonalInformationComponent } from './mortgageAppComponents/personal-information/personal-information.component';
 import { IncomeAndFinancialLiabilitiesComponent } from './mortgageAppComponents/income-and-financial-liabilities/income-and-financial-liabilities.component';
 import { LoanInformationComponent } from './mortgageAppComponents/loan-information/loan-information.component';
 import { AdditionalInformationComponent } from './mortgageAppComponents/additional-information/additional-information.component';
+import { ThankYouPopUpComponent } from 'src/app/components/thank-you-pop-up/thank-you-pop-up.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MortgageApplicationService } from 'src/app/services/mortgage-application.service';
+
 
 @Component({
   selector: 'app-mortgage-application',
@@ -25,9 +29,9 @@ export class MortgageApplicationComponent {
 
   stepperOrientation: StepperOrientation = 'horizontal';
   private readonly destroy$ = new Subject<void>();
-  constructor(private breakpointObserver: BreakpointObserver) {
+  constructor(private breakpointObserver: BreakpointObserver, private dialog: MatDialog,
+              private mortgageApplicationService: MortgageApplicationService) {}
 
-  }
   ngOnInit() {
     this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall])
     .pipe(takeUntil(this.destroy$))
@@ -40,7 +44,12 @@ export class MortgageApplicationComponent {
     });
   }
   submitForm() {
-    console.log("data");
+    if(!this.isPersonalInfoCompleted||!this.isIncomeAndFinancialCompleted||!this.isLoanInfoCompleted||!this.isAdditionalInfoCompleted){
+      console.log("Not all form fields are filled, please check if all fields are filled correctly");
+      return
+    }
+    console.log("sent");
+
     const data = {
       ...this.personalInfoComponent.personalInformationForm.value,
       ...this.incomeAndFinancialComponent.incomeAndFinancialLiabilitiesForm.value,
@@ -48,9 +57,20 @@ export class MortgageApplicationComponent {
       ...this.additionalInfoComponent.additionalInformationForm.value
     };
 
-    console.log(data);
-
-    //TODO: Make the POST request using the data object
+    this.mortgageApplicationService.saveForm(data)
+    .pipe(
+      tap(response => {
+        console.log(response);
+      }),
+      takeUntil(this.destroy$))
+    .subscribe({
+      next: () => {
+        this.openThankYouDialog();
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
   }
   onPersonalInformationFormChanged(bool: boolean) {
     this.isPersonalInfoCompleted = bool;
@@ -63,6 +83,9 @@ export class MortgageApplicationComponent {
   }
   onAdditionalInfoChanged(bool: boolean) {
     this.isAdditionalInfoCompleted = bool;
+  }
+  openThankYouDialog() {
+    this.dialog.open(ThankYouPopUpComponent);
   }
   ngOnDestroy(): void {
     this.destroy$.next();

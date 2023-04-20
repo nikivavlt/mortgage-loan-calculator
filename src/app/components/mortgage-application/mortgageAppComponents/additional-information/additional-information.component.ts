@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { ApplicationFormValidators } from 'src/app/validators/application-form-validators';
 
 @Component({
   selector: 'app-additional-information',
@@ -15,14 +14,12 @@ export class AdditionalInformationComponent {
   additionalInformationForm!: FormGroup;
   private serviceSubscription: Subscription;
 
-
-
-
   constructor(private fb: FormBuilder) {
     this.additionalInformationForm = this.fb.group({
       coBorrower: new FormControl(false,),
-      coBorrowerName: new FormControl('', ApplicationFormValidators.coBorrowerValidator),
-      coBorrowerPersonalNumber: new FormControl('', ApplicationFormValidators.coBorrowerValidator),
+      coBorrowerName: new FormControl(''),
+      coBorrowerlName: new FormControl(''),
+      coBorrowerPersonalNumber: new FormControl(''),
       certification: new FormControl(false, Validators.required)
     })
 
@@ -38,15 +35,23 @@ export class AdditionalInformationComponent {
   ngOnInit() {
     this.additionalInformationForm.get('coBorrower')!.valueChanges.subscribe((value) => {
       if (value) {
-        this.additionalInformationForm.get('coBorrowerName')!.setValidators(Validators.required);
-        this.additionalInformationForm.get('coBorrowerPersonalNumber')!.setValidators(Validators.required);
+        this.coBorrowerNameControl?.setValidators(Validators.required);
+        this.coBorrowerlNameControl?.setValidators(Validators.required);
+        this.coBorrowerPersonalNumber?.setValidators(Validators.required);
       } else {
-        this.additionalInformationForm.get('coBorrowerName')!.clearValidators();
-        this.additionalInformationForm.get('coBorrowerPersonalNumber')!.clearValidators();
+        this.coBorrowerNameControl?.clearValidators();
+        this.coBorrowerlNameControl?.clearValidators();
+        this.coBorrowerPersonalNumber?.clearValidators();
+
+        this.coBorrowerNameControl?.setValue("");
+        this.coBorrowerlNameControl?.setValue("");
+        this.coBorrowerPersonalNumber?.setValue("");
       }
 
-      this.additionalInformationForm.get('coBorrowerName')!.updateValueAndValidity();
-      this.additionalInformationForm.get('coBorrowerPersonalNumber')!.updateValueAndValidity();
+      this.coBorrowerNameControl?.updateValueAndValidity();
+      this.coBorrowerlNameControl?.updateValueAndValidity();
+      this.coBorrowerPersonalNumber?.updateValueAndValidity();
+
     });
   }
   get coBorrowerStateControl() {
@@ -55,22 +60,28 @@ export class AdditionalInformationComponent {
   get coBorrowerNameControl() {
     return this.additionalInformationForm.get('coBorrowerName');
   }
+  get coBorrowerlNameControl() {
+    return this.additionalInformationForm.get('coBorrowerlName');
+  }
   get coBorrowerPersonalNumber() {
     return this.additionalInformationForm.get('coBorrowerPersonalNumber');
+  }
+  get certificationControl() {
+    return this.additionalInformationForm.get('certification');
   }
   get coBorrowerNameRequiredError() {
     return this.coBorrowerNameControl?.errors?.['required'] && this.coBorrowerNameControl!.touched;
   }
+  get coBorrowerlNameRequiredError() {
+    return this.coBorrowerlNameControl?.errors?.['required'] && this.coBorrowerlNameControl!.touched;
+  }
   get coBorrowerPersonalNumberError() {
-    return this.coBorrowerPersonalNumber!.hasError('required') && this.coBorrowerPersonalNumber!.touched;
+    return this.coBorrowerPersonalNumber?.errors?.['required'] && this.coBorrowerPersonalNumber!.touched;
   }
 
   submitForm() {
-    console.log("this.formSubmitted.emit()");
-
     this.formSubmitted.emit();
   }
-
   ngOnDestroy() {
     this.serviceSubscription.unsubscribe();
   }
