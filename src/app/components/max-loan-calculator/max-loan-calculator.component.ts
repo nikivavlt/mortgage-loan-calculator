@@ -30,7 +30,7 @@ export class MaxLoanCalculatorComponent {
     this.loanForm = this.formBuilder.group({
 
       netIncome: ['', [Validators.required]],
-      dependent: ['', Validators.pattern(/^[0-9]+$/)],
+      dependent: ['0', Validators.pattern(/^[0-9]+$/)],
       obligations: ['', [Validators.pattern(/^-?(0|[1-9]\d*)?$/)], negativeValidator],
       borrower: [('personal'), [Validators.required]]
     },
