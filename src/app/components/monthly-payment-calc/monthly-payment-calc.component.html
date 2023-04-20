@@ -3,7 +3,7 @@
     <form [formGroup]="monthlyCalculatorForm" action="">
       <mat-label class="calc-label" for="homePrice">Home Price</mat-label>
       <mat-form-field appearance="outline">
-        <input matInput id="homePrice" type="text" formControlName="homePrice" placeholder="Eur">
+        <input matInput id="homePrice" type="number" formControlName="homePrice" placeholder="Eur">
       </mat-form-field>
       <div
       *ngIf="homePrice.errors && ( homePrice.touched || homePrice.dirty )">
@@ -23,7 +23,7 @@
 
       <mat-label class="calc-label" for="mortgage-amount">Mortgage amount</mat-label>
       <mat-form-field appearance="outline">
-        <input matInput id="mortgage-amount" type="text" formControlName="mortgageAmount" placeholder="Eur">
+        <input matInput id="mortgage-amount" type="number" formControlName="mortgageAmount" placeholder="Eur">
       </mat-form-field>
       <div *ngIf="mortgageAmount.errors && ( mortgageAmount.touched || mortgageAmount.dirty )">
         <div class="error-message" *ngIf="mortgageAmount.errors['required']">
@@ -36,11 +36,11 @@
 
       <mat-label class="calc-label" for="down-payment">Down payment</mat-label>
       <mat-form-field appearance="outline">
-        <input matInput id="down-payment" type="text" formControlName="downPayment" placeholder="Eur">
+        <input matInput id="down-payment" type="number" formControlName="downPayment" placeholder="Eur">
       </mat-form-field>
       <div class="down-payment-percent">
       <mat-form-field appearance="outline">
-        <input matInput id="down-payment-two" type="text" formControlName="downPaymentPercent" placeholder="%">
+        <input matInput id="down-payment-two" type="number" formControlName="downPaymentPercent" placeholder="%">
       </mat-form-field>
       </div>
       <div class="error-message" *ngIf="downPayment.errors && ( downPayment.touched || downPayment.dirty )">
@@ -58,7 +58,7 @@
 
       <mat-label class="calc-label" for="interest-rate">Interest rate</mat-label>
       <mat-form-field appearance="outline">
-        <input  matInput id="interest-rate" type="text" formControlName="interestRate" placeholder="%">
+        <input  matInput id="interest-rate" type="number" formControlName="interestRate" placeholder="%">
       </mat-form-field>
       <div *ngIf="interestRate.errors && ( interestRate.touched || interestRate.dirty )">
         <div class="error-message" *ngIf="interestRate.errors['required']">
