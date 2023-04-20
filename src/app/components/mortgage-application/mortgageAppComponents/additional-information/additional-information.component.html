@@ -40,6 +40,6 @@
   </div>
 <div>
   <button mat-button matStepperPrevious>Back</button>
-  <button mat-button (click)="submitForm()">Send form</button>
+  <button mat-button (disabled)="certificationControl?.value" (click)="submitForm()">Send form</button>
 </div>
 </form>

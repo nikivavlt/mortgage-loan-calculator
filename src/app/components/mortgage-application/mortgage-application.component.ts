@@ -44,6 +44,12 @@ export class MortgageApplicationComponent {
     });
   }
   submitForm() {
+    if(!this.isPersonalInfoCompleted||!this.isIncomeAndFinancialCompleted||!this.isLoanInfoCompleted||!this.isAdditionalInfoCompleted){
+      console.log("Not all form fields are filled, please check if all fields are filled correctly");
+      return
+    }
+    console.log("sent");
+
     const data = {
       ...this.personalInfoComponent.personalInformationForm.value,
       ...this.incomeAndFinancialComponent.incomeAndFinancialLiabilitiesForm.value,
