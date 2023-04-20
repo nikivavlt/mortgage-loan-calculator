@@ -1,4 +1,5 @@
 export interface AllApplications {
+  date: Date;
   id: number;
   firstName: string;
   lastName: string;

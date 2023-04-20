@@ -5,6 +5,7 @@ import { Observable, Subject, catchError, map, of, takeUntil, tap } from 'rxjs';
 import { AllApplications } from 'src/app/interfaces/all-applications-list';
 import { GetAllApplicationsService } from 'src/app/services/get-all-applications.service';
 import { MatDialog } from '@angular/material/dialog';
+import { SingleApplicationPopUpComponent } from '../single-application-pop-up/single-application-pop-up.component';
 
 @Component({
   selector: 'app-list-of-applications',
@@ -13,43 +14,35 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ListOfApplicationsComponent {
   displayedColumns: string[] = ['date', 'id', 'firstName', 'lastName'];
-  dataSource = new MatTableDataSource<AllApplications>;
-  private readonly destroy$ = new Subject<void>();
-  
+
+  data: Observable<MatTableDataSource<AllApplications>> = of()
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  dialog: any;
+
+  constructor(private getAllApplicationsService: GetAllApplicationsService, private dialog: MatDialog) { }
   
-  constructor(private getAllApplicationsService: GetAllApplicationsService) {}
-
-
   ngOnInit() {
-    this.getAllApplicationsService.getAllApplications()
+    this.data = this.getAllApplicationsService.getAllApplications()
       .pipe(
-        takeUntil(this.destroy$),
         map((applications: AllApplications[]) => {
-          this.dataSource.data = applications;
+          applications.sort((a, b) => {
+            return new Date(b.date).getTime() - new Date(a.date).getTime()
+          });
+          const dataSource = new MatTableDataSource(applications)
+          dataSource.paginator = this.paginator
+          return dataSource
         }),
         catchError((error: any) => {
           console.error('Error occurred:', error);
-          return of(null);
+          return of();
         }
         )
       )
-      .subscribe()
   }
-  ngOnDestroy(): void {
-    this.destroy$.next();
-  }
-  
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  } 
-    
+
   onCellClick(row: AllApplications) {
-    console.log(row)
-    // const dialogRef = this.dialog.open(, {
-    //   data: row 
-    // });
-}
+    this.dialog.open(SingleApplicationPopUpComponent, {
+      data: row
+    });
+  }
 }
 
