@@ -16,7 +16,7 @@ export class ChatBubbleComponent {
   constructor(private http: HttpClient) {}
 
   private apiUrl = 'https://api.openai.com/v1/chat/completions';
-  private apiKey = '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';
+  private apiKey = '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';
 
   sendChatRequest(prompt: string, apiKey: string) {
     const headers = new HttpHeaders({
@@ -29,7 +29,10 @@ export class ChatBubbleComponent {
       'max_tokens': 60,
       'stop': " ",
       'model': 'gpt-3.5-turbo',
-      "messages": [{"role": "assistant", "content": prompt}]
+      "messages": [
+        {"role": "system", "content": "You are a mortgage calculator application assistant."},
+        {"role": "user", "content": prompt}
+      ]
     };
 
     return this.http.post<any>(this.apiUrl, body, { headers: headers });
