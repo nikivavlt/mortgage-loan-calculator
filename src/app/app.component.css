@@ -1,0 +1,15 @@
+.application {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+app-header,
+app-footer {
+  flex: 0 0 auto;
+}
+
+router-outlet {
+  flex: 1 0 auto;
+}
+
