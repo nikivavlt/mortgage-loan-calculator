@@ -16,7 +16,7 @@ export class ChatBubbleComponent {
   constructor(private http: HttpClient) {}
 
   private apiUrl = 'https://api.openai.com/v1/chat/completions';
-  private apiKey = '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';
+  private apiKey = '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';
 
   sendChatRequest(prompt: string, apiKey: string) {
     const headers = new HttpHeaders({
@@ -41,8 +41,7 @@ export class ChatBubbleComponent {
       this.isLoading = true;
       this.isActive = true;
       const response = await firstValueFrom(this.sendChatRequest(this.chatInput, this.apiKey));
-      console.log(response.choices);
-      console.log(response);
+
       if (response.choices && response.choices.length > 0 && response.choices[0].message.content) {
         this.message = response.choices[0].message.content;
       } else {
