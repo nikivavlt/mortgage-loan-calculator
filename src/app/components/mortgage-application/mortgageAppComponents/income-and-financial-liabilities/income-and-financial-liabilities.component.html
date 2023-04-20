@@ -62,6 +62,7 @@
     <mat-label>Number of children</mat-label>
     <mat-radio-group aria-label="Select an option" formControlName="childrenAmount">
       <div>
+        <mat-radio-button [value]="childCountEnum.Zero">None</mat-radio-button>
         <mat-radio-button [value]="childCountEnum.One">1 child</mat-radio-button>
         <mat-radio-button [value]="childCountEnum.Two">2 children</mat-radio-button>
         <mat-radio-button [value]="childCountEnum.More">More</mat-radio-button>
