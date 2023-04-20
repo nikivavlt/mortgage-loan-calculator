@@ -51,7 +51,7 @@
           Only numbers allowed
         </div>
       </div>
-      <div class="error-message" *ngIf="monthlyCalculatorForm.errors?.['downPaymentValidator']">
+      <div class="error-message" *ngIf="monthlyCalculatorForm.errors?.['downPaymentValidator'] && downPayment.touched">
         <div>Down payment should be more</div>
         <div>or equal to 15% or less than 99%</div>
       </div>
