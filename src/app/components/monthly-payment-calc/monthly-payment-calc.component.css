@@ -1,24 +1,13 @@
-section {
-  padding-top: 7px;
+:host {
   display: flex;
   justify-content: space-evenly;
-  flex-wrap: nowrap;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  padding-top: 1rem;
-}
-
-mat-form-field {
-  height: 2px;
-  padding-bottom: 3.5rem;
-}
-
-p {
-  font-size: 1.1rem;
+  padding-top: 2rem;
 }
 
 .error-message {
@@ -30,4 +19,12 @@ p {
 
 .calculator-result {
   margin-top: 4rem;
+}
+
+@media screen and (max-width: 580px) {
+  :host {
+    flex-direction: column;
+    align-items: center;
+  }
+
 }
