@@ -49,17 +49,6 @@
         <mat-error *ngIf="positionControlRequiredError">Position is required</mat-error>
       </mat-form-field>
       <br>
-      <mat-label>Amount of monthly payments of financial obligations (EUR/month)</mat-label>
-      <br>
-      <mat-form-field appearance="fill">
-          <input matInput formControlName="monthlyObligations" type="text" placeholder="1000">
-          <span matTextSuffix> Eur </span>
-          <mat-error *ngIf="monthlyObligationsControlRequiredError">Monthly Obligations is required</mat-error>
-      </mat-form-field>
-    </div>
-  </div>
-  <div class="form form--centered">
-    <div class="form__content">
       <mat-label>Net income</mat-label>
       <br>
       <mat-form-field appearance="fill" class="formInput">
@@ -86,6 +75,14 @@
       <mat-radio-button [value]="false">No</mat-radio-button>
     </mat-radio-group>
     <mat-error *ngIf="financialObligationsControlRequiredError">Financial Obligations is required</mat-error>
+
+    <div *ngIf="financialObligationsControl?.value">
+      <mat-form-field appearance="fill">
+        <input matInput formControlName="monthlyObligations" type="text" placeholder="1000">
+        <span matTextSuffix> Eur </span>
+        <mat-error *ngIf="monthlyObligationsControlRequiredError">Monthly Obligations is required</mat-error>
+      </mat-form-field>
+    </div>
   </div>
   <div>
     <button mat-button matStepperPrevious>Back</button>
