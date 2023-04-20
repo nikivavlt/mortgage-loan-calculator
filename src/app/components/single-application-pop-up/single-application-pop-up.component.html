@@ -4,16 +4,16 @@
     </button>
     <h3 mat-dialog-title>Loan Application Information</h3>
     <div class="actions-container">
-      <button mat-button mat-dialog-close mat-button color="primary" >Mark in progress</button>
-      <button mat-button mat-dialog-close mat-button color="primary" >Mark as done</button>
-      <button mat-button mat-dialog-close mat-button color="accent" >Reject</button>
+      <button mat-button mat-dialog-close mat-button color="primary" (click)="markInProgress()" >Mark in progress</button>
+      <button mat-button mat-dialog-close mat-button color="primary" (click)="markAsDone()"> Mark as done</button>
+      <button mat-button mat-dialog-close mat-button color="accent" (click)="reject()"> Reject</button>
     </div>
   </div>
 <mat-dialog-content>
   <div class="info-group">
-    <p><strong>Creation date:</strong> {{ data.creationDate }}</p>
+    <p><strong>Creation date:</strong> {{ data.date | date:'mediumDate' }}</p>
     <p><strong>Application id:</strong> {{ data.id }}</p>
-    <p><strong>Status:</strong> {{ data.status }}</p>
+    <!-- <p><strong>Status:</strong> {{ data.status }}</p> -->
   </div>
 
   <div class="info-group">
@@ -33,9 +33,9 @@
 
   <div class="info-group">
     <h2>Loan Information</h2>
-    <p><strong>Loan amount:</strong> {{ data.loanAmount }}</p>
+    <p><strong>Loan amount:</strong> {{ data.loanAmount }} </p>
     <p><strong>Loan purpose:</strong> {{ data.loanPurpose }}</p>
-    <p><strong>Term of loan:</strong> {{ data.termOfLoan }}</p>
+    <p><strong>Term of loan:</strong> {{ data.termOfLoan }} YEARS</p>
     <p><strong>Type of property:</strong> {{ data.propertyType }}</p>
     <p><strong>Price of property:</strong> {{ data.propertyPrice }}</p>
     <p><strong>Evaluation price of property:</strong> {{ data.evaluatedPropertyPrice }}</p>
@@ -51,4 +51,5 @@
     <p><strong>Contract type:</strong> {{ data.contractType}}</p>
     <p><strong>Position held:</strong> {{ data.position}}</p>
     <p><strong>Current other financial obligations:</strong> {{ data.financialObligations}}</p>
+  </div>
       
