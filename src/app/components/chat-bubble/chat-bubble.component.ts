@@ -22,7 +22,7 @@ export class ChatBubbleComponent {
   }
 
   getApiKey(){
-    this.http.get('/secrets/render_com').subscribe({
+    this.http.get('/etc/secrets/API_KEY').subscribe({
       next: (response) => {
         try {
           console.log(response);
