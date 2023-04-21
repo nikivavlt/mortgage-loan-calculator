@@ -1,0 +1,38 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+.chat-bubble {
+  position: fixed;
+  z-index: 1000;
+  bottom: 20px;
+  right: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.chat-bubble.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-20px);
+}
+
+.chat-message {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #333;
+}
+
+.chat-spinner {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+.chat-spinner i {
+  font-size: 16px;
+  color: #333;
+}

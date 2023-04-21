@@ -5,7 +5,7 @@ import { MainComponent } from './components/main/main.component';
 
 const routes: Routes = [
   {path: '', component: MainComponent},
-  {path: 'admin/applications', component: ListOfApplicationsComponent}
+  {path: 'admin/applications', component: ListOfApplicationsComponent, pathMatch: "full"}
 ];
 
 @NgModule({

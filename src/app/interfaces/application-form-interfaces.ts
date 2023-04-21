@@ -1,9 +1,9 @@
-export interface DropDownItem  {
+export interface DropDownItem {
   value: string;
   viewValue: string;
 }
 
-export interface MortgageFormObject{
+export interface MortgageFormObject {
   firstName: string,
   lastName: string,
   email: string,
@@ -24,8 +24,8 @@ export interface MortgageFormObject{
   propertyType: string,
   propertyPrice: number,
   evaluatedPropertyPrice: number,
-  coBorrower: true,
-  coBorrowerName: string,
+  coBorrower: boolean,
+  coBorrowerFirstName: string,
   coBorrowerLastName: string,
   coBorrowerPersonalNumber: string,
   certification: boolean

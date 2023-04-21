@@ -35,6 +35,7 @@ import { ListOfApplicationsComponent } from './components/list-of-applications/l
 import {MatPaginatorModule } from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import { MatSliderModule } from '@angular/material/slider';
+import { ChatBubbleComponent } from './components/chat-bubble/chat-bubble.component';
 
 @NgModule({
   imports: [
@@ -76,7 +77,8 @@ import { MatSliderModule } from '@angular/material/slider';
     ShowMaxMortgageAmountComponent,
     ThankYouPopUpComponent,
     SingleApplicationPopUpComponent,
-    ListOfApplicationsComponent
+    ListOfApplicationsComponent,
+    ChatBubbleComponent
   ],
 
   providers: [],

@@ -30,7 +30,7 @@ export class MaxLoanCalculatorComponent {
     this.loanForm = this.formBuilder.group({
 
       netIncome: ['', [Validators.required]],
-      dependent: ['', Validators.pattern(/^[0-9]+$/)],
+      dependent: ['0', Validators.pattern(/^[0-9]+$/)],
       obligations: ['', [Validators.pattern(/^-?(0|[1-9]\d*)?$/)], negativeValidator],
       borrower: [('personal'), [Validators.required]]
     },
@@ -46,20 +46,6 @@ export class MaxLoanCalculatorComponent {
   }
   get dependent() {
     return this.loanForm.get('dependent');
-  }
-
-  handleEmptyValue(controlName: string) {
-    const control = this.loanForm.get(controlName);
-    if (control && (control.value === '' || control.value === null)) {
-      control.setValue(0);
-    }
-  }
-
-  handleFocus(controlName: string) {
-    const control = this.loanForm.get(controlName);
-    if (control && control.value === 0) {
-      control.setValue('');
-    }
   }
 
   ngOnInit(): void {

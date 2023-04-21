@@ -1,0 +1,8 @@
+<div class="chat-bubble" [ngClass]="{'active': isActive}">
+  <div class="chat-message">{{ message }}</div>
+  <div class="chat-spinner" *ngIf="isLoading"><i class="fa fa-spinner fa-pulse"></i></div>
+  <form class="chat-form" (ngSubmit)="onSubmit()">
+    <input type="text" [(ngModel)]="chatInput" name="chatInput" placeholder="Type your message...">
+    <button type="submit">Send</button>
+  </form>
+</div>
