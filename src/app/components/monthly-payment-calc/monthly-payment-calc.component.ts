@@ -29,7 +29,7 @@ export class MonthlyPaymentCalc implements OnInit {
       mortgageAmount: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       downPayment: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       downPaymentPercent: ['', [Validators.required, Validators.pattern("^[0-9]*(\.[0-9]{0,2})?$"), Validators.min(15), Validators.max(99)]],
-      interestRate: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      interestRate: ['', [Validators.required, Validators.pattern("^[0-9]*(\.[0-9]{0,2})?$")]],
       mortgageTerm: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(1), Validators.max(30)]],
     }, { validators: [downPaymentValidator, mortgageAmountValidator] } )
 

@@ -36,6 +36,7 @@ import {MatPaginatorModule } from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import { MatSliderModule } from '@angular/material/slider';
 import { ChatBubbleComponent } from './components/chat-bubble/chat-bubble.component';
+import { AuthorizationComponent } from './components/authorization/authorization.component';
 
 @NgModule({
   imports: [
@@ -78,7 +79,8 @@ import { ChatBubbleComponent } from './components/chat-bubble/chat-bubble.compon
     ThankYouPopUpComponent,
     SingleApplicationPopUpComponent,
     ListOfApplicationsComponent,
-    ChatBubbleComponent
+    ChatBubbleComponent,
+    AuthorizationComponent
   ],
 
   providers: [],
