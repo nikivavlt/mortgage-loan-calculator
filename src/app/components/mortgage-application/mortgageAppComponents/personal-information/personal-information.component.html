@@ -21,10 +21,13 @@
     <mat-label>Personal number</mat-label>
     <br>
     <mat-form-field appearance="fill">
-      <input matInput formControlName="personalNumber"  type="text" placeholder="12345678901">
+      <input matInput formControlName="personalNumber"  type="text" placeholder="12345678901" maxlength="15">
     </mat-form-field>
     <div *ngIf="personalNumberControlRequiredError">
       <mat-error>Personal number is required</mat-error>
+    </div>
+    <div *ngIf="personalNumberControlMinimumLenght">
+      <mat-error>Personal number is to short</mat-error>
     </div>
     <br>
     <mat-label>Phone number</mat-label>
