@@ -19,7 +19,7 @@ export class MainComponent {
   }
 
   ngOnInit(): void {
-    this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall])
+    this.breakpointObserver.observe([Breakpoints.XSmall])
     .pipe(takeUntil(this.destroy$))
     .subscribe(result => {
       this.isSmallScreen = result.matches;
