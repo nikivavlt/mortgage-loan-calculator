@@ -47,7 +47,7 @@
     <mat-label>Current monthly obligations</mat-label>
     <mat-form-field appearance="outline">
       <span matTextSuffix class="suffix"> Eur </span>
-      <input matInput type="number" placeholder="0" formControlName="obligations" formControlName="obligations" (blur)="handleEmptyValue('obligations'); removeZeros('obligations')" (focus)="handleFocus('obligations')" />
+      <input matInput type="number" placeholder="0" formControlName="obligations"/>
     </mat-form-field>
   </div>
   <app-show-max-mortgage-amount [maxMortgageAmount]="maxMortgageAmountValue">
