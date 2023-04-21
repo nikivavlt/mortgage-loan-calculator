@@ -31,6 +31,11 @@ export class ListOfApplicationsComponent {
           dataSource.paginator = this.paginator
           return dataSource
         }),
+        tap((dataSource) => {
+          setTimeout(() => {
+            dataSource.paginator = this.paginator;
+          });
+        }),
         catchError((error: any) => {
           console.error('Error occurred:', error);
           return of();
