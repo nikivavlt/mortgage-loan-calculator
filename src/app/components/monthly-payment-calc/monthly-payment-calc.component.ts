@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms";
 import { Observable, debounceTime, filter, of, switchMap, tap } from 'rxjs';
-import { registerLocaleData } from '@angular/common';
-import es from '@angular/common/locales/es';
 
 import { downPaymentValidator, mortgageAmountValidator } from './manual-validators';
 import { UserService } from '../../services/user.service';
@@ -19,8 +17,6 @@ const formBuilder = new FormBuilder().nonNullable;
 
 export class MonthlyPaymentCalc implements OnInit {
   loading: boolean = false;
-
-  currentHomePrice: number = 0;
 
   calculations$: Observable<MonthlyPaymentCalcResponse> = of();
 
@@ -40,8 +36,6 @@ export class MonthlyPaymentCalc implements OnInit {
   }
 
   ngOnInit(): void {
-
-    registerLocaleData(es);
 
     this.monthlyCalculatorForm.controls?.['homePrice']
       .valueChanges
@@ -109,9 +103,15 @@ export class MonthlyPaymentCalc implements OnInit {
       filter((val) => this.monthlyCalculatorForm.valid),
       tap(() => this.loading = true),
       debounceTime(1000),
-      switchMap(() => this.userService.sendCalculatorData(this.monthlyCalculatorForm.value)))
-
+      switchMap(() => this.userService.sendCalculatorData(this.monthlyCalculatorForm.value)));
   }
+
+  addSpacer(price: any) {
+    return String(price)
+      .replace(
+        /(?!^)(?=(?:\d{3})+$)/g,
+        ' ')
+  };
 
   get homePrice() {
     return this.monthlyCalculatorForm.get('homePrice') as FormControl<string>;

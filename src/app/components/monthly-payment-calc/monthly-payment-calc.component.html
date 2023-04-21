@@ -110,9 +110,9 @@
 </form>
 <ng-container *ngIf=" ( calculations$ | async ) as calculations">
 <div class="calculator-result">
-  <p>Monthly payment: {{ calculations.monthlyPayment | number:'':'es' }} Eur</p>
-  <p>Total payable amount: {{ calculations.totalPayableAmount | number:'':'es' }} Eur</p>
-  <p>Interest cost: {{ calculations.interestCost | number:'':'es' }} Eur</p>
+  <p>Monthly payment: {{ this.addSpacer(calculations.monthlyPayment) }} Eur</p>
+  <p>Total payable amount: {{ this.addSpacer(calculations.totalPayableAmount) }} Eur</p>
+  <p>Interest cost: {{ this.addSpacer(calculations.interestCost) }} Eur</p>
 </div>
 </ng-container>
 
