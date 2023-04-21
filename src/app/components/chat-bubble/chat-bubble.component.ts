@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
@@ -9,14 +9,37 @@ import { firstValueFrom } from 'rxjs';
 })
 export class ChatBubbleComponent {
   message = 'I am a little broken and need context configuration ask me anything like 2+2!';
+  apiKey = String;
   isLoading = false;
   isActive = true;
   chatInput = '';
+  apiUrl = 'https://api.openai.com/v1/chat/completions';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log("test");
 
-  private apiUrl = 'https://api.openai.com/v1/chat/completions';
-  private apiKey = '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';
+    this.getApiKey();
+  }
+
+  getApiKey(){
+    this.http.get('/secrets/render_com').subscribe({
+      next: (response) => {
+        try {
+          console.log(response);
+
+        } catch (error) {
+          console.error(error);
+        } finally {
+          // any additional code to execute after the try/catch block
+        }
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
+  }
+
+
 
   sendChatRequest(prompt: string, apiKey: string) {
     const headers = new HttpHeaders({
@@ -38,12 +61,14 @@ export class ChatBubbleComponent {
     return this.http.post<any>(this.apiUrl, body, { headers: headers });
   }
 
+
+
   async sendMessage(message: string): Promise<void> {
     try {
       this.message = message;
       this.isLoading = true;
       this.isActive = true;
-      const response = await firstValueFrom(this.sendChatRequest(this.chatInput, this.apiKey));
+      const response = await firstValueFrom(this.sendChatRequest(this.chatInput, "this.apiKey"));
 
       if (response.choices && response.choices.length > 0 && response.choices[0].message.content) {
         this.message = response.choices[0].message.content;

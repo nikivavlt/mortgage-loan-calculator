@@ -3,7 +3,7 @@
     <mat-label>Name</mat-label>
     <br>
     <mat-form-field appearance="fill">
-      <input matInput formControlName="name" type="text" placeholder="John">
+      <input matInput formControlName="firstName" type="text" placeholder="John">
     </mat-form-field>
     <div *ngIf="nameControlRequiredError">
       <mat-error>Name is required</mat-error>
@@ -12,7 +12,7 @@
     <mat-label>Surname</mat-label>
     <br>
     <mat-form-field appearance="fill">
-      <input matInput formControlName="lName" type="text" placeholder="Doe">
+      <input matInput formControlName="lastName" type="text" placeholder="Doe">
     </mat-form-field>
     <div *ngIf="lnameControlRequiredError">
       <mat-error>Surname is required</mat-error>
