@@ -48,20 +48,6 @@ export class MaxLoanCalculatorComponent {
     return this.loanForm.get('dependent');
   }
 
-  handleEmptyValue(controlName: string) {
-    const control = this.loanForm.get(controlName);
-    if (control && (control.value === '' || control.value === null)) {
-      control.setValue(0);
-    }
-  }
-
-  handleFocus(controlName: string) {
-    const control = this.loanForm.get(controlName);
-    if (control && control.value === 0) {
-      control.setValue('');
-    }
-  }
-
   ngOnInit(): void {
     this.maxMortgageAmount = this.loanForm.valueChanges.pipe(
       startWith(null),
