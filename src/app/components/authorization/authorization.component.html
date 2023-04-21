@@ -1,0 +1,23 @@
+<section>
+
+<p>Authorization</p>
+
+<form [formGroup]="authorizationForm" (ngSubmit)='onSubmit()'>
+
+  <div class="error-message" *ngIf="this.errorMessage === true">The username or password is incorrect</div>
+  <mat-label class="label">Username</mat-label>
+  <mat-form-field appearance="outline">
+    <input matInput type="text" placeholder="Username" formControlName="username">
+  </mat-form-field>
+
+  <mat-label>Password</mat-label>
+  <mat-form-field appearance="outline">
+    <input matInput type="password" placeholder="Password" formControlName="password">
+  </mat-form-field>
+
+  <button type="submit" [disabled]="!authorizationForm.valid">Log in</button>
+
+</form>
+
+</section>
+
