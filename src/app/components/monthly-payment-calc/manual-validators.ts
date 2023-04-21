@@ -1,9 +1,6 @@
 import { ValidatorFn } from "@angular/forms";
 
 const mortgageAmountValidator: ValidatorFn = (input) => {
-
-  console.log(`works!`)
-
   return (input.get('homePrice')?.value < input.get('mortgageAmount')?.value) ? { mortgageAmountValidator: true } : null;
 }
 
