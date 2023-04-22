@@ -1,23 +1,36 @@
-@import '~@fortawesome/fontawesome-free/css/all.css';
-
-.chat-bubble {
+.chat-bubble-wrapper {
   position: fixed;
   z-index: 1000;
   bottom: 20px;
   right: 20px;
-  background-color: #fff;
-  border-radius: 20px;
-  padding: 10px 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #1e63ad;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  opacity: 0;
-  visibility: hidden;
+  overflow: hidden;
 }
 
-.chat-bubble.active {
+.chat-bubble-wrapper:hover {
+  width: 300px;
+  height: 250px;
+}
+
+.chat-bubble-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.chat-bubble-wrapper:hover .chat-bubble-content {
   opacity: 1;
   visibility: visible;
-  transform: translateY(-20px);
 }
 
 .chat-message {

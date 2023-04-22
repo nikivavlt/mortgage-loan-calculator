@@ -8,7 +8,7 @@ import { firstValueFrom } from 'rxjs';
   styleUrls: ['./chat-bubble.component.css']
 })
 export class ChatBubbleComponent {
-  message = 'I am a little broken and need context configuration ask me anything like 2+2!';
+  message = 'I dont have an API key :(';
   apiKey = String;
   isLoading = false;
   isActive = true;
@@ -16,28 +16,28 @@ export class ChatBubbleComponent {
   apiUrl = 'https://api.openai.com/v1/chat/completions';
 
   constructor(private http: HttpClient) {
-    console.log("test");
+    // console.log("test");
 
-    this.getApiKey();
+    // this.getApiKey();
   }
 
-  getApiKey(){
-    this.http.get('/apiKey.env').subscribe({
-      next: (response) => {
-        try {
-          console.log(response);
+  // getApiKey(){
+  //   this.http.get('/apiKey.env').subscribe({
+  //     next: (response) => {
+  //       try {
+  //         console.log(response);
 
-        } catch (error) {
-          console.error(error);
-        } finally {
-          // any additional code to execute after the try/catch block
-        }
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    });
-  }
+  //       } catch (error) {
+  //         console.error(error);
+  //       } finally {
+  //         // any additional code to execute after the try/catch block
+  //       }
+  //     },
+  //     error: (error) => {
+  //       console.error(error);
+  //     }
+  //   });
+  // }
 
 
 

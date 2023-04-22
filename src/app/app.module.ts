@@ -37,6 +37,7 @@ import {MatTableModule} from '@angular/material/table';
 import { MatSliderModule } from '@angular/material/slider';
 import { ChatBubbleComponent } from './components/chat-bubble/chat-bubble.component';
 import { AuthorizationComponent } from './components/authorization/authorization.component';
+import { MatMenuModule } from '@angular/material/menu';
 import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
@@ -63,6 +64,7 @@ import { NgChartsModule } from 'ng2-charts';
     MatPaginatorModule,
     MatTableModule,
     MatSliderModule,
+    MatMenuModule
     NgChartsModule
   ],
   declarations: [
