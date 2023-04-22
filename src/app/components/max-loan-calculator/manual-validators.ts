@@ -1,11 +1,9 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { delay, Observable, of } from 'rxjs';
 
-const negativeValidator: ValidatorFn = (control: AbstractControl): Observable<ValidationErrors | null> => {
+const negativeValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const netIncome = control.value;
-  return of(netIncome && netIncome < 0 ? { negativeNetIncome: true } : null).pipe(
-    delay(500)
-  );
+  return netIncome && netIncome < 0 ? { negativeNetIncome: true } : null;
 }
 
 const applicantNetIncomeCheck: ValidatorFn = (control) => {

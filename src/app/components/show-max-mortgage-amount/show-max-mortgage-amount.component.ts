@@ -5,7 +5,7 @@ interface MortgageFormData {
   isSingleApplicant: boolean;
   netIncome: number;
   familyMembers: number;
-  monthlyObligation: number;
+  monthlyObligationAmount: number;
 }
 
 @Component({
