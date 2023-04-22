@@ -64,7 +64,7 @@ import { NgChartsModule } from 'ng2-charts';
     MatPaginatorModule,
     MatTableModule,
     MatSliderModule,
-    MatMenuModule
+    MatMenuModule,
     NgChartsModule
   ],
   declarations: [
