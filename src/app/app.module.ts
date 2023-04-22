@@ -38,6 +38,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { ChatBubbleComponent } from './components/chat-bubble/chat-bubble.component';
 import { AuthorizationComponent } from './components/authorization/authorization.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   imports: [
@@ -64,6 +65,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatTableModule,
     MatSliderModule,
     MatMenuModule
+    NgChartsModule
   ],
   declarations: [
     AppComponent,
