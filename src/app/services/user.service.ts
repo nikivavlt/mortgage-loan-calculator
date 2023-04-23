@@ -12,13 +12,25 @@ export class UserService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
+  USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser';
+
   constructor(private htttpClient: HttpClient) {}
 
-  sendCalculatorData(data: any){
-    return this.htttpClient.post<any>(`${this.backendUrl}/calculator/monthlyPayment`, data, this.httpOptions);
+  sendAuthenticationData(data: any) {
+    return this.htttpClient.post<any>(`${this.backendUrl}/user/login`, data, this.httpOptions);
   }
 
-  sendAuthorizationData(data: any) {
-    return this.htttpClient.post<any>(`${this.backendUrl}/user/login`, data, this.httpOptions);
+  logIn(username: string) {
+    sessionStorage.setItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME, username)
+  }
+
+  logOut() {
+    sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
+  }
+
+  isUserLoggedIn() {
+    const user = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
+
+    return (user === null) ? false : true;
   }
 }

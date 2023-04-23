@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
@@ -8,6 +9,7 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent {
+
   private readonly destroy$ = new Subject<void>();
   constructor(private breakpointObserver: BreakpointObserver) {}
 
@@ -30,4 +32,5 @@ export class MainComponent {
     this.destroy$.next();
     this.destroy$.complete();
   }
+
 }

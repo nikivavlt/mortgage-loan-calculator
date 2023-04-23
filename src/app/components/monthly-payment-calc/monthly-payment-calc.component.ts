@@ -3,8 +3,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms"
 import { Observable, debounceTime, filter, of, switchMap, tap } from 'rxjs';
 import { Chart } from 'chart.js';
 import { downPaymentValidator, mortgageAmountValidator } from './manual-validators';
-import { UserService } from '../../services/user.service';
 import { MonthlyPaymentCalcResponse } from '../../interfaces/monthly-payment-calc-response';
+import { MonthlyPaymentCalcService } from 'src/app/services/monthly-payment-calc.service';
 
 
 const formBuilder = new FormBuilder().nonNullable;
@@ -22,7 +22,7 @@ export class MonthlyPaymentCalc implements OnInit {
 
   monthlyCalculatorForm: FormGroup;
 
-  constructor(private userService: UserService) {
+  constructor(private monthlyPaymentCalcService: MonthlyPaymentCalcService) {
 
     this.monthlyCalculatorForm = formBuilder.group({
       homePrice: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(5000)]],
@@ -103,7 +103,7 @@ export class MonthlyPaymentCalc implements OnInit {
       filter((val) => this.monthlyCalculatorForm.valid),
       tap(() => this.loading = true),
       debounceTime(1000),
-      switchMap(() => this.userService.sendCalculatorData(this.monthlyCalculatorForm.value)));
+      switchMap(() => this.monthlyPaymentCalcService.sendCalculatorData(this.monthlyCalculatorForm.value)));
 
     this.calculations$.subscribe((response) => {
       this.doughnutChartMethod(response.monthlyPayment, response.totalPayableAmount, response.interestCost);

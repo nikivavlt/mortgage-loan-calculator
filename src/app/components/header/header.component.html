@@ -1,7 +1,13 @@
 <header>
   <nav>
-    <a href="#" class="logotype"><img alt="Company logotype" src="./assets/images/logotype.png"></a>
+    <a class="logotype"><img alt="Company logotype" src="./assets/images/logotype.png"></a>
   </nav>
+  <button *ngIf="isUser()" mat-flat-button color="primary" (click)="logOut()">
+    Logout
+  </button>
+  <button *ngIf="!isUser()" mat-flat-button color="primary" (click)="logIn()">
+    Login
+  </button>
 </header>
 
 

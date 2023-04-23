@@ -22,7 +22,7 @@ export class ListOfApplicationsComponent {
   applications: AllApplications[] = [];
 
   constructor(private getAllApplicationsService: GetAllApplicationsService, private dialog: MatDialog, private updateApplicationsStatusService: UpdateApplicationStatusService) { }
-  
+
   ngOnInit() {
     this.data = this.getAllApplicationsService.getAllApplications()
       .pipe(

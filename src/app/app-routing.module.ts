@@ -3,12 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ListOfApplicationsComponent } from './components/list-of-applications/list-of-applications.component';
 import { MainComponent } from './components/main/main.component';
-import { AuthorizationComponent } from './components/authorization/authorization.component';
+import { AuthenticationComponent } from './components/authentication/authentication.component';
+import { OnlyUserGuard } from './guards/only-user.guard';
 
 const routes: Routes = [
   {path: '', component: MainComponent},
-  {path: 'top-secret', component: AuthorizationComponent, pathMatch: "full"},
-  {path: 'admin/applications', component: ListOfApplicationsComponent, pathMatch: "full"}
+  {path: 'top-secret', component: AuthenticationComponent, pathMatch: "full"},
+  {path: 'admin/applications', component: ListOfApplicationsComponent, canActivate: [OnlyUserGuard], pathMatch: "full"}
 ];
 
 @NgModule({

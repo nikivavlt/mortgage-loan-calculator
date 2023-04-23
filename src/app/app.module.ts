@@ -32,11 +32,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SingleApplicationPopUpComponent } from './components/single-application-pop-up/single-application-pop-up.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ListOfApplicationsComponent } from './components/list-of-applications/list-of-applications.component';
-import {MatPaginatorModule } from '@angular/material/paginator';
-import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 import { MatSliderModule } from '@angular/material/slider';
 import { ChatBubbleComponent } from './components/chat-bubble/chat-bubble.component';
-import { AuthorizationComponent } from './components/authorization/authorization.component';
+import { AuthenticationComponent } from './components/authentication/authentication.component'
 import { MatMenuModule } from '@angular/material/menu';
 import { NgChartsModule } from 'ng2-charts';
 
@@ -84,7 +84,7 @@ import { NgChartsModule } from 'ng2-charts';
     SingleApplicationPopUpComponent,
     ListOfApplicationsComponent,
     ChatBubbleComponent,
-    AuthorizationComponent
+    AuthenticationComponent
   ],
 
   providers: [],
