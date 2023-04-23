@@ -25,5 +25,6 @@ export interface AllApplications {
   coBorrowerName: string;
   coBorrowerPersonalNumber: number;
   certification: boolean;
+  status: string;
   }
 
