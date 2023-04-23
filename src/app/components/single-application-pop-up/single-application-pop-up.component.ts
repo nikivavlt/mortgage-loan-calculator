@@ -1,8 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AllApplications } from 'src/app/interfaces/all-applications-list';
-
-
+import { UpdateApplicationStatusService } from 'src/app/services/update-application-status.service';
 
 @Component({
   selector: 'app-single-application-pop-up',
@@ -12,46 +11,25 @@ import { AllApplications } from 'src/app/interfaces/all-applications-list';
 export class SingleApplicationPopUpComponent {
   constructor(
     public dialogRef: MatDialogRef<SingleApplicationPopUpComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: AllApplications
+    @Inject(MAT_DIALOG_DATA) public data: AllApplications,
+    private updateApplicationStatusService: UpdateApplicationStatusService
   ) { }
 
   markInProgress(){
-    console.log("clicked in progress");
+    this.updateStatus("In progress");
   }
 
   markAsDone(){
-    console.log("clicked done");
+    this.updateStatus("Done");
   }
 
   reject(){
-    console.log("reject");
-    
+    this.updateStatus("Rejected");
+  }
+
+  private updateStatus(newStatus: string) {
+    this.updateApplicationStatusService.updateStatus(this.data.id, newStatus).subscribe(response => {
+      this.data.status = newStatus;
+    });
   }
 }
-
-// export interface ApplicantData {
-//   creationDate: string;
-//   id: string;
-//   status: string;
-//   firstName: string;
-//   lastName: string;
-//   personalId: string;
-//   email: string;
-//   phoneNumber: string;
-//   coBorrowerName: string;
-//   coBorrowerPersonalNumber: string;
-//   loanAmount: string;
-//   loanPurpose: string;
-//   netIncome: string;
-//   childrenAmount: string;
-//   education: string;
-//   employer: string;
-//   timeEmployed: string;
-//   contractType: string;
-//   position: string;
-//   financialObligations: string;
-//   termOfLoan: string;
-//   propertyType: string;
-//   propertyPrice: string;
-//   evaluatedPropertyPrice: string;
-// }
