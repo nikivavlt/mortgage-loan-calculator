@@ -173,7 +173,7 @@ export class MonthlyPaymentCalc implements OnInit {
     });
   }
   private updatePieChart(): void {
-    this.calculations$ = this.userService.sendCalculatorData(this.monthlyCalculatorForm.value);
+    this.calculations$ = this.monthlyPaymentCalcService.sendCalculatorData(this.monthlyCalculatorForm.value);
 
     this.calculations$.subscribe((response) => {
       const monthlyPayment = response.monthlyPayment;
