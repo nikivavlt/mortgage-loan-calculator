@@ -1,29 +1,56 @@
-@import '~@fortawesome/fontawesome-free/css/all.css';
-
-.chat-bubble {
+.chat-bubble-wrapper {
   position: fixed;
-  z-index: 1000;
   bottom: 20px;
   right: 20px;
-  background-color: #fff;
-  border-radius: 20px;
-  padding: 10px 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #1e63ad;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  opacity: 0;
-  visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.chat-bubble.active {
+.chat-bubble-wrapper:hover{
+  width: 300px;
+  height: auto;
+  min-height: 300px;
+  border-radius: 10%;
+}
+
+.chat-bubble-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  background-color: #fff;
+  border-radius: 10%;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-bubble-wrapper:hover .chat-bubble-content {
   opacity: 1;
   visibility: visible;
-  transform: translateY(-20px);
 }
 
 .chat-message {
   font-size: 16px;
   line-height: 1.4;
   color: #333;
+  margin: 10px 0;
+  flex-grow: 1;
+  overflow-y: auto;
+  word-wrap: break-word;  /* Added word-wrap property */
 }
 
 .chat-spinner {
@@ -35,4 +62,39 @@
 .chat-spinner i {
   font-size: 16px;
   color: #333;
+}
+
+.chat-form {
+  display: flex;
+  margin-top: 20px;
+}
+
+.chat-form input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  background-color: #f0f0f0;
+  margin-right: 10px;
+}
+
+.chat-form button[type="submit"] {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 50%;
+  border: none;
+  background-color: #1e63ad;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.chat-form button[type="submit"]:hover {
+  background-color: #15549a;
 }

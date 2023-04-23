@@ -62,7 +62,7 @@
     <mat-label>Number of children</mat-label>
     <mat-radio-group aria-label="Select an option" formControlName="childrenAmount">
       <div>
-        <mat-radio-button [value]="childCountEnum.Zero">None</mat-radio-button>
+        <mat-radio-button [value]="childCountEnum.Zero">0</mat-radio-button>
         <mat-radio-button [value]="childCountEnum.One">1 child</mat-radio-button>
         <mat-radio-button [value]="childCountEnum.Two">2 children</mat-radio-button>
         <mat-radio-button [value]="childCountEnum.More">More</mat-radio-button>
@@ -78,6 +78,9 @@
     <mat-error *ngIf="financialObligationsControlRequiredError">Financial Obligations is required</mat-error>
 
     <div *ngIf="financialObligationsControl?.value">
+      <br>
+      <mat-label>Monthly obligations amount</mat-label>
+      <br>
       <mat-form-field appearance="fill">
         <input matInput formControlName="monthlyObligations" type="text" placeholder="1000">
         <span matTextSuffix> Eur </span>

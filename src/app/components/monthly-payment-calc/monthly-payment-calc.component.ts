@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnDestroy, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms";
 import { Observable, debounceTime, filter, of, switchMap, tap } from 'rxjs';
-
+import { Chart } from 'chart.js';
 import { downPaymentValidator, mortgageAmountValidator } from './manual-validators';
 import { MonthlyPaymentCalcResponse } from '../../interfaces/monthly-payment-calc-response';
 import { MonthlyPaymentCalcService } from 'src/app/services/monthly-payment-calc.service';
@@ -104,6 +104,14 @@ export class MonthlyPaymentCalc implements OnInit {
       tap(() => this.loading = true),
       debounceTime(1000),
       switchMap(() => this.monthlyPaymentCalcService.sendCalculatorData(this.monthlyCalculatorForm.value)));
+
+    this.calculations$.subscribe((response) => {
+      this.doughnutChartMethod(response.monthlyPayment, response.totalPayableAmount, response.interestCost);
+    });
+
+    this.monthlyCalculatorForm.valueChanges.subscribe(() => {
+      this.updatePieChart();
+    });
   }
 
   addSpacer(price: any) {
@@ -135,5 +143,45 @@ export class MonthlyPaymentCalc implements OnInit {
 
   get mortgageTerm() {
     return this.monthlyCalculatorForm.get('mortgageTerm') as FormControl<string>;
+  }
+
+  @ViewChild('doughnutCanvas') doughnutCanvas: ElementRef | undefined;
+  doughnutChart: any;
+
+  doughnutChartMethod(monthlyPayment: string, totalPayableAmount: string, interestCost: string) {
+    this.doughnutChart = new Chart(this.doughnutCanvas?.nativeElement, {
+      type: 'doughnut',
+      data: {
+        labels: ['Monthly payment', 'Total payable amount', 'Interest cost'],
+        datasets: [
+          {
+            label: 'Euros',
+            data: [Number(monthlyPayment), Number(totalPayableAmount), Number(interestCost)],
+            backgroundColor: [
+              'rgba(255, 159, 64, 0.2)',
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)'
+            ],
+            hoverBackgroundColor: [
+              '#FFCE56',
+              '#FF6384',
+              '#36A2EB'
+            ],
+          },
+        ],
+      },
+    });
+  }
+  private updatePieChart(): void {
+    this.calculations$ = this.userService.sendCalculatorData(this.monthlyCalculatorForm.value);
+
+    this.calculations$.subscribe((response) => {
+      const monthlyPayment = response.monthlyPayment;
+      const totalPayableAmount = response.totalPayableAmount;
+      const interestCost = response.interestCost;
+
+      this.doughnutChart.data.datasets[0].data = [monthlyPayment, totalPayableAmount, interestCost];
+      this.doughnutChart.update();
+    });
   }
 }

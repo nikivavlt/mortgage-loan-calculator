@@ -1,12 +1,34 @@
-<mat-tab-group>
-  <mat-tab label="Can I get a mortgage?">
-    <app-max-loan-calculator id="max-loan-calc"></app-max-loan-calculator>
-  </mat-tab>
-  <mat-tab label="Monthly payment calculator">
+<div *ngIf="!isSmallScreen">
+  <mat-tab-group>
+    <mat-tab label="Can I get a mortgage?">
+      <app-max-loan-calculator></app-max-loan-calculator>
+    </mat-tab>
+    <mat-tab label="Monthly payment calculator">
+      <app-monthly-payment-calc></app-monthly-payment-calc>
+    </mat-tab>
+    <mat-tab label="Apply for mortgage">
+      <app-mortgage-application></app-mortgage-application>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<div *ngIf="isSmallScreen">
+  <button mat-button [matMenuTriggerFor]="menu"> <i class="fas fa-bars"></i></button>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="selectTab(0)">Can I get a mortgage?</button>
+    <button mat-menu-item (click)="selectTab(1)">Monthly payment calculator</button>
+    <button mat-menu-item (click)="selectTab(2)">Apply for mortgage</button>
+  </mat-menu>
+
+  <div *ngIf="selectedTabIndex === 0">
+    <app-max-loan-calculator></app-max-loan-calculator>
+  </div>
+  <div *ngIf="selectedTabIndex === 1">
     <app-monthly-payment-calc></app-monthly-payment-calc>
-  </mat-tab>
-  <mat-tab label="Apply for mortgage">
+  </div>
+  <div *ngIf="selectedTabIndex === 2">
     <app-mortgage-application></app-mortgage-application>
-  </mat-tab>
-</mat-tab-group>
+  </div>
+</div>
 <app-chat-bubble></app-chat-bubble>

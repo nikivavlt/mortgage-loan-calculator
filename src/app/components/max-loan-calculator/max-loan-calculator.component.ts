@@ -30,8 +30,8 @@ export class MaxLoanCalculatorComponent {
     this.loanForm = this.formBuilder.group({
 
       netIncome: ['', [Validators.required]],
-      dependent: ['0', Validators.pattern(/^[0-9]+$/)],
-      obligations: ['', [Validators.pattern(/^-?(0|[1-9]\d*)?$/)], negativeValidator],
+      dependent: ['0', [Validators.pattern(/^[0-9]+$/)]],
+      obligations: ['', [Validators.pattern(/^-?(0|[1-9]\d*)?$/), negativeValidator]],
       borrower: [('personal'), [Validators.required]]
     },
       { validators: [applicantNetIncomeCheck, applicantWithDependentsCheck] }
@@ -50,7 +50,6 @@ export class MaxLoanCalculatorComponent {
 
   ngOnInit(): void {
     this.maxMortgageAmount = this.loanForm.valueChanges.pipe(
-      startWith(null),
       debounceTime(500),
       distinctUntilChanged(),
       takeUntil(this.destroy$),
@@ -59,19 +58,20 @@ export class MaxLoanCalculatorComponent {
           const isSingleApplicant = this.loanForm.get('borrower')?.value === 'personal';
           const netIncome = this.loanForm.get('netIncome')?.value;
           const familyMembers = this.loanForm.get('dependent')?.value;
-          const monthlyObligation = this.loanForm.get('obligations')?.value;
+          const monthlyObligationAmount = this.loanForm.get('obligations')?.value;
 
           return this.showMaxMortgageService.calculateMaxMortgageAmount(
             isSingleApplicant,
             netIncome,
             familyMembers,
-            monthlyObligation
-          ).pipe(catchError(() => of(0)));
+            monthlyObligationAmount
+          ).pipe(catchError(() => {
+            return of(0)
+          }));
         } else {
           return of(0);
         }
       }),
-      startWith(0)
     );
 
     this.maxMortgageAmount.subscribe(amount => {

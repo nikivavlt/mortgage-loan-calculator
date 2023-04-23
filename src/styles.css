@@ -1,4 +1,6 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
 
 html {
   scroll-behavior: smooth;
