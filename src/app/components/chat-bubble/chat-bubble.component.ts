@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component} from '@angular/core';
 import { firstValueFrom, map } from 'rxjs';
 import { ChatBotService } from 'src/app/services/chat-bot.service';
 
@@ -15,7 +14,7 @@ export class ChatBubbleComponent {
   chatInput = '';
   apiKey: string;
 
-  constructor(private http: HttpClient, private chatBotService:ChatBotService) {
+  constructor(private chatBotService:ChatBotService) {
     this.apiKey = "";
     this.getApiKey();
   }
