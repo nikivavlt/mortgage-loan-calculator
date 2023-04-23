@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, map } from 'rxjs';
+import { ChatBotService } from 'src/app/services/chat-bot.service';
 
 @Component({
   selector: 'app-chat-bubble',
@@ -8,59 +9,33 @@ import { firstValueFrom } from 'rxjs';
   styleUrls: ['./chat-bubble.component.css']
 })
 export class ChatBubbleComponent {
-  message = 'I dont have an API key :(';
-  apiKey = String;
+  message = 'Ask me anything!';
   isLoading = false;
   isActive = true;
   chatInput = '';
-  apiUrl = 'https://api.openai.com/v1/chat/completions';
+  apiKey: string;
 
-  constructor(private http: HttpClient) {
-    // console.log("test");
-
-    // this.getApiKey();
+  constructor(private http: HttpClient, private chatBotService:ChatBotService) {
+    this.apiKey = "";
+    this.getApiKey();
   }
 
-  // getApiKey(){
-  //   this.http.get('/apiKey.env').subscribe({
-  //     next: (response) => {
-  //       try {
-  //         console.log(response);
 
-  //       } catch (error) {
-  //         console.error(error);
-  //       } finally {
-  //         // any additional code to execute after the try/catch block
-  //       }
-  //     },
-  //     error: (error) => {
-  //       console.error(error);
-  //     }
-  //   });
-  // }
-
-
-
-  sendChatRequest(prompt: string, apiKey: string) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + apiKey
+  async getApiKey() {
+    await new Promise<void>((resolve, reject) => {
+      this.chatBotService.getApiKey().pipe(
+        map((result) => result as string)
+      ).subscribe({
+        next: (result) => {
+          this.apiKey = result;
+          resolve();
+        },
+        error: (error) => {
+          reject(error);
+        }
+      });
     });
-
-    const body = {
-      'temperature': 0.5,
-      'max_tokens': 60,
-      'stop': " ",
-      'model': 'gpt-3.5-turbo',
-      "messages": [
-        {"role": "system", "content": "You are a mortgage calculator application assistant."},
-        {"role": "user", "content": prompt}
-      ]
-    };
-
-    return this.http.post<any>(this.apiUrl, body, { headers: headers });
   }
-
 
 
   async sendMessage(message: string): Promise<void> {
@@ -68,7 +43,7 @@ export class ChatBubbleComponent {
       this.message = message;
       this.isLoading = true;
       this.isActive = true;
-      const response = await firstValueFrom(this.sendChatRequest(this.chatInput, "this.apiKey"));
+      const response = await firstValueFrom(this.chatBotService.sendChatRequest(this.chatInput, this.apiKey));
 
       if (response.choices && response.choices.length > 0 && response.choices[0].message.content) {
         this.message = response.choices[0].message.content;
@@ -76,7 +51,6 @@ export class ChatBubbleComponent {
         this.message = 'Sorry, I could not understand your request.';
       }
     } catch (error) {
-      console.error(error);
       this.message = 'Oops! Something went wrong.';
     } finally {
       this.isLoading = false;
