@@ -1,6 +1,6 @@
 <section>
 
-<p>Authorization</p>
+<p>Authentication</p>
 
 <form [formGroup]="authorizationForm" (ngSubmit)='onSubmit()'>
 
@@ -15,7 +15,7 @@
     <input matInput type="password" placeholder="Password" formControlName="password">
   </mat-form-field>
 
-  <button type="submit" [disabled]="!authorizationForm.valid">Log in</button>
+  <button type="submit" [disabled]="!authorizationForm.valid">Login</button>
 
 </form>
 

@@ -6,12 +6,12 @@ import { UserService } from 'src/app/services/user.service';
 const formBuilder = new FormBuilder().nonNullable;
 
 @Component({
-  selector: 'app-authorization',
-  templateUrl: './authorization.component.html',
-  styleUrls: ['./authorization.component.css']
+  selector: 'app-authentication',
+  templateUrl: './authentication.component.html',
+  styleUrls: ['./authentication.component.css']
 })
 
-export class AuthorizationComponent {
+export class AuthenticationComponent {
 
   errorMessage: boolean = false;
 
@@ -28,12 +28,13 @@ export class AuthorizationComponent {
   }
 
   onSubmit(){
-    this.userService.sendAuthorizationData(this.authorizationForm.value)
+    this.userService.sendAuthenticationData(this.authorizationForm.value)
       .subscribe((data) => {
         if (data === null) {
           this.errorMessage = true;
         }
         else {
+          this.userService.logIn(data.username);
           this.router.navigate(['/admin/applications']);
         }
       });

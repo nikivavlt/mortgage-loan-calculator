@@ -1,5 +1,9 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   height: 100%;
@@ -11,6 +15,21 @@ body {
 
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: #F3F9FB;
+}
+
+::-webkit-scrollbar {
+  width: .60rem;
+  background-color: transparent;
+  border-radius: .5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #0ea5c6;
+  border-radius: .5rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #6767d4;
 }
 
 input::-webkit-outer-spin-button,

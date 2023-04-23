@@ -18,8 +18,10 @@ export class ListOfApplicationsComponent {
   data: Observable<MatTableDataSource<AllApplications>> = of()
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private getAllApplicationsService: GetAllApplicationsService, private dialog: MatDialog) { }
-  
+  constructor(
+    private getAllApplicationsService: GetAllApplicationsService,
+    private dialog: MatDialog) { }
+
   ngOnInit() {
     this.data = this.getAllApplicationsService.getAllApplications()
       .pipe(
