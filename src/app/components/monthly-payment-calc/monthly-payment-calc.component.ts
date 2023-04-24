@@ -39,64 +39,28 @@ export class MonthlyPaymentCalc implements OnInit {
 
     this.monthlyCalculatorForm.controls?.['homePrice']
       .valueChanges
-      .subscribe(price => {
-        this.monthlyCalculatorForm.controls?.['downPayment'].reset();
-        this.monthlyCalculatorForm.controls?.['downPaymentPercent'].reset();
-        this.monthlyCalculatorForm.controls?.['mortgageAmount'].reset();
-      });
-
-    this.monthlyCalculatorForm.controls?.['downPayment']
-      .valueChanges
-      .subscribe(downPayment => {
-
-        const homePrice = this.monthlyCalculatorForm.controls?.['homePrice'].value;
-
-        if (this.monthlyCalculatorForm.controls?.['downPayment'].valid &&
-          this.monthlyCalculatorForm.controls?.['homePrice'].valid &&
-          this.monthlyCalculatorForm.controls?.['downPayment'].value >= 0.15 * homePrice &&
-          this.monthlyCalculatorForm.controls?.['downPayment'].value <= 0.99 * homePrice) {
-
-          const newDownPaymentPercent = (downPayment * 100 / homePrice);
-          const newMortgageAmount = (homePrice - downPayment);
-
-          this.monthlyCalculatorForm.controls?.['downPaymentPercent'].patchValue(newDownPaymentPercent.toFixed(2), { emitEvent: false });
-          this.monthlyCalculatorForm.controls?.['mortgageAmount'].patchValue(newMortgageAmount.toFixed(0), { emitEvent: false });
-        }
-      });
-
-    this.monthlyCalculatorForm.controls?.['downPaymentPercent']
-      .valueChanges
-      .subscribe(downPaymentPercent => {
-        if (this.monthlyCalculatorForm.controls?.['downPaymentPercent'].valid &&
-          this.monthlyCalculatorForm.controls?.['homePrice'].valid) {
-
-          const homePrice = this.monthlyCalculatorForm.controls?.['homePrice'].value;
-
-          const newDownPayment = (downPaymentPercent * homePrice / 100);
-          const newMortgageAmount = (homePrice - newDownPayment);
-
-          this.monthlyCalculatorForm.controls?.['downPayment'].patchValue(newDownPayment.toFixed(0), { emitEvent: false });
-          this.monthlyCalculatorForm.controls?.['mortgageAmount'].patchValue(newMortgageAmount.toFixed(0), { emitEvent: false });
+      .subscribe(() => {
+        if (this.monthlyCalculatorForm.controls?.['homePrice'].valid) {
+          this.onHomePriceChanged();
         }
       });
 
     this.monthlyCalculatorForm.controls?.['mortgageAmount']
       .valueChanges
-      .subscribe(mortgageAmount => {
+      .subscribe(() => {
+        this.onMortgageAmountChanged();
+      });
 
-        const homePrice = this.monthlyCalculatorForm.controls?.['homePrice'].value;
+    this.monthlyCalculatorForm.controls?.['downPayment']
+      .valueChanges
+      .subscribe(() => {
+        this.onDownPaymentChanged();
+      });
 
-        if (this.monthlyCalculatorForm.controls?.['mortgageAmount'].valid &&
-          this.monthlyCalculatorForm.controls?.['homePrice'].valid &&
-          this.monthlyCalculatorForm.controls?.['mortgageAmount'].value < homePrice) {
-
-          const newDownPayment = homePrice - mortgageAmount;
-          const newDownPaymentPercent = newDownPayment * 100 / homePrice;
-
-          this.monthlyCalculatorForm.controls?.['downPayment'].patchValue(newDownPayment.toFixed(0), { emitEvent: false });
-          this.monthlyCalculatorForm.controls?.['downPaymentPercent'].patchValue(newDownPaymentPercent.toFixed(2), { emitEvent: false });
-        }
-
+    this.monthlyCalculatorForm.controls?.['downPaymentPercent']
+      .valueChanges
+      .subscribe(() => {
+        this.onDownPaymentPercentChanged();
       });
 
     this.calculations$ = this.monthlyCalculatorForm.valueChanges.pipe(
@@ -172,6 +136,99 @@ export class MonthlyPaymentCalc implements OnInit {
       },
     });
   }
+
+  private onHomePriceChanged(): void {
+    if (this.monthlyCalculatorForm.controls?.['mortgageAmount'].valid &&
+       this.monthlyCalculatorForm.controls?.['downPaymentPercent'].valid) {
+
+       const homePrice = this.monthlyCalculatorForm.controls?.['homePrice'].value;
+       const downPaymentPercent = this.monthlyCalculatorForm.controls?.['downPaymentPercent'].value;
+
+       const newDownPayment = downPaymentPercent * homePrice / 100;
+       const newMortgageAmount = homePrice - newDownPayment;
+
+       this.monthlyCalculatorForm.controls?.['mortgageAmount'].patchValue(newMortgageAmount.toFixed(0), {emitEvent: false});
+       this.monthlyCalculatorForm.controls?.['downPayment'].patchValue(newDownPayment.toFixed(0), {emitEvent: false});
+    }
+
+    if (this.monthlyCalculatorForm.controls?.['mortgageAmount'].valid) {
+
+      const homePrice = this.monthlyCalculatorForm.controls?.['homePrice'].value;
+      const mortgageAmount = this.monthlyCalculatorForm.controls?.['mortgageAmount'].value;
+
+      const newDownPayment = homePrice - mortgageAmount;
+      const newDownPaymentPercent = this.monthlyCalculatorForm.controls?.['downPayment'].value * 100 / homePrice;
+
+      this.monthlyCalculatorForm.controls?.['downPayment'].patchValue(newDownPayment.toFixed(0), {emitEvent: false});
+      this.monthlyCalculatorForm.controls?.['downPaymentPercent'].patchValue(newDownPaymentPercent.toFixed(2), {emitEvent: false});
+
+    }
+
+    if (this.monthlyCalculatorForm.controls?.['downPayment'].valid) {
+      const homePrice = this.monthlyCalculatorForm.controls?.['homePrice'].value;
+      const downPayment = this.monthlyCalculatorForm.controls?.['downPayment'].value;
+
+      const newMortgageAmount = homePrice - downPayment;
+      const newDownPaymentPercent = downPayment * 100 / homePrice;
+
+      this.monthlyCalculatorForm.controls?.['mortgageAmount'].patchValue(newMortgageAmount.toFixed(0), {emitEvent: false});
+      this.monthlyCalculatorForm.controls?.['downPaymentPercent'].patchValue(newDownPaymentPercent.toFixed(2), {emitEvent: false});
+    }
+
+    else {
+      this.monthlyCalculatorForm.controls?.['mortgageAmount'].reset();
+      this.monthlyCalculatorForm.controls?.['downPayment'].reset();
+      this.monthlyCalculatorForm.controls?.['downPaymentPercent'].reset();
+      this.monthlyCalculatorForm.controls?.['interestRate'].reset();
+      this.monthlyCalculatorForm.controls?.['mortgageTerm'].reset();
+    }
+  }
+
+  private onDownPaymentChanged(): void {
+    const homePrice = this.monthlyCalculatorForm.controls?.['homePrice'].value;
+
+    if (this.monthlyCalculatorForm.controls?.['downPayment'].valid &&
+        this.monthlyCalculatorForm.controls?.['homePrice'].valid &&
+        this.monthlyCalculatorForm.controls?.['downPayment'].value >= 0.15 * homePrice &&
+        this.monthlyCalculatorForm.controls?.['downPayment'].value <= 0.99 * homePrice) {
+
+      const newDownPaymentPercent = (this.monthlyCalculatorForm.controls?.['downPayment'].value * 100 / homePrice);
+      const newMortgageAmount = (homePrice - this.monthlyCalculatorForm.controls?.['downPayment'].value);
+
+      this.monthlyCalculatorForm.controls?.['downPaymentPercent'].patchValue(newDownPaymentPercent.toFixed(2), {emitEvent: false});
+      this.monthlyCalculatorForm.controls?.['mortgageAmount'].patchValue(newMortgageAmount.toFixed(0), {emitEvent: false});
+    }
+  }
+
+  private onDownPaymentPercentChanged(): void {
+    if (this.monthlyCalculatorForm.controls?.['downPaymentPercent'].valid &&
+        this.monthlyCalculatorForm.controls?.['homePrice'].valid) {
+
+      const homePrice = this.monthlyCalculatorForm.controls?.['homePrice'].value;
+
+      const newDownPayment = (this.monthlyCalculatorForm.controls?.['downPaymentPercent'].value * homePrice / 100);
+      const newMortgageAmount = (homePrice - newDownPayment);
+
+      this.monthlyCalculatorForm.controls?.['downPayment'].patchValue(newDownPayment.toFixed(0), {emitEvent: false});
+      this.monthlyCalculatorForm.controls?.['mortgageAmount'].patchValue(newMortgageAmount.toFixed(0), {emitEvent: false});
+    }
+  }
+
+  private onMortgageAmountChanged(): void {
+    const homePrice = this.monthlyCalculatorForm.controls?.['homePrice'].value;
+
+    if (this.monthlyCalculatorForm.controls?.['mortgageAmount'].valid &&
+        this.monthlyCalculatorForm.controls?.['homePrice'].valid &&
+        this.monthlyCalculatorForm.controls?.['mortgageAmount'].value < homePrice) {
+
+      const newDownPayment = homePrice - this.monthlyCalculatorForm.controls?.['mortgageAmount'].value;
+      const newDownPaymentPercent = newDownPayment * 100 / homePrice;
+
+      this.monthlyCalculatorForm.controls?.['downPayment'].patchValue(newDownPayment.toFixed(0), {emitEvent: false});
+      this.monthlyCalculatorForm.controls?.['downPaymentPercent'].patchValue(newDownPaymentPercent.toFixed(2), {emitEvent: false});
+    }
+  }
+
   private updatePieChart(): void {
     this.calculations$ = this.monthlyPaymentCalcService.sendCalculatorData(this.monthlyCalculatorForm.value);
 
