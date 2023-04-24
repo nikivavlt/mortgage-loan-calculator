@@ -1,4 +1,4 @@
-import { Component,ViewChild } from '@angular/core';
+import { Component,EventEmitter,Output,ViewChild } from '@angular/core';
 import { BehaviorSubject,Subject, takeUntil} from 'rxjs';
 import { PersonalInformationComponent } from './mortgageAppComponents/personal-information/personal-information.component';
 import { IncomeAndFinancialLiabilitiesComponent } from './mortgageAppComponents/income-and-financial-liabilities/income-and-financial-liabilities.component';
@@ -25,6 +25,8 @@ export class MortgageApplicationComponent {
   @ViewChild(IncomeAndFinancialLiabilitiesComponent) incomeAndFinancialComponent!: IncomeAndFinancialLiabilitiesComponent;
   @ViewChild(LoanInformationComponent) loanInfoComponent!: LoanInformationComponent;
   @ViewChild(AdditionalInformationComponent) additionalInfoComponent!: AdditionalInformationComponent;
+
+  @Output() tabChanged = new EventEmitter<number>();
 
   stepperIndex = new BehaviorSubject<number>(-1);
   private readonly destroy$ = new Subject<void>();
@@ -80,6 +82,11 @@ export class MortgageApplicationComponent {
     this.loanInfoComponent.loanInformationForm.reset();
     this.additionalInfoComponent.additionalInformationForm.reset();
     this.stepperIndex.next(0);
+    this.selectTab(0);
+  }
+
+  selectTab(tabIndex: number) {
+    this.tabChanged.emit(tabIndex);
   }
   ngOnDestroy(): void {
     this.destroy$.next();

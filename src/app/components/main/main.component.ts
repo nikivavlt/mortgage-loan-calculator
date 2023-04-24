@@ -1,4 +1,3 @@
-import { ViewportScroller } from '@angular/common';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
@@ -13,11 +12,11 @@ export class MainComponent {
   private readonly destroy$ = new Subject<void>();
   constructor(private breakpointObserver: BreakpointObserver) {}
 
-  selectedTabIndex = 0;
+  selectedTab = 0;
   isSmallScreen = false;
 
   selectTab(index: number) {
-    this.selectedTabIndex = index;
+    this.selectedTab = index;
   }
 
   ngOnInit(): void {
