@@ -1,7 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { StepperOrientation } from '@angular/material/stepper';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Subject, takeUntil, tap } from 'rxjs';
+import { Component,ViewChild } from '@angular/core';
+import { BehaviorSubject,Subject, takeUntil} from 'rxjs';
 import { PersonalInformationComponent } from './mortgageAppComponents/personal-information/personal-information.component';
 import { IncomeAndFinancialLiabilitiesComponent } from './mortgageAppComponents/income-and-financial-liabilities/income-and-financial-liabilities.component';
 import { LoanInformationComponent } from './mortgageAppComponents/loan-information/loan-information.component';
@@ -22,33 +20,22 @@ export class MortgageApplicationComponent {
   isLoanInfoCompleted = false;
   isAdditionalInfoCompleted = false;
 
+  //TODO use service
   @ViewChild(PersonalInformationComponent) personalInfoComponent!: PersonalInformationComponent;
   @ViewChild(IncomeAndFinancialLiabilitiesComponent) incomeAndFinancialComponent!: IncomeAndFinancialLiabilitiesComponent;
   @ViewChild(LoanInformationComponent) loanInfoComponent!: LoanInformationComponent;
   @ViewChild(AdditionalInformationComponent) additionalInfoComponent!: AdditionalInformationComponent;
 
-  stepperOrientation: StepperOrientation = 'horizontal';
+  stepperIndex = new BehaviorSubject<number>(-1);
   private readonly destroy$ = new Subject<void>();
-  constructor(private breakpointObserver: BreakpointObserver, private dialog: MatDialog,
-              private mortgageApplicationService: MortgageApplicationService) {}
 
-  ngOnInit() {
-    this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall])
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(result => {
-      if (result.matches) {
-        this.stepperOrientation = 'vertical';
-      } else {
-        this.stepperOrientation = 'horizontal';
-      }
-    });
-  }
+  constructor(private dialog: MatDialog, private mortgageApplicationService: MortgageApplicationService) {}
+
   submitForm() {
     if(!this.isPersonalInfoCompleted||!this.isIncomeAndFinancialCompleted||!this.isLoanInfoCompleted||!this.isAdditionalInfoCompleted){
       console.log("Not all form fields are filled, please check if all fields are filled correctly");
       return
     }
-    console.log("sent");
 
     const data = {
       ...this.personalInfoComponent.personalInformationForm.value,
@@ -58,11 +45,7 @@ export class MortgageApplicationComponent {
     };
 
     this.mortgageApplicationService.saveForm(data)
-    .pipe(
-      tap(response => {
-        console.log(response);
-      }),
-      takeUntil(this.destroy$))
+    .pipe(takeUntil(this.destroy$))
     .subscribe({
       next: () => {
         this.openThankYouDialog();
@@ -85,7 +68,18 @@ export class MortgageApplicationComponent {
     this.isAdditionalInfoCompleted = bool;
   }
   openThankYouDialog() {
-    this.dialog.open(ThankYouPopUpComponent);
+    const dialogRef = this.dialog.open(ThankYouPopUpComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.resetAndCloseForm();
+    });
+  }
+  resetAndCloseForm(){
+    this.personalInfoComponent.personalInformationForm.reset();
+    this.incomeAndFinancialComponent.incomeAndFinancialLiabilitiesForm.reset();
+    this.loanInfoComponent.loanInformationForm.reset();
+    this.additionalInfoComponent.additionalInformationForm.reset();
+    this.stepperIndex.next(0);
   }
   ngOnDestroy(): void {
     this.destroy$.next();
