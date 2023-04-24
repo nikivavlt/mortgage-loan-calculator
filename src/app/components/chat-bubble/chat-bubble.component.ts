@@ -8,7 +8,8 @@ import { ChatBotService } from 'src/app/services/chat-bot.service';
   styleUrls: ['./chat-bubble.component.css']
 })
 export class ChatBubbleComponent {
-  message = 'Ask me anything!';
+  message = '';
+  response: Array<string> | undefined;
   isLoading = false;
   isActive = true;
   chatInput = '';
@@ -16,6 +17,7 @@ export class ChatBubbleComponent {
 
   constructor(private chatBotService:ChatBotService) {
     this.apiKey = "";
+    this.response = [];
     this.getApiKey();
   }
 
@@ -45,12 +47,14 @@ export class ChatBubbleComponent {
       const response = await firstValueFrom(this.chatBotService.sendChatRequest(this.chatInput, this.apiKey));
 
       if (response.choices && response.choices.length > 0 && response.choices[0].message.content) {
-        this.message = response.choices[0].message.content;
+        console.log(response.choices[0].message.content);
+
+        this.response?.push(response.choices[0].message.content);
       } else {
-        this.message = 'Sorry, I could not understand your request.';
+        this.response?.push('Sorry, I could not understand your request.');
       }
     } catch (error) {
-      this.message = 'Oops! Something went wrong.';
+      this.response?.push('Oops! Something went wrong.');
     } finally {
       this.isLoading = false;
       this.chatInput = '';
