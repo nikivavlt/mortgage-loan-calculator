@@ -16,7 +16,7 @@ export class AdditionalInformationComponent {
 
   constructor(private fb: FormBuilder) {
     this.additionalInformationForm = this.fb.group({
-      coBorrower: new FormControl(false,),
+      coBorrower: new FormControl(),
       coBorrowerName: new FormControl(''),
       coBorrowerlName: new FormControl(''),
       coBorrowerPersonalNumber: new FormControl(''),

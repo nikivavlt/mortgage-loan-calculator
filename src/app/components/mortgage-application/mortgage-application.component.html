@@ -1,4 +1,4 @@
-<mat-horizontal-stepper [orientation]="stepperOrientation" linear>
+<mat-horizontal-stepper orientation="vertical" linear>
   <mat-step  label="Personal information" [completed]="isPersonalInfoCompleted">
     <app-personal-information (formChanged)="onPersonalInformationFormChanged($event)"></app-personal-information>
   </mat-step>
