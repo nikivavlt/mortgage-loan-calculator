@@ -31,7 +31,7 @@ export class MonthlyPaymentCalc implements OnInit {
       downPaymentPercent: ['', [Validators.required, Validators.pattern("^[0-9]*(\.[0-9]{0,2})?$"), Validators.min(15), Validators.max(99)]],
       interestRate: ['', [Validators.required, Validators.pattern("^[0-9]*(\.[0-9]{0,2})?$")]],
       mortgageTerm: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(1), Validators.max(30)]],
-    }, { validators: [downPaymentValidator, mortgageAmountValidator] } )
+    }, { validators: [downPaymentValidator, mortgageAmountValidator] })
 
   }
 
@@ -122,14 +122,14 @@ export class MonthlyPaymentCalc implements OnInit {
             label: 'Euros',
             data: [Number(monthlyPayment), Number(totalPayableAmount), Number(interestCost)],
             backgroundColor: [
-              'rgba(255, 159, 64, 0.2)',
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)'
+              '#6C9BCF', // Color for 'Monthly payment'
+              '#AAC4FF', // Color for 'Total payable amount'
+              '#D2DAFF'  // Color for 'Interest cost'
             ],
             hoverBackgroundColor: [
-              '#FFCE56',
-              '#FF6384',
-              '#36A2EB'
+              '#5A86B7', // Hover color for 'Monthly payment'
+              '#8DA9E6', // Hover color for 'Total payable amount'
+              '#B7C5F3'  // Hover color for 'Interest cost'
             ],
           },
         ],

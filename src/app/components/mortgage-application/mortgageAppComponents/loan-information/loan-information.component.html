@@ -1,19 +1,19 @@
 <form [formGroup]="loanInformationForm">
   <div class="form form--centered">
     <div class="form__content">
-        <mat-label>Loan amount</mat-label>
-        <br>
-        <mat-form-field appearance="fill">
-          <input matInput formControlName="loanAmount" type="text" placeholder="1000">
+        
+        
+        <mat-form-field appearance="outline" class="formInput">
+          <mat-label>Loan amount</mat-label>
+          <input matInput formControlName="loanAmount" type="number" placeholder="1000">
           <span matTextSuffix> Eur </span>
         </mat-form-field>
         <div *ngIf="loanAmountRequiredError">
           <mat-error>Loan amount is required</mat-error>
         </div>
         <br>
-        <mat-label>Loan purpose</mat-label>
-        <br>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline" class="formInput">
+          <mat-label>Loan purpose</mat-label>
           <input matInput formControlName="loanPurpose" type="text" placeholder="I want a house">
         </mat-form-field>
         <div *ngIf="loanPurposeRequiredError">
@@ -22,19 +22,18 @@
 
     </div>
     <div class="form__content">
-      <mat-label>Type of property</mat-label>
-      <br>
-      <mat-form-field appearance="fill">
+  
+      <mat-form-field appearance="outline" class="formInput">
+        <mat-label>Type of property</mat-label>
         <input matInput formControlName="propertyType" type="text" placeholder="House with 5 doors">
       </mat-form-field>
       <div *ngIf="propertyTypeRequiredError">
         <mat-error>Type of property is required</mat-error>
       </div>
       <br>
-      <mat-label>Price of property</mat-label>
-      <br>
-      <mat-form-field appearance="fill">
-        <input matInput formControlName="propertyPrice" type="text" placeholder="3000">
+      <mat-form-field appearance="outline" class="formInput">
+        <mat-label>Price of property</mat-label>
+        <input matInput formControlName="propertyPrice" type="number" placeholder="3000">
         <span matTextSuffix> Eur </span>
       </mat-form-field>
       <div *ngIf="propertyPriceRequiredError">
@@ -43,10 +42,9 @@
     </div>
   </div>
   <div>
-    <mat-label>Evaluation price of property</mat-label>
-    <br>
-    <mat-form-field appearance="fill">
-      <input matInput formControlName="evaluatedPropertyPrice" type="text" placeholder="4000">
+    <mat-form-field appearance="outline" class="formInput" style="width: 20%;" >
+      <mat-label>Evaluation price of property</mat-label>
+      <input matInput formControlName="evaluatedPropertyPrice" type="number" placeholder="4000">
       <span matTextSuffix>Eur</span>
     </mat-form-field>
     <div *ngIf="evaluatedPropertyPriceRequiredError">

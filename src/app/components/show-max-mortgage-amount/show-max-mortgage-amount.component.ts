@@ -4,7 +4,7 @@ interface MortgageFormData {
   maxMortgageAmount?: number;
   isSingleApplicant: boolean;
   netIncome: number;
-  familyMembers: number;
+  familyMember: number;
   monthlyObligationAmount: number;
 }
 

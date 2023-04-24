@@ -6,6 +6,33 @@ html {
   scroll-behavior: smooth;
 }
 
+/* @import '~@angular/material/theming';
+
+$my-custom-level: mat.define-typography-level(
+  $font-family: Roboto,
+  $font-weight: 400,
+  $font-size: 1rem,
+  $line-height: 1,
+  $letter-spacing: normal,
+);
+
+$my-custom-typography: mat.define-typography-config(
+  $display-4: $my-custom-level,
+  $display-3: $my-custom-level,
+  $display-2: $my-custom-level,
+  $display-1: $my-custom-level,
+  $headline: $my-custom-level,
+  $title: $my-custom-level,
+  $subheading-2: $my-custom-level,
+  $subheading-1: $my-custom-level,
+  $body-2: $my-custom-level,
+  $body-1: $my-custom-level,
+  $caption: $my-custom-level,
+  $button: $my-custom-level
+);
+
+@include mat.core($my-custom-typography); */
+
 html,
 body {
   height: 100%;
@@ -16,7 +43,8 @@ body {
   padding: 0;
 
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #F3F9FB;
+  background-color: white;
+  /* background-color: #F3F9FB; */
 }
 
 ::-webkit-scrollbar {

@@ -3,13 +3,19 @@
   justify-content: center;
   align-items: center;
 }
+
 .form--centered {
   flex-wrap: wrap;
 }
+
 .form__content {
   padding-top: 1%;
   display: inline-block;
   vertical-align: top;
   margin-right: 2%;
   flex-direction: column;
+}
+
+.button {
+  justify-content: space-around;
 }
