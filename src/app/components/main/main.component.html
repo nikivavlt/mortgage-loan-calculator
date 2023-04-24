@@ -1,5 +1,5 @@
 <div *ngIf="!isSmallScreen">
-  <mat-tab-group>
+  <mat-tab-group [(selectedIndex)]="selectedTab">
     <mat-tab label="Can I get a mortgage?">
       <app-max-loan-calculator></app-max-loan-calculator>
     </mat-tab>
@@ -7,7 +7,7 @@
       <app-monthly-payment-calc></app-monthly-payment-calc>
     </mat-tab>
     <mat-tab label="Apply for mortgage">
-      <app-mortgage-application></app-mortgage-application>
+      <app-mortgage-application (tabChanged)="selectTab($event)"></app-mortgage-application>
     </mat-tab>
   </mat-tab-group>
 </div>
@@ -21,14 +21,14 @@
     <button mat-menu-item (click)="selectTab(2)">Apply for mortgage</button>
   </mat-menu>
 
-  <div *ngIf="selectedTabIndex === 0">
+  <div *ngIf="selectedTab === 0">
     <app-max-loan-calculator></app-max-loan-calculator>
   </div>
-  <div *ngIf="selectedTabIndex === 1">
+  <div *ngIf="selectedTab === 1">
     <app-monthly-payment-calc></app-monthly-payment-calc>
   </div>
-  <div *ngIf="selectedTabIndex === 2">
-    <app-mortgage-application></app-mortgage-application>
+  <div *ngIf="selectedTab === 2">
+    <app-mortgage-application (tabChanged)="selectTab($event)"></app-mortgage-application>
   </div>
 </div>
 <app-chat-bubble></app-chat-bubble>
