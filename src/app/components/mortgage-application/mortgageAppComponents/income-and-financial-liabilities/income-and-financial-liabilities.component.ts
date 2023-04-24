@@ -16,36 +16,36 @@ export class IncomeAndFinancialLiabilitiesComponent {
   private serviceSubscription: Subscription;
   childCountEnum = ChildCount;
 
-  educationValues: DropDownItem [] = [
-    {value: 'primary', viewValue: 'Primary'},
-    {value: 'Secondary', viewValue: 'Secondary'},
-    {value: 'Vocational', viewValue: 'Vocational'},
-    {value: 'College', viewValue: 'College'},
-    {value: 'Higher', viewValue: 'Higher'},
+  educationValues: DropDownItem[] = [
+    { value: 'primary', viewValue: 'Primary' },
+    { value: 'Secondary', viewValue: 'Secondary' },
+    { value: 'Vocational', viewValue: 'Vocational' },
+    { value: 'College', viewValue: 'College' },
+    { value: 'Higher', viewValue: 'Higher' },
   ];
-  timeEmployedValues: DropDownItem [] = [
-    {value: 'trial', viewValue: 'Trial period'},
-    {value: '1year', viewValue: 'Up to 1 year'},
-    {value: '1to3', viewValue: '1-3 years'},
-    {value: '3to5', viewValue: '3-5 years'},
-    {value: '5years', viewValue: 'More than 5 years'},
+  timeEmployedValues: DropDownItem[] = [
+    { value: 'trial', viewValue: 'Trial period' },
+    { value: '1year', viewValue: 'Up to 1 year' },
+    { value: '1to3', viewValue: '1-3 years' },
+    { value: '3to5', viewValue: '3-5 years' },
+    { value: '5years', viewValue: 'More than 5 years' },
   ];
-  contractTypeValues: DropDownItem [] = [
-    {value: 'openEnded', viewValue: 'Open-end'},
-    {value: 'fixedTerm', viewValue: 'Fixed term'},
-    {value: 'other', viewValue: 'Other'},
+  contractTypeValues: DropDownItem[] = [
+    { value: 'openEnded', viewValue: 'Open-end' },
+    { value: 'fixedTerm', viewValue: 'Fixed term' },
+    { value: 'other', viewValue: 'Other' },
   ];
 
   constructor(private fb: FormBuilder) {
     this.incomeAndFinancialLiabilitiesForm = this.fb.group({
-      netIncome: new FormControl('',Validators.required),
-      childrenAmount: new FormControl('',Validators.required),
-      education: new FormControl('',Validators.required),
-      employer: new FormControl('',Validators.required),
-      position: new FormControl('',Validators.required),
-      timeEmployed: new FormControl('',Validators.required),
-      contractType: new FormControl('',Validators.required),
-      financialObligations: new FormControl('',Validators.required),
+      netIncome: new FormControl('', Validators.required),
+      childrenAmount: new FormControl(0, Validators.required),
+      education: new FormControl('', Validators.required),
+      employer: new FormControl('', Validators.required),
+      position: new FormControl('', Validators.required),
+      timeEmployed: new FormControl('', Validators.required),
+      contractType: new FormControl('', Validators.required),
+      financialObligations: new FormControl('', Validators.required),
       monthlyObligations: new FormControl(''),
     });
 

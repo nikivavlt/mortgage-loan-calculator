@@ -1,7 +1,8 @@
 :host {
   text-align: center;
 }
-p{
+
+p {
   font-size: 1rem;
   font-weight: bold;
   color: red;
@@ -12,9 +13,11 @@ p{
   justify-content: center;
   align-items: center;
 }
+
 .form--centered {
   flex-wrap: wrap;
 }
+
 .form__content {
   padding-top: 1%;
   display: inline-block;
