@@ -4,5 +4,19 @@
 
 .clickable-cell{
     cursor: pointer;
-    text-decoration: underline;
 }
+
+.yellow {
+    color: yellow;
+}
+.blue{
+    color: blue;
+  }
+
+  .green {
+    color: green;
+  }
+
+  .red {
+    color: red;
+  }
