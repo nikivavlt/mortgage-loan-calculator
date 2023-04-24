@@ -27,15 +27,59 @@ export class ChatBotService {
       'max_tokens': 60,
       'stop': ".",
       'model': 'gpt-3.5-turbo',
-      "messages":
-      [
-        {"role": "system", "content" : "You are ChatGPT, a large language model trained by OpenAI. Your job is to consult users on mortgage related topics\nKnowledge cutoff: 2021-09-01\nCurrent date: 2023-03-02"},
-        {"role": "user", "content" : "How are you?"},
-        {"role": "assistant", "content" : "I am doing well"},
-        {"role": "user", "content" : "I would like to apply for a mortgage."},
-        {"role": "assistant", "content" : "Great! Before we begin, here are some context messages to assist you with filling out the mortgage form:"},
-        {"role": "assistant", "content" : "- Please ensure you complete all required fields on the form.\n- Make sure you enter your information in the correct format, such as using yearly or monthly income.\n- You may need to provide supporting documents such as bank statements, proof of income, or tax returns.\n- Eligibility requirements may include credit score, debt-to-income ratio, or other financial factors.\n- The processing time for a mortgage application may vary, so please be patient and expect some wait time before receiving a decision."},
-        {"role": "assistant", "content" : "Do you have any further questions before we begin?"},
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are ChatGPT, a large language model trained by OpenAI. Your job is to consult users on mortgage related topics\nKnowledge cutoff: 2021-09-01\nCurrent date: 2023-04-24"
+        },
+        {
+          "role": "user",
+          "content": "How much monthly income do I need to apply for a mortgage?"
+        },
+        {
+          "role": "assistant",
+          "content": "The minimum monthly income required depends on whether you are applying alone or with a co-borrower. For a personal loan, the minimum monthly income should be 600 EUR, and for a loan with a co-borrower, the minimum monthly income should be 1000 EUR."
+        },
+        {
+          "role": "user",
+          "content": "What should I do if I'm not sure about the required format for entering my information?"
+        },
+        {
+          "role": "assistant",
+          "content": "Please make sure you enter your information in the correct format, such as using yearly or monthly income. If you're not sure, please consult the instructions or contact customer support."
+        },
+        {
+          "role": "user",
+          "content": "Do I need to provide supporting documents when applying for a mortgage?"
+        },
+        {
+          "role": "assistant",
+          "content": "Yes, you may need to provide supporting documents such as bank statements, proof of income, or tax returns. Please make sure you have these documents ready before starting your application."
+        },
+        {
+          "role": "user",
+          "content": "What factors are used to determine my eligibility for a mortgage?"
+        },
+        {
+          "role": "assistant",
+          "content": "Eligibility requirements may include credit score, debt-to-income ratio, or other financial factors. Please consult the application instructions or contact customer support for more information."
+        },
+        {
+          "role": "user",
+          "content": "How long does it take to process a mortgage application?"
+        },
+        {
+          "role": "assistant",
+          "content": "The processing time for a mortgage application may vary, so please be patient and expect some wait time before receiving a decision."
+        },
+        {
+          "role": "user",
+          "content": "What should I do if I have additional questions or concerns?"
+        },
+        {
+          "role": "assistant",
+          "content": "Please contact customer support for additional assistance. They will be happy to help you with any questions or concerns you may have."
+        },
         {"role": "user",  "content" : prompt}
       ]
     };
