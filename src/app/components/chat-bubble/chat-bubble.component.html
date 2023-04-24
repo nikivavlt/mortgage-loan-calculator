@@ -1,6 +1,9 @@
 <div class="chat-bubble-wrapper" [ngClass]="{'active': isActive}">
   <i class="fas fa-comment-alt"></i>
   <div class="chat-bubble-content">
+    <ul *ngFor="let item of response">
+      <li class="chat-message">{{ item }}</li>
+    </ul>
     <div class="chat-message">{{ message }}</div>
     <div class="chat-spinner" *ngIf="isLoading"><i class="fas fa-spinner fa-pulse"></i></div>
     <form class="chat-form" (ngSubmit)="onSubmit()">
