@@ -95,6 +95,10 @@
   margin-left: 4px;
 }
 
+mat-error+mat-error {
+  display: none;
+}
+
 .max-mortgage-container {
   display: flex;
   align-items: center;
