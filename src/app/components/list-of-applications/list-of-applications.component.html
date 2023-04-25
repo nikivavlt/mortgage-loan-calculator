@@ -1,6 +1,7 @@
-<div *ngIf="data | async as data">
+<app-application-list-filter></app-application-list-filter>
+<div class="applicants-table" *ngIf="data | async as data">
     <label class="applicants-table-label"><h2>All applicants</h2></label>
-    <table mat-table [dataSource]="data" >
+    <table mat-table [dataSource]="data" class="mat-elevation-z8 demo-table">
 
         <ng-container matColumnDef="date">
             <th mat-header-cell *matHeaderCellDef> Date </th>
