@@ -65,14 +65,13 @@ export class MonthlyPaymentCalc implements OnInit {
     this.calculations$ = this.monthlyCalculatorForm.valueChanges.pipe(
       filter((val) => this.monthlyCalculatorForm.valid),
       tap(() => {
-        this.updatePieChart(),
         this.loading = true
       }),
       debounceTime(1000),
       switchMap(() => this.monthlyPaymentCalcService.sendCalculatorData(this.monthlyCalculatorForm.value)));
 
     this.calculations$.subscribe((response) => {
-      this.doughnutChartMethod(response.monthlyPayment, response.totalPayableAmount, response.interestCost);
+      this.doughnutChartMethod(this.mortgageAmount.value, this.downPayment.value, response.interestCost);
     });
   }
 
@@ -107,7 +106,7 @@ export class MonthlyPaymentCalc implements OnInit {
     return this.monthlyCalculatorForm.get('mortgageTerm') as FormControl<string>;
   }
 
-  doughnutChartMethod(monthlyPayment: string, totalPayableAmount: string, interestCost: string) {
+  doughnutChartMethod(mortgageAmount: string, downPayment: string, interestCost: string) {
     if (this.doughnutChart) {
       this.doughnutChart.destroy();
     }
@@ -115,11 +114,11 @@ export class MonthlyPaymentCalc implements OnInit {
     this.doughnutChart = new Chart(this.doughnutCanvas?.nativeElement, {
       type: 'doughnut',
       data: {
-        labels: ['Monthly payment', 'Total payable amount', 'Interest cost'],
+        labels: ['Mortgage amount', 'Down payment', 'Interest cost'],
         datasets: [
           {
             label: 'Euros',
-            data: [Number(monthlyPayment), Number(totalPayableAmount), Number(interestCost)],
+            data: [Number(mortgageAmount), Number(downPayment), Number(interestCost)],
             backgroundColor: [
               '#6C9BCF', // Color for 'Monthly payment'
               '#AAC4FF', // Color for 'Total payable amount'
@@ -226,16 +225,5 @@ export class MonthlyPaymentCalc implements OnInit {
       this.monthlyCalculatorForm.controls?.['downPayment'].patchValue(newDownPayment.toFixed(0), {emitEvent: false});
       this.monthlyCalculatorForm.controls?.['downPaymentPercent'].patchValue(newDownPaymentPercent.toFixed(2), {emitEvent: false});
     }
-  }
-
-  private updatePieChart(): void {
-
-    this.calculations$.subscribe((response) => {
-      const monthlyPayment = response.monthlyPayment;
-      const totalPayableAmount = response.totalPayableAmount;
-      const interestCost = response.interestCost;
-
-      this.doughnutChartMethod(monthlyPayment, totalPayableAmount, interestCost)
-    });
   }
 }
