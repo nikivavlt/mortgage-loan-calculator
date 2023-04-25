@@ -7,6 +7,7 @@ import { AdditionalInformationComponent } from './mortgageAppComponents/addition
 import { ThankYouPopUpComponent } from 'src/app/components/thank-you-pop-up/thank-you-pop-up.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MortgageApplicationService } from 'src/app/services/mortgage-application.service';
+import { RedirectToHomepageService } from 'src/app/services/redirect-to-homepage.service';
 
 
 @Component({
@@ -31,7 +32,8 @@ export class MortgageApplicationComponent {
   stepperIndex = new BehaviorSubject<number>(-1);
   private readonly destroy$ = new Subject<void>();
 
-  constructor(private dialog: MatDialog, private mortgageApplicationService: MortgageApplicationService) {}
+  constructor(private dialog: MatDialog, private mortgageApplicationService: MortgageApplicationService,
+    private redirectToHomepageService: RedirectToHomepageService ) {}
 
   submitForm() {
     if(!this.isPersonalInfoCompleted||!this.isIncomeAndFinancialCompleted||!this.isLoanInfoCompleted||!this.isAdditionalInfoCompleted){
@@ -82,11 +84,7 @@ export class MortgageApplicationComponent {
     this.loanInfoComponent.loanInformationForm.reset();
     this.additionalInfoComponent.additionalInformationForm.reset();
     this.stepperIndex.next(0);
-    this.selectTab(0);
-  }
-
-  selectTab(tabIndex: number) {
-    this.tabChanged.emit(tabIndex);
+    this.redirectToHomepageService.selectedTabIndexSource.next(0);
   }
   ngOnDestroy(): void {
     this.destroy$.next();

@@ -21,13 +21,13 @@
     <button mat-menu-item (click)="selectTab(2)">Apply for mortgage</button>
   </mat-menu>
 
-  <div *ngIf="selectedTab === 0">
+  <div *ngIf="(selectedTabIndex$ | async) === 0">
     <app-max-loan-calculator></app-max-loan-calculator>
   </div>
-  <div *ngIf="selectedTab === 1">
+  <div *ngIf="(selectedTabIndex$ | async) === 1">
     <app-monthly-payment-calc></app-monthly-payment-calc>
   </div>
-  <div *ngIf="selectedTab === 2">
+  <div *ngIf="(selectedTabIndex$ | async) === 2">
     <app-mortgage-application (tabChanged)="selectTab($event)"></app-mortgage-application>
   </div>
 </div>

@@ -22,7 +22,7 @@ export class MainComponent {
   
 
   selectTab(index: number) {
-    this.selectedTab = index;
+    this.redirectToHomepageService.selectedTabIndexSource.next(index);
   }
   
 
