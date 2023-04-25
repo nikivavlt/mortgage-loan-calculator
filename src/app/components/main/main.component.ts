@@ -1,6 +1,7 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, Subscription, takeUntil } from 'rxjs';
+import { RedirectToHomepageService } from 'src/app/services/redirect-to-homepage.service';
 
 @Component({
   selector: 'app-main',
@@ -10,14 +11,20 @@ import { Subject, takeUntil } from 'rxjs';
 export class MainComponent {
 
   private readonly destroy$ = new Subject<void>();
-  constructor(private breakpointObserver: BreakpointObserver) {}
-
-  selectedTab = 0;
+ 
+  constructor(private breakpointObserver: BreakpointObserver, private redirectToHomepageService: RedirectToHomepageService ) {
+  }
+ 
+  selectedTabIndex$ = this.redirectToHomepageService.selectedTabIndexSource;
+  
+  selectedTabIndex = 0;
   isSmallScreen = false;
+  
 
   selectTab(index: number) {
     this.selectedTab = index;
   }
+  
 
   ngOnInit(): void {
     this.breakpointObserver.observe([Breakpoints.XSmall])
@@ -30,6 +37,11 @@ export class MainComponent {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+    // this.selectedTabIndexSubscription.unsubscribe();
   }
+  // redirectToTab(index: number) {
+  //   console.log("main redirect")
+  //   this.selectedTabIndex = index;
+  // }
 
 }
