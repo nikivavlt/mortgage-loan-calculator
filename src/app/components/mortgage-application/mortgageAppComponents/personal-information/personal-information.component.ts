@@ -31,10 +31,10 @@ export class PersonalInformationComponent {
   }
 
   get nameControl() {
-    return this.personalInformationForm.get('name');
+    return this.personalInformationForm.get('firstName');
   }
   get lnameControl() {
-    return this.personalInformationForm.get('lName');
+    return this.personalInformationForm.get('lastName');
   }
   get personalNumberControl() {
     return this.personalInformationForm.get('personalNumber');

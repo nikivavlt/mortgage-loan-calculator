@@ -10,12 +10,12 @@ export class ShowMaxMortgageService {
 
   constructor(private http: HttpClient) { }
 
-  calculateMaxMortgageAmount(isSingleApplicant: boolean, netIncome: number, familyMember: number, monthlyObligationAmount: number): Observable<number> {
+  calculateMaxMortgageAmount(isSingleApplicant: boolean, netIncome: number, familyMembers: number, monthlyObligationAmount: number): Observable<number> {
     const url = `${this.baseUrl}/calculator/maxLoan`;
     const request = {
       isSingleApplicant,
       netIncome,
-      familyMember,
+      familyMembers,
       monthlyObligationAmount
     };
     return this.http.post<number>(url, request);

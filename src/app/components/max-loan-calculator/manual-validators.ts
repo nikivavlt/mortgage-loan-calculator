@@ -10,10 +10,11 @@ const applicantNetIncomeCheck: ValidatorFn = (control) => {
   const dependents = Number(control.get('dependent')?.value);
   const applicants = control.get('borrower')?.value;
   const netIncome = control.value.netIncome;
+  const obligations = control.get('obligations')?.value;
 
-  if (applicants === 'personal' && (!dependents || dependents === 0) && netIncome < 600) {
+  if (applicants === 'personal' && (!dependents || dependents === 0) && (netIncome - obligations) < 600) {
     return { applicantNetIncomeCheck: true }
-  } else if (applicants === 'co-borrower' && netIncome < 1000) {
+  } else if (applicants === 'co-borrower' && (netIncome - obligations) < 1000) {
     return { applicantWithCoBorrowerError: true }
   }
   return null
@@ -23,10 +24,11 @@ const applicantWithDependentsCheck: ValidatorFn = (control) => {
   const netIncome = control.get('netIncome')?.value;
   const dependents = Number(control.get('dependent')?.value);
   const applicants = control.get('borrower')?.value;
+  const obligations = control.get('obligations')?.value;
 
-  if (applicants === 'personal' && dependents >= 2 && netIncome < 1000) {
+  if (applicants === 'personal' && dependents >= 2 && (netIncome - obligations) < 1000) {
     return { applicantWithMoreThanTwoDependentsError: true };
-  } else if (applicants === 'personal' && dependents === 1 && netIncome < 650) {
+  } else if (applicants === 'personal' && dependents === 1 && (netIncome - obligations) < 650) {
     return { applicantWithOneDependentError: true };
   } else {
     return null
