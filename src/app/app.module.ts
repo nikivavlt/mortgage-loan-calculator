@@ -39,6 +39,9 @@ import { ChatBubbleComponent } from './components/chat-bubble/chat-bubble.compon
 import { AuthenticationComponent } from './components/authentication/authentication.component'
 import { MatMenuModule } from '@angular/material/menu';
 import { NgChartsModule } from 'ng2-charts';
+import { ApplicationListFilterComponent } from './components/application-list-filter/application-list-filter.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   imports: [
@@ -65,7 +68,9 @@ import { NgChartsModule } from 'ng2-charts';
     MatTableModule,
     MatSliderModule,
     MatMenuModule,
-    NgChartsModule
+    NgChartsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   declarations: [
     AppComponent,
@@ -84,10 +89,11 @@ import { NgChartsModule } from 'ng2-charts';
     SingleApplicationPopUpComponent,
     ListOfApplicationsComponent,
     ChatBubbleComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    ApplicationListFilterComponent
   ],
 
-  providers: [],
+  providers: [MatNativeDateModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
