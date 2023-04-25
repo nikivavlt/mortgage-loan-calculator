@@ -14,9 +14,7 @@
     <mat-error *ngIf="homePrice.errors?.['min'] && homePrice.dirty && !homePrice.errors?.['required']">
       Minimum home price is 5000€
     </mat-error>
-  <!-- </div> -->
 </mat-form-field>
- 
   <mat-form-field appearance="outline">
     <mat-label class="calc-label" for="mortgage-amount">Mortgage amount</mat-label>
     <input matInput id="mortgage-amount" type="number" formControlName="mortgageAmount" placeholder="0">
@@ -34,7 +32,6 @@
     Mortgage amount is more than "Home Price"
   </mat-error>
 </mat-form-field>
-  
   <mat-form-field appearance="outline">
     <mat-label class="calc-label" for="down-payment">Down payment</mat-label>
     <input matInput id="down-payment" type="number" formControlName="downPayment" placeholder="0">
@@ -72,7 +69,6 @@
     <div>Down payment is at least 15%</div>
   </div> -->
 </mat-form-field>
-  
   <mat-form-field appearance="outline">
     <mat-label class="calc-label" for="interest-rate">Interest rate</mat-label>
     <input  matInput id="interest-rate" type="text" formControlName="interestRate" placeholder="0">
@@ -87,7 +83,6 @@
     </mat-error >
   <!-- </div> -->
 </mat-form-field>
-  
   <mat-form-field appearance="outline">
     <mat-label class="calc-label" for="mortgage-term">Mortgage term</mat-label>
     <input matInput id="mortgage-term" type="number" formControlName="mortgageTerm" placeholder="0">
@@ -118,6 +113,10 @@
   <p>Monthly payment: {{ this.addSpacer(calculations.monthlyPayment) }} Eur</p>
   <p>Total payable amount: {{ this.addSpacer(calculations.totalPayableAmount) }} Eur</p>
   <p>Interest cost: {{ this.addSpacer(calculations.interestCost) }} Eur</p>
+
+  <div>
+    <canvas #doughnutCanvas style="height:10vh; width:20vw"></canvas>
+  </div>
 </div>
 </ng-container>
 <ng-container *ngIf=" !( calculations$ | async ) as calculations">
@@ -125,15 +124,18 @@
   <p>Monthly payment: Calculating..</p>
   <p>Total payable amount: Calculating..</p>
   <p>Interest cost: Calculating..</p>
+
+  <div>
+    <canvas #doughnutCanvas style="height:10vh; width:20vw"></canvas>
+  </div>
 </div>
 <div class="calculator-result" *ngIf="!loading">
   <p>Monthly payment: 0 Eur</p>
   <p>Total payable amount: 0 Eur</p>
   <p>Interest cost: 0 Eur</p>
+
+  <div>
+    <canvas #doughnutCanvas style="height:10vh; width:20vw"></canvas>
+  </div>
 </div>
 </ng-container>
-
-<div>
-  <canvas #doughnutCanvas style="height:10vh; width:20vw"></canvas>
-  <hr color="blue">
-</div>
