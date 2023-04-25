@@ -9,11 +9,11 @@ export class GetAllApplicationsService {
 
   private baseUrl = 'https://backend-spring-app.onrender.com'
 
-  constructor(private http: HttpClient ) { }
+  constructor(private http: HttpClient) { }
 
- getAllApplications(){
-  const url = `${this.baseUrl}/application/getAll`
-  return this.http.get<AllApplications[]>(url)
- }
+  getAllApplications() {
+    const url = `${this.baseUrl}/applications`
+    return this.http.get<AllApplications[]>(url)
+  }
 
 }

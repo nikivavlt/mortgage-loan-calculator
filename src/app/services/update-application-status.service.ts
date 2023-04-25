@@ -9,12 +9,12 @@ import { Observable } from 'rxjs';
 export class UpdateApplicationStatusService {
   private baseUrl = 'https://backend-spring-app.onrender.com';
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   updateStatus(applicationId: number, newStatus: string): Observable<string> {
-    const url = `${this.baseUrl}/application/${applicationId}/setStatus`;
+    const url = `${this.baseUrl}/applications/${applicationId}`;
     const request = {
-     newStatus
+      newStatus
     };
     return this.http.patch<string>(url, newStatus);
   }

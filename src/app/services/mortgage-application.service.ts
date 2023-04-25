@@ -23,7 +23,7 @@ export class MortgageApplicationService {
   };
 
   saveForm(mortgageForm: MortgageFormObject): Observable<MortgageFormObject> {
-    const url = `${this.baseUrl}/application/submit`;
+    const url = `${this.baseUrl}/applications`;
     const request = mortgageForm;
     return this.http.post<MortgageFormObject>(url, request, this.options);
   }

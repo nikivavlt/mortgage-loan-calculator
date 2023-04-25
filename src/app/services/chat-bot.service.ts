@@ -10,10 +10,10 @@ export class ChatBotService {
   baseUrl = 'https://backend-spring-app.onrender.com'
   apiUrl = 'https://api.openai.com/v1/chat/completions';
 
-  constructor(private http: HttpClient ) { }
+  constructor(private http: HttpClient) { }
 
   getApiKey(): Observable<string> {
-    return this.http.get(this.baseUrl+'/chatBot/getApiKey', { responseType: 'text' });
+    return this.http.get(this.baseUrl + '/chat-bot', { responseType: 'text' });
   }
 
   sendChatRequest(prompt: string, apiKey: string) {
@@ -80,7 +80,7 @@ export class ChatBotService {
           "role": "assistant",
           "content": "Please contact customer support for additional assistance. They will be happy to help you with any questions or concerns you may have."
         },
-        {"role": "user",  "content" : prompt}
+        { "role": "user", "content": prompt }
       ]
     };
 

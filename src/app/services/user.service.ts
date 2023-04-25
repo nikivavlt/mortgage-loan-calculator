@@ -14,10 +14,10 @@ export class UserService {
 
   USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser';
 
-  constructor(private htttpClient: HttpClient) {}
+  constructor(private htttpClient: HttpClient) { }
 
   sendAuthenticationData(data: any) {
-    return this.htttpClient.post<any>(`${this.backendUrl}/user/login`, data, this.httpOptions);
+    return this.htttpClient.post<any>(`${this.backendUrl}/users/login`, data, this.httpOptions);
   }
 
   logIn(username: string) {
