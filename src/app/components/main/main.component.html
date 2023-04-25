@@ -1,5 +1,5 @@
 <div *ngIf="!isSmallScreen">
-  <mat-tab-group [selectedIndex]="selectedTabIndex$ | async">
+  <mat-tab-group (selectedTabChange)="onTabChanged($event)" [selectedIndex]="selectedTabIndex$ | async">
     <mat-tab label="Can I get a mortgage?">
       <app-max-loan-calculator></app-max-loan-calculator>
     </mat-tab>
