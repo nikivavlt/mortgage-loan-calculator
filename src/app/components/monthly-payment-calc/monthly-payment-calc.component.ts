@@ -19,11 +19,12 @@ export class MonthlyPaymentCalc implements OnInit {
   loading: boolean = false;
 
   calculations$: Observable<MonthlyPaymentCalcResponse> = of();
+  @ViewChild('doughnutCanvas') doughnutCanvas: ElementRef | undefined;
+  doughnutChart: any;
 
   monthlyCalculatorForm: FormGroup;
 
   constructor(private monthlyPaymentCalcService: MonthlyPaymentCalcService) {
-
     this.monthlyCalculatorForm = formBuilder.group({
       homePrice: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(5000)]],
       mortgageAmount: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
@@ -32,11 +33,9 @@ export class MonthlyPaymentCalc implements OnInit {
       interestRate: ['', [Validators.required, Validators.pattern("^[0-9]*(\.[0-9]{0,2})?$")]],
       mortgageTerm: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(1), Validators.max(30)]],
     }, { validators: [downPaymentValidator, mortgageAmountValidator] })
-
   }
 
   ngOnInit(): void {
-
     this.monthlyCalculatorForm.controls?.['homePrice']
       .valueChanges
       .subscribe(() => {
@@ -65,16 +64,15 @@ export class MonthlyPaymentCalc implements OnInit {
 
     this.calculations$ = this.monthlyCalculatorForm.valueChanges.pipe(
       filter((val) => this.monthlyCalculatorForm.valid),
-      tap(() => this.loading = true),
+      tap(() => {
+        this.updatePieChart(),
+        this.loading = true
+      }),
       debounceTime(1000),
       switchMap(() => this.monthlyPaymentCalcService.sendCalculatorData(this.monthlyCalculatorForm.value)));
 
     this.calculations$.subscribe((response) => {
       this.doughnutChartMethod(response.monthlyPayment, response.totalPayableAmount, response.interestCost);
-    });
-
-    this.monthlyCalculatorForm.valueChanges.subscribe(() => {
-      this.updatePieChart();
     });
   }
 
@@ -109,10 +107,11 @@ export class MonthlyPaymentCalc implements OnInit {
     return this.monthlyCalculatorForm.get('mortgageTerm') as FormControl<string>;
   }
 
-  @ViewChild('doughnutCanvas') doughnutCanvas: ElementRef | undefined;
-  doughnutChart: any;
-
   doughnutChartMethod(monthlyPayment: string, totalPayableAmount: string, interestCost: string) {
+    if (this.doughnutChart) {
+      this.doughnutChart.destroy();
+    }
+
     this.doughnutChart = new Chart(this.doughnutCanvas?.nativeElement, {
       type: 'doughnut',
       data: {
@@ -230,15 +229,13 @@ export class MonthlyPaymentCalc implements OnInit {
   }
 
   private updatePieChart(): void {
-    this.calculations$ = this.monthlyPaymentCalcService.sendCalculatorData(this.monthlyCalculatorForm.value);
 
     this.calculations$.subscribe((response) => {
       const monthlyPayment = response.monthlyPayment;
       const totalPayableAmount = response.totalPayableAmount;
       const interestCost = response.interestCost;
 
-      this.doughnutChart.data.datasets[0].data = [monthlyPayment, totalPayableAmount, interestCost];
-      this.doughnutChart.update();
+      this.doughnutChartMethod(monthlyPayment, totalPayableAmount, interestCost)
     });
   }
 }
