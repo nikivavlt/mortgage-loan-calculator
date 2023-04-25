@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class RedirectToHomepageService {
-  selectedTabIndexSource = new BehaviorSubject<number>(-1);
+  selectedTabIndexSource = new BehaviorSubject<number>(0);
 
   constructor() {}
 }
