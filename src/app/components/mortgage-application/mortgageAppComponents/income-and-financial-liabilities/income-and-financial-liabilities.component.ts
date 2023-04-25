@@ -17,23 +17,23 @@ export class IncomeAndFinancialLiabilitiesComponent {
   childCountEnum = ChildCount;
 
   educationValues: DropDownItem[] = [
-    { value: 'primary', viewValue: 'Primary' },
+    { value: 'Primary', viewValue: 'Primary' },
     { value: 'Secondary', viewValue: 'Secondary' },
     { value: 'Vocational', viewValue: 'Vocational' },
     { value: 'College', viewValue: 'College' },
     { value: 'Higher', viewValue: 'Higher' },
   ];
   timeEmployedValues: DropDownItem[] = [
-    { value: 'trial', viewValue: 'Trial period' },
-    { value: '1year', viewValue: 'Up to 1 year' },
-    { value: '1to3', viewValue: '1-3 years' },
-    { value: '3to5', viewValue: '3-5 years' },
-    { value: '5years', viewValue: 'More than 5 years' },
+    { value: 'Trial period', viewValue: 'Trial period' },
+    { value: 'Up to 1 year', viewValue: 'Up to 1 year' },
+    { value: '1-3 years', viewValue: '1-3 years' },
+    { value: '3-5 years', viewValue: '3-5 years' },
+    { value: 'More than 5 years', viewValue: 'More than 5 years' },
   ];
   contractTypeValues: DropDownItem[] = [
-    { value: 'openEnded', viewValue: 'Open-end' },
-    { value: 'fixedTerm', viewValue: 'Fixed term' },
-    { value: 'other', viewValue: 'Other' },
+    { value: 'Open-end', viewValue: 'Open-end' },
+    { value: 'Fixed term', viewValue: 'Fixed term' },
+    { value: 'Other', viewValue: 'Other' },
   ];
 
   constructor(private fb: FormBuilder) {
@@ -45,7 +45,7 @@ export class IncomeAndFinancialLiabilitiesComponent {
       position: new FormControl('', Validators.required),
       timeEmployed: new FormControl('', Validators.required),
       contractType: new FormControl('', Validators.required),
-      financialObligations: new FormControl('', Validators.required),
+      financialObligations: new FormControl(false, Validators.required),
       monthlyObligations: new FormControl(''),
     });
 

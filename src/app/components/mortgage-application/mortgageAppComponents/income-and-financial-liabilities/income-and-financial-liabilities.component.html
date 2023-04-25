@@ -67,8 +67,8 @@
     <br>
     <mat-label>Current other financial obligations</mat-label>
     <mat-radio-group aria-label="Select an option" formControlName="financialObligations">
-      <mat-radio-button [value]="true">Yes</mat-radio-button>
-      <mat-radio-button [value]="false">No</mat-radio-button>
+<mat-radio-button [value]="true">Yes</mat-radio-button>
+    <mat-radio-button [value]="false">No</mat-radio-button>
     </mat-radio-group>
     <mat-error *ngIf="financialObligationsControlRequiredError">Financial Obligations is required</mat-error>
 

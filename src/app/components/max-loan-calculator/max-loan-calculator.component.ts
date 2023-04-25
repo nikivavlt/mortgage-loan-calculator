@@ -57,13 +57,13 @@ export class MaxLoanCalculatorComponent {
         if (this.loanForm.valid) {
           const isSingleApplicant = this.loanForm.get('borrower')?.value === 'personal';
           const netIncome = this.loanForm.get('netIncome')?.value;
-          const familyMember = this.loanForm.get('dependent')?.value;
+          const familyMembers = this.loanForm.get('dependent')?.value;
           const monthlyObligationAmount = this.loanForm.get('obligations')?.value;
 
           return this.showMaxMortgageService.calculateMaxMortgageAmount(
             isSingleApplicant,
             netIncome,
-            familyMember,
+            familyMembers,
             monthlyObligationAmount
           ).pipe(catchError(() => {
             return of(0)
