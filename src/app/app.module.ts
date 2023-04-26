@@ -42,6 +42,8 @@ import { NgChartsModule } from 'ng2-charts';
 import { ApplicationListFilterComponent } from './components/application-list-filter/application-list-filter.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSortModule } from '@angular/material/sort';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   imports: [
@@ -70,7 +72,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatMenuModule,
     NgChartsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSortModule,
+    MatExpansionModule
   ],
   declarations: [
     AppComponent,

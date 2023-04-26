@@ -1,32 +1,24 @@
-<form class="filter-form">
-    
-  
-    <!-- <mat-form-field class="filter-field">
-      <mat-label>Date Input</mat-label>
-      <input matInput [matDatepicker]="picker" placeholder="Date" [(ngModel)]="selectedDate">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-     
-    </mat-form-field> -->
-
-    <mat-form-field appearance="outline">
+<form (submit)="onFilterSubmit()"class="filter-form" [formGroup]="filterForm">
+    <label><h2>Filter</h2></label>
+    <div>
+    <mat-form-field appearance="outline" >
         <mat-label>Choose a date</mat-label>
-        <input matInput [matDatepicker]="picker">
+        <input matInput [matDatepicker]="picker" formControlName="selectedDate">
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-  
-    <div class="filter-field">
-      <mat-label>Status</mat-label>
-      <div class="checkboxes-container">
-        <mat-checkbox [(ngModel)]="isNew">New</mat-checkbox>
-        <mat-checkbox [(ngModel)]="isInProgress">In Progress</mat-checkbox>
-        <mat-checkbox [(ngModel)]="isDone">Done</mat-checkbox>
-        <mat-checkbox [(ngModel)]="isRejected">Rejected</mat-checkbox>
-        <!-- Replace [(ngModel)] with your desired two-way binding properties -->
-      </div>
+    </mat-form-field>
     </div>
-  
-    <!-- Add your filter button or additional filter fields here -->
-  
+        <mat-form-field appearance="outline">
+            <mat-label>Status</mat-label>
+          <mat-select [(ngModel)]="selectedStatus" multiple formControlName="selectedStatus">
+            <mat-option value="New">New</mat-option>
+            <mat-option value="In progress">In Progress</mat-option>
+            <mat-option value="PreApproved">Pre-Approved</mat-option>
+            <mat-option value="Rejected">Rejected</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="primary" type="submit">Filter</button>
+        <br>
   </form>
+  <button mat-raised-button (click)="resetForm()" color="primary">Reset</button>

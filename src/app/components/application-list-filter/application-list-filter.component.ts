@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { DropDownItem } from 'src/app/interfaces/application-form-interfaces';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-application-list-filter',
@@ -7,24 +7,38 @@ import { DropDownItem } from 'src/app/interfaces/application-form-interfaces';
   styleUrls: ['./application-list-filter.component.css']
 })
 export class ApplicationListFilterComponent {
-  
 
-  selectedValue: string;
+ @Output() filterApplied: EventEmitter<{ date: Date, status: string}> = new EventEmitter();
+ @Output() onFilterReset: EventEmitter<null> = new EventEmitter();
+
+  selectedStatus!: string;
   selectedDate: Date; 
-  isNew: boolean; 
-  isInProgress: boolean; 
-  isDone: boolean; 
-  isRejected: boolean; 
+  filterForm: FormGroup;
   
 
 
-  constructor() {
- 
-    this.selectedValue = '';
+  constructor(private fb: FormBuilder) {
     this.selectedDate = new Date;
-    this.isNew = false;
-    this.isInProgress = false;
-    this.isDone = false;
-    this.isRejected = false;
-}
+
+    this.filterForm = this.fb.group({
+      selectedDate: new FormControl(),
+      selectedStatus: new FormControl()
+    });
+  }
+
+  get filterDateControl() {
+    return this.filterForm.get('selectedDate');
+  }
+  get selectedStatusControl() {
+    return this.filterForm.get('selectedStatus');
+  }
+
+  onFilterSubmit() {
+    this.filterApplied.emit({ date: this.filterDateControl?.value, status: this.selectedStatusControl?.value });
+  }
+
+  resetForm(){
+    this.filterForm.reset();
+    this.onFilterReset.emit(null);
+  }
 }
