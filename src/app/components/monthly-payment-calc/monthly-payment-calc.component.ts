@@ -23,7 +23,6 @@ export class MonthlyPaymentCalc implements OnInit {
   doughnutChart: any;
 
   monthlyCalculatorForm: FormGroup;
-  snackBar: any;
 
   constructor(private monthlyPaymentCalcService: MonthlyPaymentCalcService) {
     this.monthlyCalculatorForm = formBuilder.group({
@@ -70,7 +69,7 @@ export class MonthlyPaymentCalc implements OnInit {
         this.loading = true;
         return this.monthlyPaymentCalcService.sendCalculatorData(this.monthlyCalculatorForm.value).pipe(
           catchError((error) => {
-            return of(null);
+            return of(0);
           }),
           tap(() => {
             this.loading = false;
@@ -78,7 +77,6 @@ export class MonthlyPaymentCalc implements OnInit {
         );
       }),
     );
-
 
     this.calculations$.subscribe((response) => {
       this.doughnutChartMethod(this.mortgageAmount.value, this.downPayment.value, response.interestCost);
