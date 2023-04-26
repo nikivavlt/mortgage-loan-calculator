@@ -18,19 +18,26 @@
     <mat-form-field appearance="outline">
       <input matInput type="number" placeholder="0" formControlName="netIncome" (blur)="removeZeros('netIncome')"  />
       <span matTextSuffix> Eur </span>
-      <mat-error *ngIf="netIncome?.errors?.['required']">
-        This field is required
-      </mat-error>
-      <mat-error *ngIf="netIncome?.errors?.['pattern']">
-        Please enter a valid number
-      </mat-error>
-      <mat-error *ngIf="loanForm.errors?.['applicantNetIncomeCheck']">
-        Minimum monthly income should be 600 EUR
-      </mat-error>
-      <mat-error *ngIf="loanForm.errors?.['applicantWithCoBorrowerError']">
-        Minimum monthly income should be 1000 EUR
-      </mat-error>
     </mat-form-field>
+
+    <div class="message-block"
+      *ngIf="netIncome?.dirty && (netIncome?.errors || netIncome?.touched || loanForm?.errors)">
+      <div *ngIf="netIncome?.errors?.['required']" class="error-message">
+        This field is required
+      </div>
+      <div *ngIf="netIncome?.errors?.['pattern']" class="error-message">
+        Please enter a valid number
+      </div>
+      <div *ngIf="loanForm.get('borrower')?.value==='personal' && loanForm.errors?.['applicantNetIncomeCheck']"
+        class="error-message">
+        Minimum monthly income should be 600 EUR
+      </div>
+      <div *ngIf="loanForm.get('borrower')?.value==='co-borrower' && loanForm.errors?.['applicantWithCoBorrowerError']"
+        class="error-message">
+        Minimum monthly income should be 1000 EUR
+      </div>
+    </div>
+
     <mat-label>Number of dependent family members</mat-label>
 <mat-radio-group formControlName="dependent">
   <mat-radio-button value="0">0</mat-radio-button>
