@@ -8,8 +8,7 @@ import { ChatBotService } from 'src/app/services/chat-bot.service';
   styleUrls: ['./chat-bubble.component.css']
 })
 export class ChatBubbleComponent {
-  message = '';
-  response: Array<string> | undefined;
+  chatHistory: Array<string> | undefined;
   isLoading = false;
   isActive = true;
   chatInput = '';
@@ -17,7 +16,7 @@ export class ChatBubbleComponent {
 
   constructor(private chatBotService:ChatBotService) {
     this.apiKey = "";
-    this.response = [];
+    this.chatHistory = ['Hello, how can I help you today?'];
     this.getApiKey();
   }
 
@@ -39,25 +38,23 @@ export class ChatBubbleComponent {
   }
 
 
-  async sendMessage(message: string): Promise<void> {
+  async sendMessage(chatInput: string): Promise<void> {
     try {
-      this.message = message;
       this.isLoading = true;
       this.isActive = true;
-      const response = await firstValueFrom(this.chatBotService.sendChatRequest(this.chatInput, this.apiKey));
+      this.chatHistory?.push(chatInput);
+      const response = await firstValueFrom(this.chatBotService.sendChatRequest(chatInput, this.apiKey));
 
       if (response.choices && response.choices.length > 0 && response.choices[0].message.content) {
-        console.log(response.choices[0].message.content);
-
-        this.response?.push(response.choices[0].message.content);
+        this.chatHistory?.push(response.choices[0].message.content);
       } else {
-        this.response?.push('Sorry, I could not understand your request.');
+        this.chatHistory?.push('Sorry, I could not understand your request.');
       }
     } catch (error) {
-      this.response?.push('Oops! Something went wrong.');
+      this.chatHistory?.push('Oops! Something went wrong.');
     } finally {
       this.isLoading = false;
-      this.chatInput = '';
+      chatInput = '';
     }
   }
 

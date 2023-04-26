@@ -1,14 +1,18 @@
 <div class="chat-bubble-wrapper" [ngClass]="{'active': isActive}">
   <i class="fas fa-comment-alt"></i>
   <div class="chat-bubble-content">
-    <ul *ngFor="let item of response">
-      <li class="chat-message">{{ item }}</li>
-    </ul>
-    <div class="chat-message">{{ message }}</div>
-    <div class="chat-spinner" *ngIf="isLoading"><i class="fas fa-spinner fa-pulse"></i></div>
-    <form class="chat-form" (ngSubmit)="onSubmit()">
-      <input type="text" [(ngModel)]="chatInput" name="chatInput" placeholder="Type your message...">
-      <button type="submit"><i class="fas fa-paper-plane"></i></button>
-    </form>
+    <div class="chat-history-wrapper">
+      <ul *ngFor="let item of chatHistory">
+        <li class="chat-message">{{ item }}</li>
+      </ul>
+      <div class="chat-spinner" *ngIf="isLoading"><i class="fas fa-spinner fa-pulse"></i></div>
+    </div>
+    <div class="chat-form-wrapper">
+      <form class="chat-form" (ngSubmit)="onSubmit()">
+        <input type="text" [(ngModel)]="chatInput" name="chatInput" placeholder="Type your message...">
+        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+
   </div>
 </div>
