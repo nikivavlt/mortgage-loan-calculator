@@ -65,14 +65,15 @@ export class MonthlyPaymentCalc implements OnInit {
 
     this.calculations$ = this.monthlyCalculatorForm.valueChanges.pipe(
       debounceTime(1000),
-      distinctUntilChanged(),
       filter(() => this.monthlyCalculatorForm.valid),
       switchMap(() => {
         this.loading = true;
         return this.monthlyPaymentCalcService.sendCalculatorData(this.monthlyCalculatorForm.value).pipe(
           catchError((error) => {
+            return of(null);
+          }),
+          tap(() => {
             this.loading = false;
-            return of();
           }),
         );
       }),
