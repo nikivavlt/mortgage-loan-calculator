@@ -19,10 +19,11 @@ import { DecimalPipe } from '@angular/common';
 })
 
 
-export class MaxLoanCalculatorComponent {
+export class MaxLoanCalculatorComponent implements OnInit {
   loanForm: FormGroup;
   maxMortgageAmount: Observable<number> = of(0);
   maxMortgageAmountValue: number = 0;
+
 
   private readonly destroy$ = new Subject<void>();
 
@@ -54,8 +55,6 @@ export class MaxLoanCalculatorComponent {
       distinctUntilChanged(),
       takeUntil(this.destroy$),
       switchMap(() => {
-        console.log(this.loanForm);
-
         if (this.loanForm.valid) {
           const isSingleApplicant = this.loanForm.get('borrower')?.value === 'personal';
           const netIncome = this.loanForm.get('netIncome')?.value;

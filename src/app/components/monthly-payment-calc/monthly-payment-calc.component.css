@@ -1,8 +1,8 @@
 :host {
   display: flex;
   justify-content: space-evenly;
-  overflow-y: hidden;
-  margin: 0;
+  margin: 2em;
+
 }
 
 form {
@@ -22,15 +22,11 @@ form {
 align-self: flex-start;
 } */
 
-*/ .calculator-result {
-  margin-top: 4rem;
-}
-
-@media screen and (max-width: 580px) {
-  :host {
-    flex-direction: column;
-    align-items: center;
-  }
+.calculator-result {
+  margin-top: 2em;
+  align-items: center;
+  font-weight: 900;
+  color: #5b548a;
 
 }
 
@@ -46,3 +42,61 @@ align-self: flex-start;
   box-shadow: 10px 5px 5px #e2e2ff, 0 6px 6px rgba(0, 0, 0, 0.23);
   border-radius: 10px;
 }
+
+@media screen and (max-width: 580px) {
+  :host {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container {
+    gap: 2em;
+  }
+
+  .calculator-result {
+    margin-top: 2rem;
+  }
+
+  .calculator-result:last-child {
+    margin-bottom: 0.2em;
+  }
+
+  canvas {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  :host {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container {
+    gap: 3em;
+  }
+
+  .calculator-result {
+    margin-top: 3rem;
+  }
+
+  .calculator-result:last-child {
+    margin-bottom: 0.2em;
+  }
+
+  /* Move the canvas rule to this media query */
+  canvas {
+    display: none;
+  }
+}
+
+/* body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  flex-grow: 1;
+} */

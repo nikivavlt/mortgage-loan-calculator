@@ -34,12 +34,12 @@ mat-slider {
   font-size: 0.1em;
 }
 
-.term-of-loan {
+/* .term-of-loan {
   display: flex;
   flex-direction: column;
   align-items: center;
 
-}
+} */
 
 .formInput-slider {
   width: 100%;

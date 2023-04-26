@@ -96,10 +96,8 @@
     <mat-error *ngIf="mortgageTerm.errors?.['pattern']">
       Please use only numbers
     </mat-error>
-    <mat-error *ngIf="mortgageTerm.errors?.['min']
-      && !mortgageTerm.errors?.['required']">
-      Minimum term of mortgage is 1 year
-    </mat-error>
+    <mat-error *ngIf="mortgageTerm.errors?.['min'] && !mortgageTerm.errors?.['required']">
+      Minimum term of mortgage is 1 year  </mat-error>
     <mat-error  *ngIf="mortgageTerm.errors?.['max']">
       Maximum term of mortgage is 30 years
     </mat-error>
@@ -119,6 +117,7 @@
   </div>
 </div>
 </ng-container>
+
 <ng-container *ngIf=" !( calculations$ | async ) as calculations">
 <div class="calculator-result" *ngIf="loading">
   <p>Monthly payment: Calculating..</p>
