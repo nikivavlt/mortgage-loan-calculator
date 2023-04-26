@@ -28,3 +28,7 @@ export interface AllApplications {
   status: string;
   }
 
+  export interface FilterData {
+    date: Date;
+    status: string;
+  } 

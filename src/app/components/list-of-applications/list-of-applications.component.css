@@ -1,13 +1,28 @@
 .applicants-table-label{
     text-align: center;
+}  
+
+.applicants-table{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 5em;
+}
+
+.mat-elevation-z8 demo-table{
+  border-radius: 10px;
+  box-shadow: 10px 5px 5px #e2e2ff, 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
 .clickable-cell{
     cursor: pointer;
 }
 
-.yellow {
-    color: yellow;
+.purple {
+    color: purple;
+   
 }
 .blue{
     color: blue;
@@ -21,19 +36,6 @@
     color: red;
   }
 
-  .applicants-table{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    padding: 1.25em;
-    gap: 5em;
-    border-radius: 10px;
-    box-shadow: 10px 5px 5px #e2e2ff, 0 6px 6px rgba(0, 0, 0, 0.23);
-  }
 
-  .mat-elevation-z8 demo-table{
-    border-radius: 10px;
-    box-shadow: 10px 5px 5px #e2e2ff, 0 6px 6px rgba(0, 0, 0, 0.23);
-  }
+
+ 
