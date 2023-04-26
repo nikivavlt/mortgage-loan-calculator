@@ -1,12 +1,20 @@
 import { Component, Input } from '@angular/core';
 
 interface MortgageFormData {
-  maxMortgageAmount?: number;
+  maxMortgageAmount?: {
+    maxLoan: number;
+    maxMonthlyLoanPayment: number;
+  };
   isSingleApplicant: boolean;
   netIncome: number;
   familyMembers: number;
   monthlyObligationAmount: number;
 }
+interface MaxMortgageData {
+  maxLoan: number;
+  maxMonthlyLoanPayment: number;
+}
+
 
 @Component({
   selector: 'app-show-max-mortgage-amount',
@@ -14,7 +22,7 @@ interface MortgageFormData {
   styleUrls: ['./show-max-mortgage-amount.component.css']
 })
 export class ShowMaxMortgageAmountComponent {
-  @Input() maxMortgageAmount: number = 0;
+  @Input() maxMortgageAmount: MaxMortgageData | undefined;
 
   constructor() { }
 }
