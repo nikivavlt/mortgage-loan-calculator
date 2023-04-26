@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { ShowMaxMortgageService } from '../../services/show-max-mortgage.service';
 import { negativeValidator, applicantNetIncomeCheck, applicantWithDependentsCheck } from './manual-validators';
 import { catchError, debounceTime, distinctUntilChanged, filter, startWith, switchMap, takeUntil, tap } from 'rxjs/operators';
@@ -8,6 +8,17 @@ import { Observable, of } from 'rxjs';
 import { formatNumber } from '@angular/common';
 import { DecimalPipe } from '@angular/common';
 
+interface MaxMortgageResponse {
+  maxLoan: number;
+  maxMonthlyLoanPayment: number;
+}
+
+interface LoanForm {
+  netIncome: FormControl<number | undefined>;
+  dependent: FormControl<string>;
+  obligations: FormControl<number | undefined>;
+  borrower: FormControl<string>;
+}
 
 
 @Component({
@@ -21,8 +32,8 @@ import { DecimalPipe } from '@angular/common';
 
 export class MaxLoanCalculatorComponent implements OnInit {
   loanForm: FormGroup;
-  maxMortgageAmount: Observable<number> = of(0);
-  maxMortgageAmountValue: number = 0;
+  maxMortgageAmount: Observable<MaxMortgageResponse> = of({ maxLoan: 0, maxMonthlyLoanPayment: 0 });
+  maxMortgageAmountValue: MaxMortgageResponse = { maxLoan: 0, maxMonthlyLoanPayment: 0 };
 
 
   private readonly destroy$ = new Subject<void>();
@@ -67,10 +78,10 @@ export class MaxLoanCalculatorComponent implements OnInit {
             familyMembers,
             monthlyObligationAmount
           ).pipe(catchError(() => {
-            return of(0)
+            return of({ maxLoan: 0, maxMonthlyLoanPayment: 0 })
           }));
         } else {
-          return of(0);
+          return of();
         }
       }),
     );
