@@ -23,6 +23,7 @@ export class MonthlyPaymentCalc implements OnInit {
   doughnutChart: any;
 
   monthlyCalculatorForm: FormGroup;
+  snackBar: any;
 
   constructor(private monthlyPaymentCalcService: MonthlyPaymentCalcService) {
     this.monthlyCalculatorForm = formBuilder.group({
@@ -65,18 +66,18 @@ export class MonthlyPaymentCalc implements OnInit {
     this.calculations$ = this.monthlyCalculatorForm.valueChanges.pipe(
       debounceTime(1000),
       distinctUntilChanged(),
+      filter(() => this.monthlyCalculatorForm.valid),
       switchMap(() => {
-        if (this.monthlyCalculatorForm.valid) {
-          return this.monthlyPaymentCalcService.sendCalculatorData(this.monthlyCalculatorForm.value).pipe(
-            catchError(() => {
-              return of();
-            }),
-          );
-        } else {
-          return of();
-        }
+        this.loading = true;
+        return this.monthlyPaymentCalcService.sendCalculatorData(this.monthlyCalculatorForm.value).pipe(
+          catchError((error) => {
+            this.loading = false;
+            return of();
+          }),
+        );
       }),
     );
+
 
     this.calculations$.subscribe((response) => {
       this.doughnutChartMethod(this.mortgageAmount.value, this.downPayment.value, response.interestCost);
