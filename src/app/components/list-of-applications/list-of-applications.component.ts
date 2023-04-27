@@ -27,9 +27,9 @@ export class ListOfApplicationsComponent {
 
   @Input() selectedDate?: Date;
   @Input() selectedStatus?: string;
-  
+
   applications: AllApplications[] = [];
-  
+
   constructor(private getAllApplicationsService: GetAllApplicationsService, private dialog: MatDialog, private updateApplicationsStatusService: UpdateApplicationStatusService) {
 }
 
@@ -52,14 +52,16 @@ export class ListOfApplicationsComponent {
       this.data = of(new MatTableDataSource(this.applications));
     });
   }
+
   onFilterApplied(filter: FilterData) {
     this.getApplicationData(true,filter)
 
   }
+
   getApplicationData(bool: boolean, filter?: FilterData){
     if (!bool){
       console.log(bool, "not using filter");
-      
+
       this.data = this.getAllApplicationsService.getAllApplications()
       .pipe(
         map((applications: AllApplications[]) => {
@@ -79,7 +81,7 @@ export class ListOfApplicationsComponent {
         catchError((error: any) => {
           console.error('Error occurred:', error);
           return of();
-        }), 
+        }),
 
       )
     }
@@ -101,7 +103,7 @@ export class ListOfApplicationsComponent {
             if (filter?.status && !filter.status.includes(application.status)) {
               return false;
             }
-            
+
             return true;
           });
 
@@ -121,14 +123,14 @@ export class ListOfApplicationsComponent {
         })
       );
     }
-  } 
+  }
   isDatesEqual(date1: Date, date2: Date): boolean {
     return date1.toDateString() === date2.toDateString();
   }
 
   resetForm(){
     console.log("reset");
-    
+
     this.getApplicationData(false);
   }
 }

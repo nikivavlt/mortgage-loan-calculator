@@ -1,0 +1,12 @@
+<div id="search-component">
+    <input #searchBox class="search-input" type="text"
+    matInput placeholder="Search by Name/ Surname/ Id"
+    (input)="search(searchBox.value)">
+  <ul class="search-result">
+    <li *ngFor="let application of applications$ | async" >
+      <a (click)="onLinkClick(application)">
+        {{ application.id }} {{ application.firstName }} {{ application.lastName }}
+      </a>
+    </li>
+  </ul>
+</div>
