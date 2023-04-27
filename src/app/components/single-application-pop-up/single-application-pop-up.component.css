@@ -5,11 +5,9 @@
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 16px;
-}
 
 .back-button {
     margin-right: 8px;
-
 }
 
 .actions-container {
@@ -25,6 +23,7 @@
 
 h2 {
     color: black;
+    margin-bottom: 8px;
 }
 
 h3 {
@@ -41,6 +40,7 @@ h3 {
 .red{
     color:red;
 }
+
 @media screen and (max-width: 767px) {
     .header-container {
         justify-content: center;
@@ -49,6 +49,7 @@ h3 {
     .actions-container {
         margin-top: 10px;
     }
+
 }
 
 .spacer {
