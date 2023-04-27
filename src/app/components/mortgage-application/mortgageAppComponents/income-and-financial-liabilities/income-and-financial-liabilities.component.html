@@ -35,19 +35,19 @@
     <div class="form__content">
       <mat-form-field appearance="outline" class="formInput">
         <mat-label>Current employer</mat-label>
-        <input matInput formControlName="employer" type="text" placeholder="UAB Firma">
+        <input matInput formControlName="employer" type="text">
         <mat-error *ngIf="employerControlRequiredError">Employer is required</mat-error>
       </mat-form-field>
       <br>
       <mat-form-field appearance="outline" class="formInput">
         <mat-label>Position held</mat-label>
-        <input matInput formControlName="position" type="text" placeholder="Manager">
+        <input matInput formControlName="position" type="text">
         <mat-error *ngIf="positionControlRequiredError">Position is required</mat-error>
       </mat-form-field>
       <br>
       <mat-form-field appearance="outline" class="formInput">
         <mat-label>Net income</mat-label>
-        <input matInput formControlName="netIncome" type="number" placeholder="1000">
+        <input matInput formControlName="netIncome" type="number">
         <span matTextSuffix> Eur </span>
         <mat-error *ngIf="netIncomeControlRequiredError">Net Income is required</mat-error>
       </mat-form-field>
@@ -76,7 +76,7 @@
       <br>
       <mat-form-field appearance="outline">
         <mat-label>Monthly obligations</mat-label>
-        <input matInput formControlName="monthlyObligations" type="number" placeholder="1000">
+        <input matInput formControlName="monthlyObligations" type="number">
         <span matTextSuffix> Eur </span>
         <mat-error *ngIf="monthlyObligationsControlRequiredError">Monthly Obligations is required</mat-error>
       </mat-form-field>

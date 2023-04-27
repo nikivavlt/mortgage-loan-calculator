@@ -1,10 +1,11 @@
-.mat-form-field {
-    flex-basis: 40%;
-    max-width: 40%;
-  }
-  
-  button {
-    flex-basis: 20%;
-    max-width: 20%;
-    margin-right: 10px;
-  }
+.form-input {
+  margin-right: 16px;
+  width: 100%;
+  max-width: 300px;
+}
+
+button {
+  flex-basis: 20%;
+  max-width: 20%;
+  margin-right: 10px;
+}

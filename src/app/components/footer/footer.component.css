@@ -7,14 +7,24 @@ footer {
   text-align: center;
 }
 
+.admin-login {
+  margin-bottom: 1.2rem;
+  margin-left: 1rem;
+  color: white;
+  position: absolute;
+  left: 0;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
 p {
   font-size: 0.9rem;
   color: white;
+  display: inline-block;
 }
 
 @media screen and (max-width: 350px) {
   p {
     font-size: 0.65rem;
   }
-
 }
