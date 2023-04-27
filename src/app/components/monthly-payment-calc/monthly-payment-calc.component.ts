@@ -61,26 +61,24 @@ export class MonthlyPaymentCalc implements OnInit {
       .subscribe(() => {
         this.onDownPaymentPercentChanged();
       });
-
-    this.calculations$ = this.monthlyCalculatorForm.valueChanges.pipe(
-      debounceTime(1000),
-      filter(() => this.monthlyCalculatorForm.valid),
-      switchMap(() => {
-        this.loading = true;
-        return this.monthlyPaymentCalcService.sendCalculatorData(this.monthlyCalculatorForm.value).pipe(
-          catchError((error) => {
-            return of(0);
-          }),
-          tap(() => {
-            this.loading = false;
-          }),
-        );
-      }),
-    );
-
-    this.calculations$.subscribe((response) => {
-      this.doughnutChartMethod(this.mortgageAmount.value, this.downPayment.value, response.interestCost);
-    });
+      this.calculations$ = this.monthlyCalculatorForm.valueChanges.pipe(
+        debounceTime(1000),
+        filter(() => this.monthlyCalculatorForm.valid),
+        switchMap(() => {
+          this.loading = true;
+          return this.monthlyPaymentCalcService.sendCalculatorData(this.monthlyCalculatorForm.value).pipe(
+            catchError((error) => {
+              return of(0);
+            }),
+            tap(() => {
+              this.loading = false;
+            }),
+          );
+        }),
+        tap((response) => {
+          this.doughnutChartMethod(this.mortgageAmount.value, this.downPayment.value, response.interestCost);
+        })
+      );
   }
 
   addSpacer(price: any) {
