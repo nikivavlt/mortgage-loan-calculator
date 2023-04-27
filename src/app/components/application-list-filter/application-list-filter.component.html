@@ -1,14 +1,14 @@
 <form (submit)="onFilterSubmit()"class="filter-form" [formGroup]="filterForm">
     <label><h2>Filter</h2></label>
     <div>
-    <mat-form-field appearance="outline" >
+    <mat-form-field appearance="outline" class="form-input">
         <mat-label>Choose a date</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="selectedDate">
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     </div>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="form-input">
             <mat-label>Status</mat-label>
           <mat-select [(ngModel)]="selectedStatus" multiple formControlName="selectedStatus">
             <mat-option value="New">New</mat-option>

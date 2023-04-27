@@ -1,3 +1,4 @@
 <footer>
+  <p *ngIf="!isUser()" (click)="logIn()" class="admin-login">Employee</p>
   <p>&#169; Team "Game of loans" 2023</p>
 </footer>

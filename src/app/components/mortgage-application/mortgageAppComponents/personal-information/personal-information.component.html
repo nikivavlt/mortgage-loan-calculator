@@ -2,7 +2,7 @@
   <div class="form form__content">
     <mat-form-field appearance="outline">
       <mat-label>Name</mat-label>
-      <input matInput formControlName="firstName" type="text" placeholder="John">
+      <input matInput formControlName="firstName" type="text">
     <mat-error *ngIf="nameControlRequiredError">
       Name is required
     </mat-error>
@@ -10,7 +10,7 @@
   <br>
     <mat-form-field appearance="outline">
       <mat-label>Surname</mat-label>
-      <input matInput formControlName="lastName" type="text" placeholder="Doe">
+      <input matInput formControlName="lastName" type="text">
 
     <mat-error *ngIf="lnameControlRequiredError">
       Surname is required
@@ -19,7 +19,7 @@
     <br>
     <mat-form-field appearance="outline">
       <mat-label>Personal number</mat-label>
-      <input matInput formControlName="personalNumber"  type="text" placeholder="12345678901" minlength="10" maxlength="15">
+      <input matInput formControlName="personalNumber"  type="text" minlength="10" maxlength="15">
     <mat-error *ngIf="personalNumberControlRequiredError">
       Personal number is required
     </mat-error>
@@ -31,7 +31,7 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Phone number</mat-label>
-      <input matInput formControlName="phoneNumber" type="tel"  placeholder="+37061234567">
+      <input matInput formControlName="phoneNumber" type="tel">
     <mat-error *ngIf="phoneNumberControlRequiredError">
       Phone number is required
     </mat-error>
@@ -40,7 +40,7 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input matInput formControlName="email" type="email" placeholder="info@gmail.com">
+      <input matInput formControlName="email" type="email">
 
     <mat-error *ngIf="emailControlRequiredError">
       Email is required
