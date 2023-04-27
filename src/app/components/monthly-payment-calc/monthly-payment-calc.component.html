@@ -58,11 +58,11 @@
     <mat-error *ngIf="downPaymentPercent.errors?.['pattern']">
       Please use only numbers with two decimal places
     </mat-error>
-    <mat-error  *ngIf="downPaymentPercent.errors?.['min']">
+    <mat-error  *ngIf="monthlyCalculatorForm.errors?.['downPaymentValidator']">
       Down payment is at least 15%
     </mat-error>
-    <mat-error  *ngIf="downPaymentPercent.errors?.['max']">
-      Down payment is at least 15%
+    <mat-error  *ngIf="monthlyCalculatorForm.errors?.['downPaymentValidator']">
+      Maximum down payment is 99%
     </mat-error>
   <!-- </div> -->
   <!-- <div class="error-message" *ngIf="monthlyCalculatorForm.errors?.['downPaymentValidator'] && downPayment.touched">
