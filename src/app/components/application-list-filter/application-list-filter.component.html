@@ -13,12 +13,13 @@
           <mat-select [(ngModel)]="selectedStatus" multiple formControlName="selectedStatus">
             <mat-option value="New">New</mat-option>
             <mat-option value="In progress">In Progress</mat-option>
-            <mat-option value="PreApproved">Pre-Approved</mat-option>
+            <mat-option value="Done">Done</mat-option>
             <mat-option value="Rejected">Rejected</mat-option>
           </mat-select>
         </mat-form-field>
         <br>
         <button mat-raised-button color="primary" type="submit">Filter</button>
+        <button mat-raised-button (click)="resetForm()" color="primary">Reset</button>
         <br>
   </form>
-  <button mat-raised-button (click)="resetForm()" color="primary">Reset</button>
+  
