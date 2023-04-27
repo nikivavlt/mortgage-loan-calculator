@@ -1,0 +1,10 @@
+.mat-form-field {
+    flex-basis: 40%;
+    max-width: 40%;
+  }
+  
+  button {
+    flex-basis: 20%;
+    max-width: 20%;
+    margin-right: 10px;
+  }
