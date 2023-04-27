@@ -16,6 +16,7 @@
   height: 100%;
   padding: 1.25em;
   gap: 5em;
+  width: fit-content;
 }
 
 .form-wrapper {
@@ -47,6 +48,7 @@
   margin-bottom: 0.3em;
   margin-top: 0.3em;
   margin-right: 12px;
+
 }
 
 .form-field-container matSuffix {
@@ -152,5 +154,11 @@ mat-error+mat-error {
   .main-container {
     padding: 0.5em;
     gap: 1em;
+  }
+}
+
+@media (min-width: 992px) {
+  .form-container {
+    width: 35%;
   }
 }
