@@ -70,13 +70,11 @@ export class MonthlyPaymentCalc implements OnInit {
             catchError((error) => {
               return of(0);
             }),
-            tap(() => {
+            tap((response) => {
+              this.doughnutChartMethod(this.mortgageAmount.value, this.downPayment.value, response.interestCost);
               this.loading = false;
             }),
           );
-        }),
-        tap((response) => {
-          this.doughnutChartMethod(this.mortgageAmount.value, this.downPayment.value, response.interestCost);
         })
       );
   }
