@@ -39,13 +39,14 @@
   <mat-radio-button value="1">1</mat-radio-button>
   <mat-radio-button value="2">2</mat-radio-button>
   <mat-radio-button value="3">More</mat-radio-button>
-</mat-radio-group>
-<div *ngIf="loanForm.errors?.['applicantWithMoreThanTwoDependentsError']" class="error-message">
+
+<mat-error *ngIf="loanForm.errors?.['applicantWithMoreThanTwoDependentsError']" class="error-message">
   Minimum monthly income should be 1000 EUR
-</div>
-<div *ngIf="loanForm.errors?.['applicantWithOneDependentError']" class="error-message">
+</mat-error>
+<mat-error *ngIf="loanForm.errors?.['applicantWithOneDependentError']" class="error-message">
   Mininmum monthly income should be 650 EUR
-</div>
+</mat-error>
+</mat-radio-group>
     <mat-label>Current monthly obligations</mat-label>
     <mat-form-field appearance="outline">
       <span matTextSuffix class="suffix"> Eur </span>

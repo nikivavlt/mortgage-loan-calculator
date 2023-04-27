@@ -1,12 +1,11 @@
-import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
-import { ShowMaxMortgageService } from '../../services/show-max-mortgage.service';
-import { negativeValidator, applicantNetIncomeCheck, applicantWithDependentsCheck } from './manual-validators';
-import { catchError, debounceTime, distinctUntilChanged, filter, startWith, switchMap, takeUntil, tap } from 'rxjs/operators';
-import { Subject } from 'rxjs/internal/Subject';
-import { Observable, of } from 'rxjs';
-import { formatNumber } from '@angular/common';
 import { DecimalPipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import { Subject } from 'rxjs/internal/Subject';
+import { catchError, debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs/operators';
+import { ShowMaxMortgageService } from '../../services/show-max-mortgage.service';
+import { applicantNetIncomeCheck, applicantWithDependentsCheck, negativeValidator } from './manual-validators';
 
 interface MaxMortgageResponse {
   maxLoan: number;
@@ -20,15 +19,12 @@ interface LoanForm {
   borrower: FormControl<string>;
 }
 
-
 @Component({
   selector: 'app-max-loan-calculator',
   templateUrl: './max-loan-calculator.component.html',
   styleUrls: ['./max-loan-calculator.component.css'],
   providers: [DecimalPipe],
-
 })
-
 
 export class MaxLoanCalculatorComponent implements OnInit {
   loanForm: FormGroup;
@@ -38,7 +34,7 @@ export class MaxLoanCalculatorComponent implements OnInit {
 
   private readonly destroy$ = new Subject<void>();
 
-  constructor(private showMaxMortgageService: ShowMaxMortgageService, private formBuilder: FormBuilder, private decimalPipe: DecimalPipe) {
+  constructor(private showMaxMortgageService: ShowMaxMortgageService, private formBuilder: FormBuilder) {
     this.loanForm = this.formBuilder.group({
 
       netIncome: ['', [Validators.required]],
