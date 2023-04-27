@@ -1,14 +1,10 @@
+
 .header-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 16px;
-}
-
-button {
-    color: primary;
-}
 
 .back-button {
     margin-right: 8px;
@@ -21,8 +17,7 @@ button {
 
 .info-group {
     text-align: center;
-    margin-bottom: 24px;
-    padding: 16px;
+    padding: 20px;
     border-bottom: 1px solid #eee;
 }
 
@@ -32,18 +27,18 @@ h2 {
 }
 
 h3 {
-    font-size: 1em;
+    font-size: 0.9em;
     text-align: center;
 }
-
-.mat-dialog-content {
-    max-width: 1000px;
-    width: 90%;
+.blue {
+    color: blue;
+}
+.green{
+    color: green;
 }
 
-.mat-dialog-container {
-    max-width: 1000px;
-    width: 90%;
+.red{
+    color:red;
 }
 
 @media screen and (max-width: 767px) {
@@ -55,10 +50,6 @@ h3 {
         margin-top: 10px;
     }
 
-    .mat-dialog-content,
-    .mat-dialog-container {
-        width: 100%;
-    }
 }
 
 .spacer {
