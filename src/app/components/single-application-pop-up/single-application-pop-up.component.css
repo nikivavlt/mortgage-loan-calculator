@@ -5,6 +5,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 16px;
+}
 
 .back-button {
     margin-right: 8px;
