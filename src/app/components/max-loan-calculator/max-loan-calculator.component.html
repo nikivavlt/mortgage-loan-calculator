@@ -32,6 +32,12 @@
         Minimum monthly income should be 1000 EUR
       </mat-error>
     <!-- </div> -->
+    <mat-error *ngIf="netIncome?.errors?.['applicantWithMoreThanTwoDependentsError']">
+      Minimum monthly income should be 1000 EUR
+    </mat-error>
+    <mat-error *ngIf="netIncome?.errors?.['applicantWithOneDependentError']">
+      Mininmum monthly income should be 650 EUR
+    </mat-error>
   </mat-form-field>
     <mat-label>Number of dependent family members</mat-label>
 <mat-radio-group formControlName="dependent">
@@ -40,12 +46,6 @@
   <mat-radio-button value="2">2</mat-radio-button>
   <mat-radio-button value="3">More</mat-radio-button>
 </mat-radio-group>
-<div *ngIf="loanForm.errors?.['applicantWithMoreThanTwoDependentsError']" class="error-message">
-  Minimum monthly income should be 1000 EUR
-</div>
-<div *ngIf="loanForm.errors?.['applicantWithOneDependentError']" class="error-message">
-  Mininmum monthly income should be 650 EUR
-</div>
     <mat-label>Current monthly obligations</mat-label>
     <mat-form-field appearance="outline">
       <span matTextSuffix class="suffix"> Eur </span>

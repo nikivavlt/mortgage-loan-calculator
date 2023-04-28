@@ -1,5 +1,4 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { delay, Observable, of } from 'rxjs';
 
 const negativeValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const netIncome = control.value;
@@ -9,18 +8,20 @@ const negativeValidator: ValidatorFn = (control: AbstractControl): ValidationErr
 const applicantNetIncomeCheck: ValidatorFn = (control) => {
   const dependents = Number(control.get('dependent')?.value);
   const applicants = control.get('borrower')?.value;
-  const netIncome = control.get('netIncome')?.value
+  const netIncome = control.get('netIncome')?.value;
   const obligations = control.get('obligations')?.value;
 
   if (applicants === 'personal' && (!dependents || dependents === 0) && (netIncome - obligations) < 600) {
-    control.get('netIncome')?.setErrors({ applicantNetIncomeCheck: true })
-    return { applicantNetIncomeCheck: true }
+    control.get('netIncome')?.setErrors({ applicantNetIncomeCheck: true });
+    return { applicantNetIncomeCheck: true };
   } else if (applicants === 'co-borrower' && (netIncome - obligations) < 1000) {
-    control.get('netIncome')?.setErrors({ applicantWithCoBorrowerError: true })
-    return { applicantWithCoBorrowerError: true }
+    control.get('netIncome')?.setErrors({ applicantWithCoBorrowerError: true });
+    return { applicantWithCoBorrowerError: true };
+  } else {
+    control.get('netIncome')?.setErrors(null);
+    return null;
   }
-  return null
-}
+};
 
 const applicantWithDependentsCheck: ValidatorFn = (control) => {
   const netIncome = control.get('netIncome')?.value;
@@ -29,15 +30,17 @@ const applicantWithDependentsCheck: ValidatorFn = (control) => {
   const obligations = control.get('obligations')?.value;
 
   if (applicants === 'personal' && dependents >= 2 && (netIncome - obligations) < 1000) {
-    control.get('dependent')?.setErrors({ applicantWithMoreThanTwoDependentsError: true })
+    control.get('netIncome')?.setErrors({ applicantWithMoreThanTwoDependentsError: true });
     return { applicantWithMoreThanTwoDependentsError: true };
   } else if (applicants === 'personal' && dependents === 1 && (netIncome - obligations) < 650) {
-    control.get('dependent')?.setErrors({ applicantWithOneDependentError: true })
+    control.get('netIncome')?.setErrors({ applicantWithOneDependentError: true });
     return { applicantWithOneDependentError: true };
   } else {
-    return null
+    control.get('netIncome')?.setErrors(null);
+    return null;
   }
-}
+};
+
 
 export {
   negativeValidator,
