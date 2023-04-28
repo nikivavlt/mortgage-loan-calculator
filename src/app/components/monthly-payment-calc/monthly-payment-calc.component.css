@@ -2,101 +2,67 @@
   display: flex;
   justify-content: space-evenly;
   margin: 2em;
-
 }
-
-form {
-  display: flex;
+.form-mobile {
+  display: inline-flex;
   flex-direction: column;
-  /* padding-top: 3em; */
-  /* padding: 20px; */
-  /* padding-bottom: 0.2em; */
   height: 100%;
   width: 100%;
 }
-
-/* .error-message {
-  color: red;
-  font-size: 0.75em;
-  /* margin-top: 0.1em;
-align-self: flex-start;
-} */
-
-.calculator-result {
+.form-desktop {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.calculator-result-mobile {
   margin-top: 2em;
   align-items: center;
   font-weight: 900;
   color: #5b548a;
-
 }
-
-.container {
-  display: flex;
-  flex-direction: column;
+.calculator-result-desktop {
+  margin-top: 2em;
   align-items: center;
-  justify-content: center;
-  height: 100%;
-  padding: 1.25em;
-  gap: 5em;
+  font-weight: 900;
+  color: #5b548a;
+}
+.container-mobile {
+  display: flexbox;
+}
+.container-desktop {
+  display: inline-flex;
+  justify-items: center;
+  width: 50%;
+}
+.form-container-mobile {
+  width: 90%;
+  padding: 1rem;
   background-color: #F3F9FB;
   box-shadow: 10px 5px 5px #e2e2ff, 0 6px 6px rgba(0, 0, 0, 0.23);
   border-radius: 10px;
+  height: 80%;
+}
+.form-container-desktop {
+  width: 100%;
+  background-color: #F3F9FB;
+  box-shadow: 10px 5px 5px #e2e2ff, 0 6px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 10px;
+  height: 90%;
+  padding: 1.25em;
+  margin-right: 10rem;
+}
+.result-container-mobile {
+  text-align: center;
+  width: 100%;
+}
+.result-container-desktop {
+  text-align: center;
+  width: 100%;
 }
 
-@media screen and (max-width: 580px) {
-  :host {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .container {
-    gap: 2em;
-  }
-
-  .calculator-result {
-    margin-top: 2rem;
-  }
-
-  .calculator-result:last-child {
-    margin-bottom: 0.2em;
-  }
-
-  canvas {
+@media screen and (max-width: 1000px)  {
+  .canvas-container {
     display: none;
   }
 }
-
-@media screen and (max-width: 1024px) {
-  :host {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .container {
-    gap: 3em;
-  }
-
-  .calculator-result {
-    margin-top: 3rem;
-  }
-
-  .calculator-result:last-child {
-    margin-bottom: 0.2em;
-  }
-
-  /* Move the canvas rule to this media query */
-  canvas {
-    display: none;
-  }
-}
-
-/* body {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.container {
-  flex-grow: 1;
-} */
