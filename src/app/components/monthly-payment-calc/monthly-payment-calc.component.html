@@ -2,7 +2,7 @@
 <form [formGroup]="monthlyCalculatorForm" action="">
   <mat-form-field appearance="outline">
     <mat-label class="calc-label" for="homePrice">Home Price</mat-label>
-    <input matInput id="homePrice" type="number" formControlName="homePrice" placeholder="0">
+    <input matInput id="homePrice" type="number" formControlName="homePrice"  placeholder="0" >
     <span matTextSuffix> Eur </span>
   <!-- <div *ngIf="homePrice.errors && ( homePrice.touched || homePrice.dirty )"> -->
     <mat-error *ngIf="homePrice.errors?.['required']">
@@ -58,11 +58,11 @@
     <mat-error *ngIf="downPaymentPercent.errors?.['pattern']">
       Please use only numbers with two decimal places
     </mat-error>
-    <mat-error  *ngIf="downPaymentPercent.errors?.['min']">
+    <mat-error  *ngIf="monthlyCalculatorForm.errors?.['downPaymentMinValidator']">
       Down payment is at least 15%
     </mat-error>
-    <mat-error  *ngIf="downPaymentPercent.errors?.['max']">
-      Down payment is at least 15%
+    <mat-error  *ngIf="monthlyCalculatorForm.errors?.['downPaymentMaxValidator']">
+      Maximum down payment is 99%
     </mat-error>
   <!-- </div> -->
   <!-- <div class="error-message" *ngIf="monthlyCalculatorForm.errors?.['downPaymentValidator'] && downPayment.touched">
@@ -102,8 +102,6 @@
       Maximum term of mortgage is 30 years
     </mat-error>
   </mat-form-field>
-  
-
 </form>
 </div>
 <ng-container *ngIf=" ( calculations$ | async ) as calculations">
