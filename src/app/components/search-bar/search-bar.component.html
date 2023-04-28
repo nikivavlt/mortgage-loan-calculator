@@ -1,5 +1,5 @@
-<mat-form-field [style.width.rem]=70>
-  <input  #searchBox matInput type="text" placeholder="Search by Name/ Surname/ Id" [matAutocomplete]="auto" (input)="search(searchBox.value)">
+<mat-form-field [style.width.rem]=70 [formGroup]="searchForm">
+  <input matInput type="text" #searchBox (input)="search(searchBox.value)" placeholder="Search by Name/ Surname/ Id" formControlName="searchInput" [matAutocomplete]="auto">
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onLinkClick($event)">
     <mat-option *ngFor="let application of applications$ | async" [value]="application">
       {{ application.id }} {{ application.firstName }} {{ application.lastName }}
