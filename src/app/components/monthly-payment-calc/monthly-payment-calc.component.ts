@@ -5,6 +5,7 @@ import { Chart } from 'chart.js';
 import { downPaymentValidator, mortgageAmountValidator } from './manual-validators';
 import { MonthlyPaymentCalcResponse } from '../../interfaces/monthly-payment-calc-response';
 import { MonthlyPaymentCalcService } from 'src/app/services/monthly-payment-calc.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 
 const formBuilder = new FormBuilder().nonNullable;
@@ -23,8 +24,12 @@ export class MonthlyPaymentCalc implements OnInit {
   doughnutChart: any;
 
   monthlyCalculatorForm: FormGroup;
+  resultContainerClass?: string;
+  calculatorResultClass?: string;
+  containerClass?: string;
+  formContainerClass?: string;
 
-  constructor(private monthlyPaymentCalcService: MonthlyPaymentCalcService) {
+  constructor(private monthlyPaymentCalcService: MonthlyPaymentCalcService,private breakpointObserver: BreakpointObserver) {
     this.monthlyCalculatorForm = formBuilder.group({
       homePrice: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(5000)]],
       mortgageAmount: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
@@ -36,6 +41,20 @@ export class MonthlyPaymentCalc implements OnInit {
   }
 
   ngOnInit(): void {
+    this.breakpointObserver.observe([Breakpoints.Small,Breakpoints.XSmall, Breakpoints.Large]).subscribe(result => {
+      if (result.breakpoints[Breakpoints.Small] || result.breakpoints[Breakpoints.XSmall]) {
+        this.resultContainerClass = 'result-container-mobile';
+        this.calculatorResultClass = 'calculator-result-mobile';
+        this.containerClass = 'container-mobile';
+        this.formContainerClass = 'form-container-mobile';
+      }else if (result.breakpoints[Breakpoints.Large]) {
+        this.resultContainerClass = 'result-container-desktop';
+        this.calculatorResultClass = 'calculator-result-desktop';
+        this.containerClass = 'container-desktop';
+        this.formContainerClass = 'form-container-desktop';
+      }
+    });
+
     this.monthlyCalculatorForm.controls?.['homePrice']
       .valueChanges
       .subscribe(() => {
