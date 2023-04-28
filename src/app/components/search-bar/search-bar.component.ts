@@ -5,6 +5,7 @@ import { AllApplications } from '../../interfaces/all-applications-list';
 import { GetAllApplicationsService } from 'src/app/services/get-all-applications.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SingleApplicationPopUpComponent } from '../single-application-pop-up/single-application-pop-up.component';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-search-bar',
@@ -12,7 +13,6 @@ import { SingleApplicationPopUpComponent } from '../single-application-pop-up/si
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent {
-
   applications$!: Observable<AllApplications[]>;
   private searchTerms = new Subject<string>();
 
@@ -23,12 +23,11 @@ export class SearchBarComponent {
     this.searchTerms.next(term);
   }
 
-  onLinkClick(row: AllApplications) {
+  onLinkClick(row: MatAutocompleteSelectedEvent) {
     this.dialog.open(SingleApplicationPopUpComponent, {
-      data: row
+      data: row.option.value
     });
   }
-
   ngOnInit(): void {
 
     this.applications$ = this.searchTerms.pipe(
