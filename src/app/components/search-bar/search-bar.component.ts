@@ -34,7 +34,7 @@ export class SearchBarComponent {
     this.applications$ = this.searchTerms.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap((term: string) => this.getAllApplications.searchApplications(term)),
+      switchMap((term: string) => this.getAllApplications.searchApplications(term))
     );
   }
 }
