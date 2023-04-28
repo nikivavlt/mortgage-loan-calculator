@@ -8,28 +8,25 @@ const mortgageAmountValidator: ValidatorFn = (input) => {
     return { mortgageAmountValidator: true };
   } else {
     input.get('mortgageAmount')?.setErrors(null);
-
     return null;
   }
 };
 
-// return (input.get('homePrice')?.value < input.get('mortgageAmount')?.value) ? { mortgageAmountValidator: true } : null;
-// }
-
 const downPaymentValidator: ValidatorFn = (input) => {
   const homePrice = input.get('homePrice')?.value;
-  const downPayment = input.get('downPayment')?.value;
+  const downPaymentPercent = input.get('downPaymentPercent')?.value;
+  const downPayment = homePrice * (downPaymentPercent / 100);
   const minValue = homePrice * 0.15 > downPayment;
   const maxValue = homePrice * 0.99 < downPayment;
 
   if (minValue) {
-    input.get('downPayment')?.setErrors({ downPaymentMinValidator: true });
+    input.get('downPaymentPercent')?.setErrors({ downPaymentMinValidator: true });
     return { downPaymentMinValidator: true };
   } else if (maxValue) {
-    input.get('downPayment')?.setErrors({ downPaymentMaxValidator: true });
+    input.get('downPaymentPercent')?.setErrors({ downPaymentMaxValidator: true });
     return { downPaymentMaxValidator: true };
   } else {
-    input.get('downPayment')?.setErrors(null);
+    input.get('downPaymentPercent')?.setErrors(null);
     return null;
   }
 };
@@ -44,4 +41,7 @@ export {
 // const maxValue = input.get('homePrice')?.value * 0.99 < input.get('downPayment')?.value;
 
 //   return (minValue || maxValue) ? { downPaymentValidator: true } : null;
+// }
+
+// return (input.get('homePrice')?.value < input.get('mortgageAmount')?.value) ? { mortgageAmountValidator: true } : null;
 // }
