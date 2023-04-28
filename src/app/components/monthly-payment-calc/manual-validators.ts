@@ -14,19 +14,18 @@ const mortgageAmountValidator: ValidatorFn = (input) => {
 
 const downPaymentValidator: ValidatorFn = (input) => {
   const homePrice = input.get('homePrice')?.value;
-  const downPaymentPercent = input.get('downPaymentPercent')?.value;
-  const downPayment = homePrice * (downPaymentPercent / 100);
+  const downPayment = input.get('downPayment')?.value;
   const minValue = homePrice * 0.15 > downPayment;
   const maxValue = homePrice * 0.99 < downPayment;
 
   if (minValue) {
-    input.get('downPaymentPercent')?.setErrors({ downPaymentMinValidator: true });
+    input.get('downPayment')?.setErrors({ downPaymentMinValidator: true });
     return { downPaymentMinValidator: true };
   } else if (maxValue) {
-    input.get('downPaymentPercent')?.setErrors({ downPaymentMaxValidator: true });
+    input.get('downPayment')?.setErrors({ downPaymentMaxValidator: true });
     return { downPaymentMaxValidator: true };
   } else {
-    input.get('downPaymentPercent')?.setErrors(null);
+    input.get('downPayment')?.setErrors(null);
     return null;
   }
 };
