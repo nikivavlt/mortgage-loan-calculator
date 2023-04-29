@@ -1,57 +1,58 @@
-<form [formGroup]="personalInformationForm">
-  <div class="form form__content">
-    <mat-form-field appearance="outline">
-      <mat-label>Name</mat-label>
-      <input matInput formControlName="firstName" type="text">
-    <mat-error *ngIf="nameControlRequiredError">
-      Name is required
-    </mat-error>
-  </mat-form-field>
-  <br>
-    <mat-form-field appearance="outline">
-      <mat-label>Surname</mat-label>
-      <input matInput formControlName="lastName" type="text">
-
-    <mat-error *ngIf="lnameControlRequiredError">
-      Surname is required
-    </mat-error>
-  </mat-form-field>
-    <br>
-    <mat-form-field appearance="outline">
-      <mat-label>Personal number</mat-label>
-      <input matInput formControlName="personalNumber"  type="text" minlength="10" maxlength="15">
-    <mat-error *ngIf="personalNumberControlRequiredError">
-      Personal number is required
-    </mat-error>
-    <mat-error *ngIf="personalNumberControlMinimumLenght">
-      Personal number is to short
-    </mat-error>
-  </mat-form-field>
-    <br>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Phone number</mat-label>
-      <input matInput formControlName="phoneNumber" type="tel">
-    <mat-error *ngIf="phoneNumberControlRequiredError">
-      Phone number is required
-    </mat-error>
-  </mat-form-field>
-    <br>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="email" type="email">
-
-    <mat-error *ngIf="emailControlRequiredError">
-      Email is required
-    </mat-error>
-    <mat-error *ngIf="emailControl?.errors?.['email'] && emailControl?.touched">
-      Invalid email format
-    </mat-error>
-  </mat-form-field>
-    <br>
-    <div>
-      <button mat-button matStepperNext>Next</button>
+<div class="whole-form">
+  <form [formGroup]="personalInformationForm">
+    <div class="form form__content">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="firstName" type="text">
+        <mat-error *ngIf="nameControlRequiredError">
+          Name is required
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Surname</mat-label>
+        <input matInput formControlName="lastName" type="text">
+        <mat-error *ngIf="lnameControlRequiredError">
+          Surname is required
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Personal number</mat-label>
+        <input matInput formControlName="personalNumber" type="text" minlength="10" maxlength="15">
+        <mat-error *ngIf="personalNumberControlRequiredError">
+          Personal number is required
+        </mat-error>
+        <mat-error *ngIf="personalNumberControlMinimumLenght">
+          Personal number is to short
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Phone number</mat-label>
+        <input matInput formControlName="phoneNumber" type="tel">
+        <mat-error *ngIf="phoneNumberControlRequiredError">
+          Phone number is required
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email">
+        <mat-error *ngIf="emailControlRequiredError">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="emailControl?.errors?.['email'] && emailControl?.touched">
+          Invalid email format
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
     </div>
+  </form>
+  <div class="image-container">
+    <img src="./assets/images/personal-info.svg" alt="Your image description" />
   </div>
-</form>
+</div>
