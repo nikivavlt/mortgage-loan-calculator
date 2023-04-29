@@ -4,10 +4,6 @@
   align-items: center;
 }
 
-.form--centered {
-  flex-wrap: wrap;
-}
-
 .form__content {
   padding-top: 1%;
   display: inline-block;
@@ -18,4 +14,52 @@
 
 .button {
   justify-content: space-around;
+}
+
+.whole-form {
+  display: flex;
+  justify-content: center;
+  padding-top: 1%;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-left: 70px;
+}
+
+.image-container img{
+  height: auto;
+  justify-content: center;
+  opacity: 0.7;
+  max-width: 100%;
+  width: 70%;
+}
+
+@media screen and (max-width: 1020px){
+  .image-container img{
+    display: none;
+  }
+
+  .whole-form {  
+    justify-content: center;
+    margin-left: 10%;
+  }
+}
+
+@media screen and (min-width: 1300px){
+  .image-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-left: 70px;
+  }
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-left: 70px;
+  }
 }

@@ -1,50 +1,88 @@
-mat-slider {
-  width: 300px;
-}
-
-
 .form__content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   padding-top: 1%;
-}
-
-.form__row {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 16px;
+  vertical-align: top;
+  display: inline-block;
+  margin: 2%;
+  margin-top: 2%;
+  flex-direction: column;
 }
 
 .formInput {
-  margin-right: 16px;
   width: 100%;
-  max-width: 300px;
 }
 
-.formInput:last-child {
-  margin-right: 0;
+.formInput1 {
+  width: 110%;
 }
 
-.full-width {
-  width: 100%;
+.part-form {
+  display: inline-block;
+  display: flex;
+  flex-direction: row;
+}
+
+.whole-form {
+  display: flex;
+  margin-left: 10%;
+}
+
+mat-slider {
+  width: 300px;
 }
 
 .mat-form-field-text-suffix {
   font-size: 0.1em;
 }
 
-/* .term-of-loan {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-} */
-
 .formInput-slider {
   width: 100%;
   max-width: 300px;
-  margin-top: 16px;
+  margin-top: 2%;
   margin-left: 16px;
+}
 
+img {
+  opacity: 0.7;
+  width: 55%;
+  margin-left: 50%;
+  margin-top: 20px;
+
+}
+
+@media screen and (max-width: 768px) {
+  img {
+    display: none;
+  }
+
+  .part-form {
+    display: flex;
+    justify-content: center;
+    margin-left: 0%;
+    flex-direction: column;
+  }
+
+  .form__content{
+    margin: 0%
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1020px) {
+  img {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .whole-form {
+    display: flex;
+    margin-left: 23%;
+  }
+
+  img {
+    opacity: 0.7;
+    width: 70%;
+    margin-left: 80%;
+    margin-top: 20px;
+  }
 }
