@@ -1,0 +1,11 @@
+.search-bar {
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.element-width {
+    width: 100%;
+}
