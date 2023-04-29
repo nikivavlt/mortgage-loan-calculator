@@ -112,8 +112,8 @@
           <p>Total payable amount: {{ this.addSpacer(calculations.totalPayableAmount) }} Eur</p>
           <p>Interest cost: {{ this.addSpacer(calculations.interestCost) }} Eur</p>
         </div>
-        </ng-container>
-        <ng-container *ngIf=" !( calculations$ | async ) as calculations">
+      </ng-container>
+      <ng-container *ngIf=" !( calculations$ | async ) as calculations">
         <div [ngClass]="calculatorResultClass" *ngIf="loading">
           <p>Monthly payment: Calculating..</p>
           <p>Total payable amount: Calculating..</p>
@@ -124,10 +124,10 @@
           <p>Total payable amount: 0 Eur</p>
           <p>Interest cost: 0 Eur</p>
         </div>
-        </ng-container>
-        <div class="canvas-container">
-          <canvas #doughnutCanvas style="height:10vh; width:20vw"></canvas>
-        </div>
+      </ng-container>
+      <div  [ngClass]="canvasContainerClass" style="height:40vh; width:40vw">
+        <canvas #doughnutCanvas></canvas>
+      </div>
     </div>
   </div>
 
