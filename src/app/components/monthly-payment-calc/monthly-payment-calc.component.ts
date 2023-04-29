@@ -41,13 +41,13 @@ export class MonthlyPaymentCalc implements OnInit {
   }
 
   ngOnInit(): void {
-    this.breakpointObserver.observe([Breakpoints.Small,Breakpoints.XSmall, Breakpoints.Large]).subscribe(result => {
+    this.breakpointObserver.observe([Breakpoints.Small,Breakpoints.XSmall]).subscribe(result => {
       if (result.breakpoints[Breakpoints.Small] || result.breakpoints[Breakpoints.XSmall]) {
         this.resultContainerClass = 'result-container-mobile';
         this.calculatorResultClass = 'calculator-result-mobile';
         this.containerClass = 'container-mobile';
         this.formContainerClass = 'form-container-mobile';
-      }else if (result.breakpoints[Breakpoints.Large]) {
+      }else{
         this.resultContainerClass = 'result-container-desktop';
         this.calculatorResultClass = 'calculator-result-desktop';
         this.containerClass = 'container-desktop';
