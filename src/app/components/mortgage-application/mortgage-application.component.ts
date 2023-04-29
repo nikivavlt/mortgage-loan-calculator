@@ -89,7 +89,6 @@ export class MortgageApplicationComponent {
     this.additionalInfoComponent.additionalInformationForm.markAsPristine();
 
     this.redirectToHomepageService.selectedTabIndexSource.next(0);
-
     this.stepperIndex.next(-1)
   }
   ngOnDestroy(): void {

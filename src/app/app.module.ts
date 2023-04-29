@@ -45,6 +45,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   imports: [
@@ -75,7 +76,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     MatDatepickerModule,
     MatNativeDateModule,
     MatSortModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatAutocompleteModule
   ],
   declarations: [
     AppComponent,
