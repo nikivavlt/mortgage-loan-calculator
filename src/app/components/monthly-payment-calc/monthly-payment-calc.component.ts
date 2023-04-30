@@ -155,9 +155,12 @@ export class MonthlyPaymentCalc implements OnInit {
 
       this.monthlyCalculatorForm.controls?.['mortgageAmount'].patchValue(newMortgageAmount.toFixed(0), { emitEvent: false });
       this.monthlyCalculatorForm.controls?.['downPayment'].patchValue(newDownPayment.toFixed(0), { emitEvent: false });
+      this.monthlyCalculatorForm.controls?.['mortgageAmount'].markAsTouched();
+      this.monthlyCalculatorForm.controls?.['downPayment'].markAsTouched();
     }
 
-    if (this.monthlyCalculatorForm.controls?.['mortgageAmount'].valid) {
+    if (this.monthlyCalculatorForm.controls?.['mortgageAmount'].valid &&
+      this.mortgageAmount.errors?.['mortgageAmountValidator']) {
 
       const homePrice = this.monthlyCalculatorForm.controls?.['homePrice'].value;
       const mortgageAmount = this.monthlyCalculatorForm.controls?.['mortgageAmount'].value;
@@ -167,10 +170,12 @@ export class MonthlyPaymentCalc implements OnInit {
 
       this.monthlyCalculatorForm.controls?.['downPayment'].patchValue(newDownPayment.toFixed(0), { emitEvent: false });
       this.monthlyCalculatorForm.controls?.['downPaymentPercent'].patchValue(newDownPaymentPercent.toFixed(2), { emitEvent: false });
-
+      this.monthlyCalculatorForm.controls?.['downPaymentPercent'].markAsTouched();
     }
 
-    if (this.monthlyCalculatorForm.controls?.['downPayment'].valid) {
+    if (this.monthlyCalculatorForm.controls?.['downPayment'].valid &&
+      this.downPayment.errors?.['downPaymentMaxValidator'] &&
+      this.downPayment.errors?.['downPaymentMinValidator']) {
       const homePrice = this.monthlyCalculatorForm.controls?.['homePrice'].value;
       const downPayment = this.monthlyCalculatorForm.controls?.['downPayment'].value;
 
@@ -179,14 +184,8 @@ export class MonthlyPaymentCalc implements OnInit {
 
       this.monthlyCalculatorForm.controls?.['mortgageAmount'].patchValue(newMortgageAmount.toFixed(0), { emitEvent: false });
       this.monthlyCalculatorForm.controls?.['downPaymentPercent'].patchValue(newDownPaymentPercent.toFixed(2), { emitEvent: false });
-    }
-
-    else {
-      this.monthlyCalculatorForm.controls?.['mortgageAmount'].reset();
-      this.monthlyCalculatorForm.controls?.['downPayment'].reset();
-      this.monthlyCalculatorForm.controls?.['downPaymentPercent'].reset();
-      this.monthlyCalculatorForm.controls?.['interestRate'].reset();
-      this.monthlyCalculatorForm.controls?.['mortgageTerm'].reset();
+      this.monthlyCalculatorForm.controls?.['mortgageAmount'].markAsTouched();
+      this.monthlyCalculatorForm.controls?.['downPaymentPercent'].markAsTouched();
     }
   }
 
@@ -203,6 +202,7 @@ export class MonthlyPaymentCalc implements OnInit {
 
       this.monthlyCalculatorForm.controls?.['downPaymentPercent'].patchValue(newDownPaymentPercent.toFixed(2), { emitEvent: false });
       this.monthlyCalculatorForm.controls?.['mortgageAmount'].patchValue(newMortgageAmount.toFixed(0), { emitEvent: false });
+      this.monthlyCalculatorForm.controls?.['mortgageAmount'].markAsTouched();
     }
   }
 
@@ -217,6 +217,7 @@ export class MonthlyPaymentCalc implements OnInit {
 
       this.monthlyCalculatorForm.controls?.['downPayment'].patchValue(newDownPayment.toFixed(0), { emitEvent: false });
       this.monthlyCalculatorForm.controls?.['mortgageAmount'].patchValue(newMortgageAmount.toFixed(0), { emitEvent: false });
+      this.monthlyCalculatorForm.controls?.['mortgageAmount'].markAsTouched();
     }
   }
 
@@ -232,6 +233,7 @@ export class MonthlyPaymentCalc implements OnInit {
 
       this.monthlyCalculatorForm.controls?.['downPayment'].patchValue(newDownPayment.toFixed(0), { emitEvent: false });
       this.monthlyCalculatorForm.controls?.['downPaymentPercent'].patchValue(newDownPaymentPercent.toFixed(2), { emitEvent: false });
+      this.monthlyCalculatorForm.controls?.['downPaymentPercent'].markAsTouched();
     }
   }
 }

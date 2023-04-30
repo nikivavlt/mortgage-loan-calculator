@@ -19,7 +19,7 @@
     <mat-label class="calc-label" for="mortgage-amount">Mortgage amount</mat-label>
     <input matInput id="mortgage-amount" type="number" formControlName="mortgageAmount" placeholder="0">
     <span matTextSuffix> Eur </span>
-  
+
   <!-- <div *ngIf="mortgageAmount.errors && ( mortgageAmount.touched || mortgageAmount.dirty )"> -->
     <mat-error  *ngIf="mortgageAmount.errors?.['required']">
       Please fill this field
@@ -28,7 +28,7 @@
       Please use only numbers
     </mat-error>
   <!-- </div> -->
-  <mat-error *ngIf="monthlyCalculatorForm.errors?.['mortgageAmountValidator'] && mortgageAmount.touched">
+  <mat-error *ngIf="monthlyCalculatorForm.errors?.['mortgageAmountValidator']">
     Mortgage amount is more than "Home Price"
   </mat-error>
 </mat-form-field>
@@ -36,7 +36,7 @@
     <mat-label class="calc-label" for="down-payment">Down payment</mat-label>
     <input matInput id="down-payment" type="number" formControlName="downPayment" placeholder="0">
     <span matTextSuffix> Eur </span>
-  
+
   <!-- <div class="error-message" *ngIf="downPayment.errors && ( downPayment.touched || downPayment.dirty )"> -->
     <mat-error *ngIf="downPayment.errors?.['required']">
       Please fill this field
@@ -44,13 +44,19 @@
     <mat-error *ngIf="downPayment.errors?.['pattern']">
       Please use only numbers
     </mat-error>
+    <!-- <mat-error *ngIf="downPayment.errors?.['downPaymentMinValidator']">
+      Down payment is at least 15%
+    </mat-error>
+    <mat-error *ngIf="downPayment.errors?.['downPaymentMaxValidator']">
+      Down payment is at least 15%
+    </mat-error> -->
   <!-- </div> -->
 </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label class="calc-label" for="down-payment-two">Down payment %</mat-label>
     <input matInput id="down-payment-two" type="text" formControlName="downPaymentPercent" placeholder="0">
     <span matTextSuffix> % </span>
-  
+
   <!-- <div class="error-message" *ngIf="downPaymentPercent.errors && ( downPaymentPercent.touched || downPaymentPercent.dirty )"> -->
     <mat-error *ngIf="downPaymentPercent.errors?.['required']">
       Please fill this field
@@ -58,10 +64,10 @@
     <mat-error *ngIf="downPaymentPercent.errors?.['pattern']">
       Please use only numbers with two decimal places
     </mat-error>
-    <mat-error  *ngIf="downPaymentPercent.errors?.['min']">
+    <mat-error *ngIf="downPaymentPercent.errors?.['min']">
       Down payment is at least 15%
     </mat-error>
-    <mat-error  *ngIf="downPaymentPercent.errors?.['max']">
+    <mat-error *ngIf="downPaymentPercent.errors?.['max']">
       Down payment is at least 15%
     </mat-error>
   <!-- </div> -->
@@ -73,7 +79,7 @@
     <mat-label class="calc-label" for="interest-rate">Interest rate</mat-label>
     <input  matInput id="interest-rate" type="text" formControlName="interestRate" placeholder="0">
     <span matTextSuffix> % </span>
- 
+
   <!-- <div *ngIf="interestRate.errors && ( interestRate.touched || interestRate.dirty )"> -->
     <mat-error *ngIf="interestRate.errors?.['required']">
       Please fill this field
@@ -88,11 +94,11 @@
     <input matInput id="mortgage-term" type="number" formControlName="mortgageTerm" placeholder="0">
     <span matTextSuffix> Years </span>
     <!-- <ng-container *ngIf="mortgageTerm.errors && ( mortgageTerm.touched || mortgageTerm.dirty )">
-      
+
     </ng-container > -->
     <mat-error  *ngIf="mortgageTerm.errors?.['required']">
       Please fill this field
-    </mat-error> 
+    </mat-error>
     <mat-error *ngIf="mortgageTerm.errors?.['pattern']">
       Please use only numbers
     </mat-error>
@@ -102,7 +108,7 @@
       Maximum term of mortgage is 30 years
     </mat-error>
   </mat-form-field>
-  
+
 
 </form>
 </div>
