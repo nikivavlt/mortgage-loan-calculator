@@ -1,4 +1,6 @@
+import { DecimalPipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
+
 
 interface MortgageFormData {
   maxMortgageAmount?: {
@@ -24,5 +26,12 @@ interface MaxMortgageData {
 export class ShowMaxMortgageAmountComponent {
   @Input() maxMortgageAmount: MaxMortgageData | undefined;
 
-  constructor() { }
+  constructor(public decimalPipe: DecimalPipe) { }
+
+  addSpacer(price: any) {
+    return String(price)
+      .replace(
+        /(?!^)(?=(?:\d{3})+$)/g,
+        ' ')
+  };
 }
