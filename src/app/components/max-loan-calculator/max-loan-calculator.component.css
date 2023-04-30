@@ -6,6 +6,7 @@
   flex-direction: column;
   border-radius: 10px;
   background-color: #F3F9FB;
+  max-width: none;
 }
 
 .main-container {
@@ -19,13 +20,6 @@
   width: fit-content;
 }
 
-.form-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 70%;
-}
 
 .image-wrapper {
   display: flex;
@@ -60,6 +54,7 @@
   width: 100%;
 }
 
+
 .form-field-container form {
   margin-bottom: 2em;
 }
@@ -80,7 +75,8 @@
 
 .error-message {
   color: red;
-  font-size: 0.75em;
+  font-size: 0.8em;
+  font-weight: 300;
   margin-top: 0.3em;
   align-self: flex-start;
 }
@@ -154,11 +150,5 @@ mat-error+mat-error {
   .main-container {
     padding: 0.5em;
     gap: 1em;
-  }
-}
-
-@media (min-width: 992px) {
-  .form-container {
-    width: 35%;
   }
 }

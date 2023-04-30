@@ -104,5 +104,4 @@ export class MaxLoanCalculatorComponent implements OnInit {
       control.setValue(newValue);
     }
   }
-
 }
