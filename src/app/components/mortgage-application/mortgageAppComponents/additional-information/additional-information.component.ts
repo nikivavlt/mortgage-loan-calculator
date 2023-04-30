@@ -58,10 +58,10 @@ export class AdditionalInformationComponent {
     return this.additionalInformationForm.get('coBorrower');
   }
   get coBorrowerNameControl() {
-    return this.additionalInformationForm.get('coBorrowerName');
+    return this.additionalInformationForm.get('coBorrowerFirstName');
   }
   get coBorrowerlNameControl() {
-    return this.additionalInformationForm.get('coBorrowerlName');
+    return this.additionalInformationForm.get('coBorrowerLastName');
   }
   get coBorrowerPersonalNumber() {
     return this.additionalInformationForm.get('coBorrowerPersonalNumber');
