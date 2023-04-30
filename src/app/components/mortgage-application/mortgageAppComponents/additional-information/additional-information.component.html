@@ -15,6 +15,9 @@
           <mat-error *ngIf="coBorrowerNameRequiredError">
             Co-borrower name is required
           </mat-error>
+          <mat-error *ngIf="coBorrowerNamepatternError">
+            Name can't contain numbers
+          </mat-error>
         </mat-form-field>
         <br>
         <mat-form-field appearance="outline">
@@ -23,6 +26,9 @@
           <mat-error *ngIf="coBorrowerlNameRequiredError">
             Co-borrower surname is required
           </mat-error>
+          <mat-error *ngIf="coBorrowerlNamepatternError">
+            Surname can't contain numbers
+          </mat-error>
         </mat-form-field>
         <br>
         <mat-form-field appearance="outline" >
@@ -30,6 +36,9 @@
           <input matInput formControlName="coBorrowerPersonalNumber" type="text">
           <mat-error *ngIf="coBorrowerPersonalNumberError">
             Personal number is required
+          </mat-error>
+          <mat-error *ngIf="coBorrowerPersonalLenghtError">
+            Personal number to short
           </mat-error>
         </mat-form-field>
       </ng-container>
