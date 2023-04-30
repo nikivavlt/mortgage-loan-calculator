@@ -1,9 +1,4 @@
 <div class="main-container">
-  <div class="image-wrapper">
-<div class="image-container">
-  <img src= "./assets/images/max-mortgage.svg" alt="Your image description" />
-</div>
-</div>
 <form [formGroup]="loanForm" class="form-container" #loanFormRef="ngForm">  
   <div class="radio-group-container">
     <mat-label class="loan-label">Loan is for:</mat-label>
@@ -16,7 +11,7 @@
   <div class="form-field-container">
     <mat-label>Monthly income after taxes</mat-label>
     <mat-form-field appearance="outline">
-      <input matInput type="number" placeholder="0" formControlName="netIncome" (blur)="removeZeros('netIncome')"  style = "width: 150%;" />
+      <input matInput type="number" placeholder="0" formControlName="netIncome" (blur)="removeZeros('netIncome')"/>
       <span matTextSuffix> Eur </span>
     <!-- <div class="message-block"
       *ngIf="netIncome?.dirty && (netIncome?.errors || netIncome?.touched || loanForm?.errors)"> -->
@@ -54,12 +49,12 @@
       <input matInput type="number" placeholder="0" formControlName="obligations"/>
     </mat-form-field>
   </div>
-  <div class="max-mortgage-wrapper">
   <div class="max-mortgage-container">
   <app-show-max-mortgage-amount [maxMortgageAmount]="maxMortgageAmountValue" class="show-max-mortgage-background">
   </app-show-max-mortgage-amount>
 </div>
-</div>
 </form>
-<div class="background-image"></div>
+<div class="image-container">
+  <img src= "./assets/images/max-mortgage.svg" alt="Max-mortgage image" />
+</div>
 </div>
