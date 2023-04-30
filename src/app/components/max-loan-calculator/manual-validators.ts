@@ -1,4 +1,5 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { delay, Observable, of } from 'rxjs';
 
 const negativeValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const netIncome = control.value;
@@ -30,13 +31,13 @@ const applicantWithDependentsCheck: ValidatorFn = (control) => {
   const obligations = control.get('obligations')?.value;
 
   if (applicants === 'personal' && dependents >= 2 && (netIncome - obligations) < 1000) {
-    control.get('netIncome')?.setErrors({ applicantWithMoreThanTwoDependentsError: true });
+    control.get('dependent')?.setErrors({ applicantWithMoreThanTwoDependentsError: true });
     return { applicantWithMoreThanTwoDependentsError: true };
   } else if (applicants === 'personal' && dependents === 1 && (netIncome - obligations) < 650) {
-    control.get('netIncome')?.setErrors({ applicantWithOneDependentError: true });
+    control.get('dependent')?.setErrors({ applicantWithOneDependentError: true });
     return { applicantWithOneDependentError: true };
   } else {
-    control.get('netIncome')?.setErrors(null);
+    control.get('dependent')?.setErrors(null);
     return null;
   }
 };
