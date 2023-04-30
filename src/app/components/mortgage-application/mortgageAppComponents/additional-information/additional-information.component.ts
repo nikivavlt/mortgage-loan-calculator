@@ -35,9 +35,9 @@ export class AdditionalInformationComponent {
   ngOnInit() {
     this.additionalInformationForm.get('coBorrower')!.valueChanges.subscribe((value) => {
       if (value) {
-        this.coBorrowerNameControl?.setValidators(Validators.required);
-        this.coBorrowerlNameControl?.setValidators(Validators.required);
-        this.coBorrowerPersonalNumber?.setValidators(Validators.required);
+        this.coBorrowerNameControl?.setValidators([Validators.required,Validators.pattern(/^[a-zA-Z\s]*$/)]);
+        this.coBorrowerlNameControl?.setValidators([Validators.required,Validators.pattern(/^[a-zA-Z\s]*$/)]);
+        this.coBorrowerPersonalNumber?.setValidators([Validators.required,Validators.minLength(10), Validators.maxLength(15)]);
       } else {
         this.coBorrowerNameControl?.clearValidators();
         this.coBorrowerlNameControl?.clearValidators();
@@ -58,10 +58,10 @@ export class AdditionalInformationComponent {
     return this.additionalInformationForm.get('coBorrower');
   }
   get coBorrowerNameControl() {
-    return this.additionalInformationForm.get('coBorrowerName');
+    return this.additionalInformationForm.get('coBorrowerFirstName');
   }
   get coBorrowerlNameControl() {
-    return this.additionalInformationForm.get('coBorrowerlName');
+    return this.additionalInformationForm.get('coBorrowerLastName');
   }
   get coBorrowerPersonalNumber() {
     return this.additionalInformationForm.get('coBorrowerPersonalNumber');
@@ -77,6 +77,15 @@ export class AdditionalInformationComponent {
   }
   get coBorrowerPersonalNumberError() {
     return this.coBorrowerPersonalNumber?.errors?.['required'] && this.coBorrowerPersonalNumber!.touched;
+  }
+  get coBorrowerNamepatternError() {
+    return this.coBorrowerNameControl?.errors?.['pattern'] && this.coBorrowerNameControl!.touched;
+  }
+  get coBorrowerlNamepatternError() {
+    return this.coBorrowerlNameControl?.errors?.['pattern'] && this.coBorrowerlNameControl!.touched;
+  }
+  get coBorrowerPersonalLenghtError() {
+    return this.coBorrowerPersonalNumber?.errors?.['minlength'] && this.coBorrowerPersonalNumber!.touched;
   }
 
   submitForm() {

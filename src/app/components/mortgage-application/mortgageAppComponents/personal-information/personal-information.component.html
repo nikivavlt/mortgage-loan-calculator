@@ -7,6 +7,9 @@
         <mat-error *ngIf="nameControlRequiredError">
           Name is required
         </mat-error>
+        <mat-error *ngIf="nameControlNumberError">
+          Name can't contain numbers
+        </mat-error>
       </mat-form-field>
       <br>
       <mat-form-field appearance="outline">
@@ -14,6 +17,9 @@
         <input matInput formControlName="lastName" type="text">
         <mat-error *ngIf="lnameControlRequiredError">
           Surname is required
+        </mat-error>
+        <mat-error *ngIf="lnameControlNumberError">
+          Surname cant contain numbers
         </mat-error>
       </mat-form-field>
       <br>
@@ -33,6 +39,9 @@
         <input matInput formControlName="phoneNumber" type="tel">
         <mat-error *ngIf="phoneNumberControlRequiredError">
           Phone number is required
+        </mat-error>
+        <mat-error *ngIf="phoneNumberControlPatternError">
+          Invalid phone number format
         </mat-error>
       </mat-form-field>
       <br>
