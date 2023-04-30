@@ -28,6 +28,7 @@ export class MonthlyPaymentCalc implements OnInit {
   calculatorResultClass?: string;
   containerClass?: string;
   formContainerClass?: string;
+  canvasContainerClass?: string;
 
   constructor(private monthlyPaymentCalcService: MonthlyPaymentCalcService,private breakpointObserver: BreakpointObserver) {
     this.monthlyCalculatorForm = formBuilder.group({
@@ -47,11 +48,13 @@ export class MonthlyPaymentCalc implements OnInit {
         this.calculatorResultClass = 'calculator-result-mobile';
         this.containerClass = 'container-mobile';
         this.formContainerClass = 'form-container-mobile';
+        this.canvasContainerClass = "canvas-container-mobile";
       }else{
         this.resultContainerClass = 'result-container-desktop';
         this.calculatorResultClass = 'calculator-result-desktop';
         this.containerClass = 'container-desktop';
         this.formContainerClass = 'form-container-desktop';
+        this.canvasContainerClass = "canvas-container-desktop";
       }
     });
 

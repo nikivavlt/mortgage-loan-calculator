@@ -12,7 +12,6 @@
 .form-desktop {
   display: inline-flex;
   justify-content: center;
-  align-items: center;
   height: 100%;
 }
 .calculator-result-mobile {
@@ -23,7 +22,6 @@
 }
 .calculator-result-desktop {
   margin-top: 2em;
-  align-items: center;
   font-weight: 900;
   color: #5b548a;
 }
@@ -33,7 +31,7 @@
 .container-desktop {
   display: inline-flex;
   justify-items: center;
-  width: 50%;
+  width: 70%;
 }
 .form-container-mobile {
   width: 90%;
@@ -57,12 +55,13 @@
   width: 100%;
 }
 .result-container-desktop {
+  text-align: justify;
+  width: 100%;
+}
+.canvas-container-desktop {
   text-align: center;
   width: 100%;
 }
-
-@media screen and (max-width: 1000px)  {
-  .canvas-container {
-    display: none;
-  }
+.canvas-container-mobile {
+  display: none;
 }
