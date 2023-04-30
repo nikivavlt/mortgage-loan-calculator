@@ -4,7 +4,8 @@ export interface AllApplications extends MortgageFormObject {
   date: Date;
   id: number;
   coBorrower: boolean;
-  coBorrowerName: string;
+  coBorrowerFirstName: string;
+  coBorrowerLastName: string;
   status: string;
 }
 

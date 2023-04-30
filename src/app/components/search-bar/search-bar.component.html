@@ -1,12 +1,10 @@
-<div id="search-component">
-    <input #searchBox class="search-input" type="text"
-    matInput placeholder="Search by Name/ Surname/ Id"
-    (input)="search(searchBox.value)">
-  <ul class="search-result">
-    <li *ngFor="let application of applications$ | async" >
-      <a (click)="onLinkClick(application)">
-        {{ application.id }} {{ application.firstName }} {{ application.lastName }}
-      </a>
-    </li>
-  </ul>
-</div>
+<form class="search-bar">
+<mat-form-field class="input"  [style.width.rem]=17 [formGroup]="searchForm" appearance="outline">
+  <input matInput type="text" #searchBox (input)="search(searchBox.value)" placeholder="Search" formControlName="searchInput" [matAutocomplete]="auto">
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onLinkClick($event)">
+    <mat-option *ngFor="let application of applications$ | async" [value]="application">
+      {{ application.id }} {{ application.firstName }} {{ application.lastName }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+</form>

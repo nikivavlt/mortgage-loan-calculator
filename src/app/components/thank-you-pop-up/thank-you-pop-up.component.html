@@ -1,12 +1,12 @@
-<div class="dialog">
-  <div class="dialog-inner">
+<div class="dialog-wrapper">
+  <div class="dialog-inner"><div class="dialog-inner">  
     <h1 mat-dialog-title>Thank you!</h1>
     <div mat-dialog-content>
-      <p>Your application was submitted</p>
-      <span> We will contact you within 3 business day. </span>
+      <p>Your application has been submitted</p>
+      <span> We will contact you within 3 business days. </span>
     </div>
     <div mat-dialog-actions>
-      <button mat-button (click)="closeDialogAndNavigate()" cdkFocusInitial>
+      <button mat-raised-button color="primary" (click)="closeDialogAndNavigate()" cdkFocusInitial>
         Ok
       </button>
     </div>

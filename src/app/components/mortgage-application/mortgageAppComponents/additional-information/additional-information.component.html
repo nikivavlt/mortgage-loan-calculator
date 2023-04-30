@@ -11,25 +11,34 @@
       <ng-container *ngIf="coBorrowerStateControl!.value">
         <mat-form-field appearance="outline">
           <mat-label>Co-borrower name</mat-label>
-          <input matInput placeholder="Name" formControlName="coBorrowerName" type="text" placeholder="John">
+          <input matInput formControlName="coBorrowerFirstName" type="text">
           <mat-error *ngIf="coBorrowerNameRequiredError">
             Co-borrower name is required
+          </mat-error>
+          <mat-error *ngIf="coBorrowerNamepatternError">
+            Name can't contain numbers
           </mat-error>
         </mat-form-field>
         <br>
         <mat-form-field appearance="outline">
           <mat-label>Co-borrower surname</mat-label>
-          <input matInput placeholder="lName" formControlName="coBorrowerlName" type="text" placeholder="Doe">
+          <input matInput formControlName="coBorrowerLastName" type="text" >
           <mat-error *ngIf="coBorrowerlNameRequiredError">
             Co-borrower surname is required
+          </mat-error>
+          <mat-error *ngIf="coBorrowerlNamepatternError">
+            Surname can't contain numbers
           </mat-error>
         </mat-form-field>
         <br>
         <mat-form-field appearance="outline" >
           <mat-label>Personal number</mat-label>
-          <input matInput placeholder="Personal number" formControlName="coBorrowerPersonalNumber" type="number" placeholder="12345678901">
+          <input matInput formControlName="coBorrowerPersonalNumber" type="text">
           <mat-error *ngIf="coBorrowerPersonalNumberError">
             Personal number is required
+          </mat-error>
+          <mat-error *ngIf="coBorrowerPersonalLenghtError">
+            Personal number to short
           </mat-error>
         </mat-form-field>
       </ng-container>
@@ -39,6 +48,6 @@
   </div>
 <div>
   <button mat-button matStepperPrevious>Back</button>
-  <button mat-button (disabled)="certificationControl?.value" (click)="submitForm()">Send form</button>
+  <button mat-button [disabled]="!certificationControl?.value" (click)="submitForm()">Send form</button>
 </div>
 </form>

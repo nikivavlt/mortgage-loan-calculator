@@ -1,17 +1,14 @@
+
 .header-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-}
-
-button {
-    color: primary;
+    padding: 16px;
 }
 
 .back-button {
     margin-right: 8px;
-
 }
 
 .actions-container {
@@ -21,15 +18,28 @@ button {
 
 .info-group {
     text-align: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
 }
 
 h2 {
     color: black;
+    margin-bottom: 8px;
 }
 
 h3 {
-    font-size: 1em;
+    font-size: 0.9em;
     text-align: center;
+}
+.blue {
+    color: blue;
+}
+.green{
+    color: green;
+}
+
+.red{
+    color:red;
 }
 
 @media screen and (max-width: 767px) {
@@ -40,6 +50,7 @@ h3 {
     .actions-container {
         margin-top: 10px;
     }
+
 }
 
 .spacer {

@@ -14,8 +14,8 @@ export class PersonalInformationComponent {
 
   constructor(private fb: FormBuilder) {
     this.personalInformationForm = this.fb.group({
-      firstName: new FormControl('', Validators.required),
-      lastName: new FormControl('', Validators.required),
+      firstName: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]),
+      lastName: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       phoneNumber: new FormControl('', [Validators.required, Validators.pattern('\\+(9[976]\\d|8[987530]\\d|6[987]\\d|5[90]\\d|42\\d|3[875]\\d|2[98654321]\\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\\d{1,14}$')]),
       personalNumber: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(15)])
@@ -52,6 +52,12 @@ export class PersonalInformationComponent {
   get lnameControlRequiredError() {
     return this.lnameControl?.errors?.['required'] && this.lnameControl!.touched;
   }
+  get nameControlNumberError() {
+    return this.nameControl?.errors?.['pattern'] && this.nameControl!.touched;
+  }
+  get lnameControlNumberError() {
+    return this.lnameControl?.errors?.['pattern'] && this.lnameControl!.touched;
+  }
   get personalNumberControlRequiredError() {
     return this.personalNumberControl?.errors?.['required'] && this.personalNumberControl!.touched;
   }
@@ -60,6 +66,9 @@ export class PersonalInformationComponent {
   }
   get phoneNumberControlRequiredError() {
     return this.phoneNumberControl?.errors?.['required'] && this.phoneNumberControl!.touched;
+  }
+  get phoneNumberControlPatternError() {
+    return this.phoneNumberControl?.errors?.['pattern'] && this.phoneNumberControl!.touched;
   }
   get emailControlRequiredError() {
     return this.emailControl?.errors?.['required'] && this.emailControl!.touched;

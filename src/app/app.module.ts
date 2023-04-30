@@ -46,6 +46,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { DirtyErrorStateMatcher } from './dirty-error-state.matcher';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   imports: [
@@ -76,7 +77,8 @@ import { DirtyErrorStateMatcher } from './dirty-error-state.matcher';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSortModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatAutocompleteModule
   ],
   declarations: [
     AppComponent,

@@ -1,5 +1,5 @@
 import { Component,EventEmitter,Output,ViewChild } from '@angular/core';
-import { BehaviorSubject,Subject, takeUntil} from 'rxjs';
+import { BehaviorSubject,Subject, take, takeUntil, tap, timer} from 'rxjs';
 import { PersonalInformationComponent } from './mortgageAppComponents/personal-information/personal-information.component';
 import { IncomeAndFinancialLiabilitiesComponent } from './mortgageAppComponents/income-and-financial-liabilities/income-and-financial-liabilities.component';
 import { LoanInformationComponent } from './mortgageAppComponents/loan-information/loan-information.component';
@@ -80,11 +80,16 @@ export class MortgageApplicationComponent {
   }
   resetAndCloseForm(){
     this.personalInfoComponent.personalInformationForm.reset();
+    this.personalInfoComponent.personalInformationForm.markAsPristine();
     this.incomeAndFinancialComponent.incomeAndFinancialLiabilitiesForm.reset();
+    this.incomeAndFinancialComponent.incomeAndFinancialLiabilitiesForm.markAsPristine();
     this.loanInfoComponent.loanInformationForm.reset();
+    this.loanInfoComponent.loanInformationForm.markAsPristine();
     this.additionalInfoComponent.additionalInformationForm.reset();
-    this.stepperIndex.next(0);
+    this.additionalInfoComponent.additionalInformationForm.markAsPristine();
+
     this.redirectToHomepageService.selectedTabIndexSource.next(0);
+    this.stepperIndex.next(-1)
   }
   ngOnDestroy(): void {
     this.destroy$.next();

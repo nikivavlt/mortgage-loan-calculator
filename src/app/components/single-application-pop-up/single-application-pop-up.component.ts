@@ -20,7 +20,7 @@ export class SingleApplicationPopUpComponent {
   }
 
   markAsDone(){
-    this.updateStatus("Done");
+    this.updateStatus("Approved");
   }
 
   reject(){

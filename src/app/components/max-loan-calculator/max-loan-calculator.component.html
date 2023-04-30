@@ -1,9 +1,4 @@
 <div class="main-container">
-  <div class="image-wrapper">
-<div class="image-container">
-  <img src= "./assets/images/testsssss.svg" alt="Your image description" />
-</div>
-</div>
 <form [formGroup]="loanForm" class="form-container" #loanFormRef="ngForm">  
   <div class="radio-group-container">
     <mat-label class="loan-label">Loan is for:</mat-label>
@@ -16,7 +11,7 @@
   <div class="form-field-container">
     <mat-label>Monthly income after taxes</mat-label>
     <mat-form-field appearance="outline">
-      <input matInput type="number" placeholder="0" formControlName="netIncome" (blur)="removeZeros('netIncome')"  style = "width: 150%;" />
+      <input matInput type="number" placeholder="0" formControlName="netIncome" (blur)="removeZeros('netIncome')"/>
       <span matTextSuffix> Eur </span>
     <!-- <div class="message-block"
       *ngIf="netIncome?.dirty && (netIncome?.errors || netIncome?.touched || loanForm?.errors)"> -->
@@ -33,31 +28,33 @@
       </mat-error>
     <!-- </div> -->
   </mat-form-field>
+ 
     <mat-label>Number of dependent family members</mat-label>
 <mat-radio-group formControlName="dependent">
   <mat-radio-button value="0">0</mat-radio-button>
   <mat-radio-button value="1">1</mat-radio-button>
   <mat-radio-button value="2">2</mat-radio-button>
   <mat-radio-button value="3">More</mat-radio-button>
+  <mat-error *ngIf="loanForm.errors?.['applicantWithMoreThanTwoDependentsError']" class="error-message">
+    Minimum monthly income should be 1000 EUR
+  </mat-error>
+  <mat-error *ngIf="loanForm.errors?.['applicantWithOneDependentError']" class="error-message">
+    Minimum monthly income should be 650 EUR
+  </mat-error>
+
 </mat-radio-group>
-<div *ngIf="loanForm.errors?.['applicantWithMoreThanTwoDependentsError']" class="error-message">
-  Minimum monthly income should be 1000 EUR
-</div>
-<div *ngIf="loanForm.errors?.['applicantWithOneDependentError']" class="error-message">
-  Mininmum monthly income should be 650 EUR
-</div>
     <mat-label>Current monthly obligations</mat-label>
     <mat-form-field appearance="outline">
       <span matTextSuffix class="suffix"> Eur </span>
       <input matInput type="number" placeholder="0" formControlName="obligations"/>
     </mat-form-field>
   </div>
-  <div class="max-mortgage-wrapper">
   <div class="max-mortgage-container">
   <app-show-max-mortgage-amount [maxMortgageAmount]="maxMortgageAmountValue" class="show-max-mortgage-background">
   </app-show-max-mortgage-amount>
 </div>
-</div>
 </form>
-<div class="background-image"></div>
+<div class="image-container">
+  <img src= "./assets/images/max-mortgage.svg" alt="Max-mortgage image" />
+</div>
 </div>

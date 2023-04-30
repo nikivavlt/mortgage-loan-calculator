@@ -5,6 +5,7 @@ import { Chart } from 'chart.js';
 import { downPaymentValidator, mortgageAmountValidator } from './manual-validators';
 import { MonthlyPaymentCalcResponse } from '../../interfaces/monthly-payment-calc-response';
 import { MonthlyPaymentCalcService } from 'src/app/services/monthly-payment-calc.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 
 const formBuilder = new FormBuilder().nonNullable;
@@ -23,8 +24,13 @@ export class MonthlyPaymentCalc implements OnInit {
   doughnutChart: any;
 
   monthlyCalculatorForm: FormGroup;
+  resultContainerClass?: string;
+  calculatorResultClass?: string;
+  containerClass?: string;
+  formContainerClass?: string;
+  canvasContainerClass?: string;
 
-  constructor(private monthlyPaymentCalcService: MonthlyPaymentCalcService) {
+  constructor(private monthlyPaymentCalcService: MonthlyPaymentCalcService,private breakpointObserver: BreakpointObserver) {
     this.monthlyCalculatorForm = formBuilder.group({
       homePrice: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(5000)]],
       mortgageAmount: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
@@ -36,6 +42,22 @@ export class MonthlyPaymentCalc implements OnInit {
   }
 
   ngOnInit(): void {
+    this.breakpointObserver.observe([Breakpoints.Small,Breakpoints.XSmall]).subscribe(result => {
+      if (result.breakpoints[Breakpoints.Small] || result.breakpoints[Breakpoints.XSmall]) {
+        this.resultContainerClass = 'result-container-mobile';
+        this.calculatorResultClass = 'calculator-result-mobile';
+        this.containerClass = 'container-mobile';
+        this.formContainerClass = 'form-container-mobile';
+        this.canvasContainerClass = "canvas-container-mobile";
+      }else{
+        this.resultContainerClass = 'result-container-desktop';
+        this.calculatorResultClass = 'calculator-result-desktop';
+        this.containerClass = 'container-desktop';
+        this.formContainerClass = 'form-container-desktop';
+        this.canvasContainerClass = "canvas-container-desktop";
+      }
+    });
+
     this.monthlyCalculatorForm.controls?.['homePrice']
       .valueChanges
       .subscribe(() => {
@@ -61,26 +83,22 @@ export class MonthlyPaymentCalc implements OnInit {
       .subscribe(() => {
         this.onDownPaymentPercentChanged();
       });
-
-    this.calculations$ = this.monthlyCalculatorForm.valueChanges.pipe(
-      debounceTime(1000),
-      filter(() => this.monthlyCalculatorForm.valid),
-      switchMap(() => {
-        this.loading = true;
-        return this.monthlyPaymentCalcService.sendCalculatorData(this.monthlyCalculatorForm.value).pipe(
-          catchError((error) => {
-            return of(0);
-          }),
-          tap(() => {
-            this.loading = false;
-          }),
-        );
-      }),
-    );
-
-    this.calculations$.subscribe((response) => {
-      this.doughnutChartMethod(this.mortgageAmount.value, this.downPayment.value, response.interestCost);
-    });
+      this.calculations$ = this.monthlyCalculatorForm.valueChanges.pipe(
+        debounceTime(1000),
+        filter(() => this.monthlyCalculatorForm.valid),
+        switchMap(() => {
+          this.loading = true;
+          return this.monthlyPaymentCalcService.sendCalculatorData(this.monthlyCalculatorForm.value).pipe(
+            catchError((error) => {
+              return of(0);
+            }),
+            tap((response) => {
+              this.doughnutChartMethod(this.mortgageAmount.value, this.downPayment.value, response.interestCost);
+              this.loading = false;
+            }),
+          );
+        })
+      );
   }
 
   addSpacer(price: any) {

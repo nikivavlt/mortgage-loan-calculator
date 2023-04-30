@@ -1,57 +1,62 @@
-<form [formGroup]="loanInformationForm">
-  <div class="form__content">
-    <div class="form__row">
+<div class="whole-form">
+  <form [formGroup]="loanInformationForm">
+<div class="part-form">
+    <div class="form__content">
       <mat-form-field appearance="outline" class="formInput">
         <mat-label>Loan amount</mat-label>
-        <input matInput formControlName="loanAmount" type="number" placeholder="1000">
+        <input matInput formControlName="loanAmount" type="number">
         <span matTextSuffix> Eur </span>
         <mat-error *ngIf="loanAmountRequiredError">Loan amount is required</mat-error>
       </mat-form-field>
-
-      <mat-form-field appearance="outline" class="formInput">
-        <mat-label>Loan purpose</mat-label>
-        <input matInput formControlName="loanPurpose" type="text" placeholder="I want a house">
-        <mat-error *ngIf="loanPurposeRequiredError">Loan purpose is required</mat-error>
-      </mat-form-field>
-    </div>
-
-    <div class="form__row">
+      <br>
       <mat-form-field appearance="outline" class="formInput">
         <mat-label>Type of property</mat-label>
-        <input matInput formControlName="propertyType" type="text" placeholder="House with 5 doors">
+        <input matInput formControlName="propertyType" type="text">
         <mat-error *ngIf="propertyTypeRequiredError">Type of property is required</mat-error>
       </mat-form-field>
+      <br>
 
-      <mat-form-field appearance="outline" class="formInput">
-        <mat-label>Price of property</mat-label>
-        <input matInput formControlName="propertyPrice" type="number" placeholder="3000">
-        <span matTextSuffix>Eur</span>
-        <mat-error *ngIf="propertyPriceRequiredError">Price of property is required</mat-error>
-      </mat-form-field>
-    </div>
-
-    <div class="form__row">
       <mat-form-field appearance="outline" class="formInput">
         <mat-label>Property evaluation</mat-label>
-        <input matInput formControlName="evaluatedPropertyPrice" type="number" placeholder="4000">
+        <input matInput formControlName="evaluatedPropertyPrice" type="number">
         <span matTextSuffix>Eur</span>
         <mat-error *ngIf="evaluatedPropertyPriceRequiredError">Evaluation price of property is required</mat-error>
       </mat-form-field>
-
+    </div>
+    <div class="form__content">
+      <mat-form-field appearance="outline" class="formInput">
+        <mat-label>Loan purpose</mat-label>
+        <input matInput formControlName="loanPurpose" type="text">
+        <mat-error *ngIf="loanPurposeRequiredError">Loan purpose is required</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline" class="formInput">
+        <mat-label>Price of property</mat-label>
+        <input matInput formControlName="propertyPrice" type="number">
+        <span matTextSuffix>Eur</span>
+        <mat-error *ngIf="propertyPriceRequiredError">Price of property is required</mat-error>
+      </mat-form-field>
+      <br>
       <mat-form-field appearance="outline" class="formInput">
         <mat-label>Term of loan</mat-label>
-        <input min="1" max="30" matInput formControlName="termOfLoan" type="number" placeholder="Years" (input)="onInputChange($event)">
+        <input min="1" max="30" matInput formControlName="termOfLoan" type="number" (input)="onInputChange($event)">
         <span matTextSuffix></span>
         <mat-error *ngIf="termOfLoanRequiredError">Term of loan is required</mat-error>
       </mat-form-field>
     </div>
-    <mat-slider class="formInput-slider" min="1" max="30" step="1" value="1" (input)="onSliderInput($event)" showTickMarks>
-      <input matSliderThumb formControlName="termOfLoan">
-    </mat-slider>
-
+  </div>
+    <div>
+      <mat-slider class="formInput-slider" min="1" max="30" step="1" value="1" (input)="onSliderInput($event)"
+        showTickMarks>
+        <input matSliderThumb formControlName="termOfLoan">
+      </mat-slider>
+    </div>
     <div class="form__actions">
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button matStepperNext>Next</button>
     </div>
+  </form>
+  <div class="image-container">
+    <img src="./assets/images/loan-info.svg" alt="Loan info image" />
   </div>
-</form>
+</div>

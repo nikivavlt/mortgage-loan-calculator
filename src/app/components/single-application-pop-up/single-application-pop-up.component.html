@@ -1,15 +1,16 @@
-<div class="header-container">
-    <button mat-icon-button mat-dialog-close class="back-button">
-      <mat-icon>arrow_back</mat-icon>
-    </button>
-    <h3 mat-dialog-title>Loan Application Information</h3>
-    <div class="actions-container">
-      <button mat-button mat-dialog-close mat-button color="primary" (click)="markInProgress()" >Mark in progress</button>
-      <button mat-button mat-dialog-close mat-button color="primary" (click)="markAsDone()"> Mark as done</button>
-      <button mat-button mat-dialog-close mat-button color="accent" (click)="reject()"> Reject</button>
-    </div>
+
+    <div class="header-container">
+      <button mat-icon-button mat-dialog-close class="back-button">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <h3 mat-dialog-title>Loan Application Information</h3>
+      <div class="actions-container">
+        <button mat-button mat-dialog-close mat-button class="blue"(click)="markInProgress()" >Mark in progress</button>
+        <button mat-button mat-dialog-close mat-button class="green" (click)="markAsDone()"> Mark as approved</button>
+        <button mat-button mat-dialog-close mat-button class="red"  (click)="reject()"> Reject</button>
+      </div>
   </div>
-<mat-dialog-content>
+  <mat-dialog-content>
   <div class="info-group">
     <p><strong>Creation date:</strong> {{ data.date | date:'mediumDate' }}</p>
     <p><strong>Application id:</strong> {{ data.id }}</p>
@@ -27,7 +28,8 @@
 
   <div class="info-group">
     <h2>Co-borrower Information</h2>
-    <p><strong>Name and Surname:</strong> {{ data.coBorrowerName }}</p>
+    <p><strong>Name:</strong> {{ data.coBorrowerFirstName }}</p>
+    <p><strong>Surname:</strong> {{ data.coBorrowerLastName }}</p>
     <p><strong>Personal number:</strong> {{ data.coBorrowerPersonalNumber }}</p>
   </div>
 
@@ -51,5 +53,8 @@
     <p><strong>Contract type:</strong> {{ data.contractType}}</p>
     <p><strong>Position held:</strong> {{ data.position}}</p>
     <p><strong>Current other financial obligations:</strong> {{ data.financialObligations}}</p>
-  </div>
-      
+  </div> 
+</mat-dialog-content>
+
+
+
