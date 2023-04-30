@@ -36,10 +36,10 @@ mat-slider {
 }
 
 .formInput-slider {
-  width: 100%;
+  width: 45%;
   max-width: 300px;
-  margin-top: 2%;
-  margin-left: 16px;
+  /* margin-top: 2%; */
+  margin-left: 60%;
 }
 
 img {
@@ -65,13 +65,30 @@ img {
   .form__content{
     margin: 0%
   }
+
+  .formInput-slider {
+    width: 100%;
+    max-width: 300px;
+    margin: 0%;
+  }
 }
 
 @media screen and (min-width: 769px) and (max-width: 1020px) {
   img {
     display: none;
   }
+
+  .formInput-slider {
+    width: 45%;
+    max-width: 300px;
+    margin-left: 75%;
+  }
+  .part-form {
+    justify-content: center;
+    margin-left: 45%;
+  }
 }
+
 
 @media screen and (min-width: 1500px) {
   .whole-form {

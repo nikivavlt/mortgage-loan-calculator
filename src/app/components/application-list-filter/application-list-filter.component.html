@@ -1,3 +1,4 @@
+<app-search-bar class="element-width"></app-search-bar>
 <form (submit)="onFilterSubmit()"class="filter-form" [formGroup]="filterForm">
     <label><h2>Filter</h2></label>
     <div>
@@ -12,8 +13,8 @@
             <mat-label>Status</mat-label>
           <mat-select [(ngModel)]="selectedStatus" multiple formControlName="selectedStatus">
             <mat-option value="New">New</mat-option>
-            <mat-option value="In progress">In Progress</mat-option>
-            <mat-option value="Done">Done</mat-option>
+            <mat-option value="In progress">In progress</mat-option>
+            <mat-option value="Approved">Approved</mat-option>
             <mat-option value="Rejected">Rejected</mat-option>
           </mat-select>
         </mat-form-field>

@@ -1,12 +1,8 @@
 <div class="container">
-    
   <div class="filter-container">
-    <app-search-bar class="element-width"></app-search-bar>
     <app-application-list-filter (onFilterReset)="resetForm()"  (filterApplied)="onFilterApplied($event)"></app-application-list-filter>
   </div>
- 
   <div class="table-container">
-   
       <label class="applicants-table-label"><h2>All applicants</h2></label>
       <table mat-table [dataSource]="(data | async)!" matSort>
           <ng-container matColumnDef="date">

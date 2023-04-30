@@ -51,6 +51,7 @@ img{
   }
 }
 
+
 @media screen and (max-width: 1020px){
   img{
     display: none; 
@@ -59,7 +60,7 @@ img{
   .whole-form {
     display: flex;
     flex-direction: row;
-    margin-left: 0%;
+    margin-left: 10%;
   }
 }
 
