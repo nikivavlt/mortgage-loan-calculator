@@ -11,7 +11,7 @@
       <ng-container *ngIf="coBorrowerStateControl!.value">
         <mat-form-field appearance="outline">
           <mat-label>Co-borrower name</mat-label>
-          <input matInput formControlName="coBorrowerName" type="text">
+          <input matInput formControlName="coBorrowerFirstName" type="text">
           <mat-error *ngIf="coBorrowerNameRequiredError">
             Co-borrower name is required
           </mat-error>
@@ -19,7 +19,7 @@
         <br>
         <mat-form-field appearance="outline">
           <mat-label>Co-borrower surname</mat-label>
-          <input matInput formControlName="coBorrowerlName" type="text" >
+          <input matInput formControlName="coBorrowerLastName" type="text" >
           <mat-error *ngIf="coBorrowerlNameRequiredError">
             Co-borrower surname is required
           </mat-error>
