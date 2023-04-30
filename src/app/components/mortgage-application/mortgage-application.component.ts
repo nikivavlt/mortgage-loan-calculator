@@ -80,15 +80,16 @@ export class MortgageApplicationComponent {
   }
   resetAndCloseForm(){
     this.personalInfoComponent.personalInformationForm.reset();
+    this.personalInfoComponent.personalInformationForm.markAsPristine();
     this.incomeAndFinancialComponent.incomeAndFinancialLiabilitiesForm.reset();
+    this.incomeAndFinancialComponent.incomeAndFinancialLiabilitiesForm.markAsPristine();
     this.loanInfoComponent.loanInformationForm.reset();
+    this.loanInfoComponent.loanInformationForm.markAsPristine();
     this.additionalInfoComponent.additionalInformationForm.reset();
+    this.additionalInfoComponent.additionalInformationForm.markAsPristine();
 
     this.redirectToHomepageService.selectedTabIndexSource.next(0);
-    timer(1000).pipe(
-      take(1),
-      tap(() => this.stepperIndex.next(0))
-    ).subscribe();
+    this.stepperIndex.next(-1)
   }
   ngOnDestroy(): void {
     this.destroy$.next();
