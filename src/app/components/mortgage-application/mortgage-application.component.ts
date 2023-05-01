@@ -8,6 +8,7 @@ import { ThankYouPopUpComponent } from 'src/app/components/thank-you-pop-up/than
 import { MatDialog } from '@angular/material/dialog';
 import { MortgageApplicationService } from 'src/app/services/mortgage-application.service';
 import { RedirectToHomepageService } from 'src/app/services/redirect-to-homepage.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -33,11 +34,13 @@ export class MortgageApplicationComponent {
   private readonly destroy$ = new Subject<void>();
 
   constructor(private dialog: MatDialog, private mortgageApplicationService: MortgageApplicationService,
-    private redirectToHomepageService: RedirectToHomepageService ) {}
+    private redirectToHomepageService: RedirectToHomepageService , private _snackBar: MatSnackBar) {}
 
   submitForm() {
     if(!this.isPersonalInfoCompleted||!this.isIncomeAndFinancialCompleted||!this.isLoanInfoCompleted||!this.isAdditionalInfoCompleted){
-      console.log("Not all form fields are filled, please check if all fields are filled correctly");
+      this._snackBar.open("Not all form fields are filled, please check if all fields are filled correctly", "Dismiss", {
+        duration: 2000,
+      });
       return
     }
 

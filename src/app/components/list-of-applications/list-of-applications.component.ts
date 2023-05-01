@@ -60,8 +60,6 @@ export class ListOfApplicationsComponent {
 
   getApplicationData(bool: boolean, filter?: FilterData){
     if (!bool){
-      console.log(bool, "not using filter");
-
       this.data = this.getAllApplicationsService.getAllApplications()
       .pipe(
         map((applications: AllApplications[]) => {
@@ -86,7 +84,6 @@ export class ListOfApplicationsComponent {
       )
     }
     else{
-      console.log(bool, "using filter");
       this.data = this.getAllApplicationsService.getAllApplications()
       .pipe(
         map((applications: AllApplications[]) => {
@@ -129,8 +126,6 @@ export class ListOfApplicationsComponent {
   }
 
   resetForm(){
-    console.log("reset");
-
     this.getApplicationData(false);
   }
 }

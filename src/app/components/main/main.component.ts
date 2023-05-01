@@ -42,11 +42,5 @@ export class MainComponent {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-    // this.selectedTabIndexSubscription.unsubscribe();
   }
-  // redirectToTab(index: number) {
-  //   console.log("main redirect")
-  //   this.selectedTabIndex = index;
-  // }
-
 }
