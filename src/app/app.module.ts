@@ -41,10 +41,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { NgChartsModule } from 'ng2-charts';
 import { ApplicationListFilterComponent } from './components/application-list-filter/application-list-filter.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { ErrorStateMatcher, MatNativeDateModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { DirtyErrorStateMatcher } from './dirty-error-state.matcher';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
@@ -101,7 +102,11 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     SearchBarComponent
   ],
 
-  providers: [MatNativeDateModule],
+  providers: [MatNativeDateModule,
+    {
+      provide: ErrorStateMatcher,
+      useClass: DirtyErrorStateMatcher
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
