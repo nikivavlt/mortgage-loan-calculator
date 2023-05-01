@@ -29,7 +29,7 @@
             Please use only numbers
           </mat-error>
         <!-- </div> -->
-        <mat-error *ngIf="monthlyCalculatorForm.errors?.['mortgageAmountValidator'] && mortgageAmount.touched">
+        <mat-error *ngIf="monthlyCalculatorForm.errors?.['mortgageAmountValidator']">
           Mortgage amount is more than "Home Price"
         </mat-error>
         </mat-form-field>
