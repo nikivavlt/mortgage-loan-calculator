@@ -20,7 +20,7 @@
           </mat-error>
         </mat-form-field>
         <br>
-        <mat-form-field appearance="outline">
+        <mat-form-field [hideRequiredMarker]="true" appearance="outline">
           <mat-label>Co-borrower surname</mat-label>
           <input matInput formControlName="coBorrowerLastName" type="text" >
           <mat-error *ngIf="coBorrowerlNameRequiredError">
@@ -31,7 +31,7 @@
           </mat-error>
         </mat-form-field>
         <br>
-        <mat-form-field appearance="outline" >
+        <mat-form-field [hideRequiredMarker]="true" appearance="outline" >
           <mat-label>Personal number</mat-label>
           <input matInput formControlName="coBorrowerPersonalNumber" type="text">
           <mat-error *ngIf="coBorrowerPersonalNumberError">

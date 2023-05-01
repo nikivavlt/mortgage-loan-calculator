@@ -1,7 +1,7 @@
   <div  [ngClass]="containerClass">
     <div [ngClass]="formContainerClass">
       <form [formGroup]="monthlyCalculatorForm" action="">
-        <mat-form-field [style.width.px]=327 appearance="outline">
+        <mat-form-field [hideRequiredMarker]="true" [style.width.px]=327 appearance="outline">
           <mat-label class="calc-label" for="homePrice">Home Price</mat-label>
           <input matInput id="homePrice" type="number" formControlName="homePrice" placeholder="0">
           <span matTextSuffix> Eur </span>
@@ -16,7 +16,7 @@
             Minimum home price is 5000€
           </mat-error>
         </mat-form-field>
-        <mat-form-field [style.width.px]=327 appearance="outline">
+        <mat-form-field [hideRequiredMarker]="true" [style.width.px]=327 appearance="outline">
           <mat-label class="calc-label" for="mortgage-amount">Mortgage amount</mat-label>
           <input matInput id="mortgage-amount" type="number" formControlName="mortgageAmount" placeholder="0">
           <span matTextSuffix> Eur </span>
@@ -33,7 +33,7 @@
           Mortgage amount is more than "Home Price"
         </mat-error>
         </mat-form-field>
-        <mat-form-field [style.width.px]=327 appearance="outline">
+        <mat-form-field [hideRequiredMarker]="true" [style.width.px]=327 appearance="outline">
           <mat-label class="calc-label" for="down-payment">Down payment</mat-label>
           <input matInput id="down-payment" type="number" formControlName="downPayment" placeholder="0">
           <span matTextSuffix> Eur </span>
@@ -47,7 +47,7 @@
           </mat-error>
         <!-- </div> -->
         </mat-form-field>
-        <mat-form-field [style.width.px]=327 appearance="outline">
+        <mat-form-field [hideRequiredMarker]="true" [style.width.px]=327 appearance="outline">
           <mat-label class="calc-label" for="down-payment-two">Down payment</mat-label>
           <input matInput id="down-payment-two" type="text" formControlName="downPaymentPercent" placeholder="0">
           <span matTextSuffix> % </span>
@@ -70,7 +70,7 @@
           <div>Down payment is at least 15%</div>
         </div> -->
         </mat-form-field>
-        <mat-form-field [style.width.px]=327 appearance="outline">
+        <mat-form-field [hideRequiredMarker]="true" [style.width.px]=327 appearance="outline">
           <mat-label class="calc-label" for="interest-rate">Interest rate</mat-label>
           <input  matInput id="interest-rate" type="text" formControlName="interestRate" placeholder="0">
           <span matTextSuffix> % </span>
@@ -84,7 +84,7 @@
           </mat-error >
         <!-- </div> -->
         </mat-form-field>
-        <mat-form-field [style.width.px]=327 appearance="outline">
+        <mat-form-field [hideRequiredMarker]="true" [style.width.px]=327 appearance="outline">
           <mat-label class="calc-label" for="mortgage-term">Mortgage term</mat-label>
           <input matInput id="mortgage-term" type="number" formControlName="mortgageTerm" placeholder="0">
           <span matTextSuffix> Years </span>

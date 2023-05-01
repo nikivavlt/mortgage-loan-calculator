@@ -2,21 +2,21 @@
   <form [formGroup]="loanInformationForm">
 <div class="part-form">
     <div class="form__content">
-      <mat-form-field appearance="outline" class="formInput">
+      <mat-form-field [hideRequiredMarker]="true" appearance="outline" class="formInput">
         <mat-label>Loan amount</mat-label>
         <input matInput formControlName="loanAmount" type="number">
         <span matTextSuffix> Eur </span>
         <mat-error *ngIf="loanAmountRequiredError">Loan amount is required</mat-error>
       </mat-form-field>
       <br>
-      <mat-form-field appearance="outline" class="formInput">
+      <mat-form-field [hideRequiredMarker]="true" appearance="outline" class="formInput">
         <mat-label>Type of property</mat-label>
         <input matInput formControlName="propertyType" type="text">
         <mat-error *ngIf="propertyTypeRequiredError">Type of property is required</mat-error>
       </mat-form-field>
       <br>
 
-      <mat-form-field appearance="outline" class="formInput">
+      <mat-form-field [hideRequiredMarker]="true" appearance="outline" class="formInput">
         <mat-label>Property evaluation</mat-label>
         <input matInput formControlName="evaluatedPropertyPrice" type="number">
         <span matTextSuffix>Eur</span>
@@ -24,20 +24,20 @@
       </mat-form-field>
     </div>
     <div class="form__content">
-      <mat-form-field appearance="outline" class="formInput">
+      <mat-form-field [hideRequiredMarker]="true" appearance="outline" class="formInput">
         <mat-label>Loan purpose</mat-label>
         <input matInput formControlName="loanPurpose" type="text">
         <mat-error *ngIf="loanPurposeRequiredError">Loan purpose is required</mat-error>
       </mat-form-field>
       <br>
-      <mat-form-field appearance="outline" class="formInput">
+      <mat-form-field [hideRequiredMarker]="true" appearance="outline" class="formInput">
         <mat-label>Price of property</mat-label>
         <input matInput formControlName="propertyPrice" type="number">
         <span matTextSuffix>Eur</span>
         <mat-error *ngIf="propertyPriceRequiredError">Price of property is required</mat-error>
       </mat-form-field>
       <br>
-      <mat-form-field appearance="outline" class="formInput">
+      <mat-form-field [hideRequiredMarker]="true" appearance="outline" class="formInput">
         <mat-label>Term of loan</mat-label>
         <input min="1" max="30" matInput formControlName="termOfLoan" type="number" (input)="onInputChange($event)">
         <span matTextSuffix></span>
