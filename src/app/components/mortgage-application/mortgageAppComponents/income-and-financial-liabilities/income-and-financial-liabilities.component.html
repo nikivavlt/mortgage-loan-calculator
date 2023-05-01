@@ -1,7 +1,7 @@
 <div class="whole-form">
     <form [formGroup]="incomeAndFinancialLiabilitiesForm">
         <div class="form__content">
-          <mat-form-field appearance="outline" class="formInput1">
+          <mat-form-field [hideRequiredMarker]="true" appearance="outline" class="formInput1">
             <mat-label>Education</mat-label>
             <mat-select formControlName="education">
               <mat-option *ngFor="let education of educationValues" [value]="education.value">
@@ -11,7 +11,7 @@
             <mat-error *ngIf="educationControlRequiredError">Education is required</mat-error>
           </mat-form-field>
           <br>
-          <mat-form-field appearance="outline" class="formInput1">
+          <mat-form-field [hideRequiredMarker]="true" appearance="outline" class="formInput1">
             <mat-label>Time Employed</mat-label>
             <mat-select formControlName="timeEmployed">
               <mat-option *ngFor="let values of timeEmployedValues" [value]="values.value">
@@ -21,7 +21,7 @@
             <mat-error *ngIf="timeEmployedControlRequiredError">Time Employed is required</mat-error>
           </mat-form-field>
           <br>
-          <mat-form-field appearance="outline" class="formInput1">
+          <mat-form-field [hideRequiredMarker]="true" appearance="outline" class="formInput1">
             <mat-label>Contract type</mat-label>
             <mat-select formControlName="contractType">
               <mat-option *ngFor="let values of contractTypeValues" [value]="values.value">
@@ -32,19 +32,19 @@
           </mat-form-field>
         </div>
         <div class="form__content">
-          <mat-form-field appearance="outline" class="formInput">
+          <mat-form-field [hideRequiredMarker]="true" appearance="outline" class="formInput">
             <mat-label>Current employer</mat-label>
             <input matInput formControlName="employer" type="text">
             <mat-error *ngIf="employerControlRequiredError">Employer is required</mat-error>
           </mat-form-field>
           <br>
-          <mat-form-field appearance="outline" class="formInput">
+          <mat-form-field [hideRequiredMarker]="true" appearance="outline" class="formInput">
             <mat-label>Position held</mat-label>
             <input matInput formControlName="position" type="text">
             <mat-error *ngIf="positionControlRequiredError">Position is required</mat-error>
           </mat-form-field>
           <br>
-          <mat-form-field appearance="outline" class="formInput">
+          <mat-form-field [hideRequiredMarker]="true" appearance="outline" class="formInput">
             <mat-label>Net income</mat-label>
             <input matInput formControlName="netIncome" type="number">
             <span matTextSuffix> Eur </span>
@@ -71,7 +71,7 @@
         <mat-error *ngIf="financialObligationsControlRequiredError">Financial Obligations is required</mat-error>
         <div *ngIf="financialObligationsControl?.value">
           <br>
-          <mat-form-field appearance="outline">
+          <mat-form-field [hideRequiredMarker]="true" appearance="outline">
             <mat-label>Monthly obligations</mat-label>
             <input matInput formControlName="monthlyObligations" type="number">
             <span matTextSuffix> Eur </span>
