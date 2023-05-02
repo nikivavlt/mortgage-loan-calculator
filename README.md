@@ -1,5 +1,5 @@
 ### Description:
-Mortgage loan calculator - web applications prepared by team "Game of loans" in "IT and Data academy 2023" Swedbank.
+Mortgage loan calculator - web application created using Angular and Spring frameworks. Prepared by team "Game of loans" at Swedbank "IT & Data academy 2023".
 
 Demo: https://mortgage-loan.onrender.com/
 
